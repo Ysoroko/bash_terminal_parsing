@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 11:07:01 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/03/25 15:46:01 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/03/25 18:04:25 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@
 ** PROTOTYPES
 */
 
-void	ft_input_parsing(char *input);
+t_list	*ft_input_parsing(char *input);
+void	ft_execute(t_list *input_list);
 
 /*
 ** CONSTANT PARAMETERS

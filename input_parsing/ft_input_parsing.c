@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 15:35:49 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/03/25 17:38:34 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/03/25 17:43:25 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,15 @@ static char	*ft_extract_next_string(char *str)
 	return (ft_strdup(str));
 }
 
-void	ft_input_parsing(char *input)
+/*
+** FT_INPUT_PARSING
+** This is the central hub of the parsing of user's input
+** It uses chained lists to divide input in several separated stings which
+** will be read and executed as commands afterwards
+** Returns a chained list containing every separate string from input
+*/
+
+t_list	*ft_input_parsing(char *input)
 {
 	t_list	*string_list;
 	t_list	*new_member;
@@ -53,6 +61,6 @@ void	ft_input_parsing(char *input)
 			exit(EXIT_FAILURE);
 		ft_lstadd_back(&string_list, new_member);
 	}
-	ft_lstclear(&string_list, free);
 	printf("INPUT READ: [%s]\n", input);
+	return (string_list);
 }

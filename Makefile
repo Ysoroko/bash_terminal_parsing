@@ -6,13 +6,14 @@
 #    By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/25 11:12:03 by ysoroko           #+#    #+#              #
-#    Updated: 2021/03/25 17:26:54 by ysoroko          ###   ########.fr        #
+#    Updated: 2021/03/25 18:04:18 by ysoroko          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRC			=	main.c \
 				\
-				input_parsing/ft_input_parsing.c
+				input_parsing/ft_input_parsing.c \
+				execute/ft_execute.c
 
 OBJS		=	$(SRC:.c=.o)
 
@@ -41,7 +42,7 @@ run:	$(NAME)
 		@gcc $(FLAGS) $(SRC) $(LIBRARIES) -o $(EXECUTABLE) && ./$(EXECUTABLE)
 
 # Compiles everything without warning flags and runs the executable
-wrun:	
+wrun:	$(NAME)
 		@gcc $(SRC) $(LIBRARIES) -o $(EXECUTABLE) && ./$(EXECUTABLE)
 
 # Remove all ".o" files
@@ -54,7 +55,6 @@ fclean:	clean
 		@rm -rf $(NAME)
 		@rm -rf $(EXECUTABLE)
 		@cd libft && make fclean
-		
 
 re:		fclean all
 
