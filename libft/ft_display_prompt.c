@@ -1,29 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_display_prompt.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/25 13:52:17 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/03/25 15:00:33 by ysoroko          ###   ########.fr       */
+/*   Created: 2021/03/25 14:57:11 by ysoroko           #+#    #+#             */
+/*   Updated: 2021/03/25 14:59:58 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./include/minishell.h"
+#include "../include/libft.h"
 
-int main(void)
+/*
+** FT_DISPLAY_PROMPT
+** This function is used to display the prompt name on STDOUT in the specified
+** color
+*/
+
+void	ft_display_prompt(char *color, char *prompt_name)
 {
-	char	*str;
-
-	str = malloc(100);
-	
-	while (1)
-	{
-		ft_display_prompt(BOLDCYAN, "minishell: ");
-		read(STDIN, str, 100);
-		str = ft_cut_string_at_char(str, '\n');
-		printf("INPUT READ: [%s]\n", str);
-	}
-	return (1);
+	write(1, color, 10);
+	write(1, prompt_name, (int)ft_strlen(prompt_name));
+	write(1, "\x1b[0m", 5);
 }

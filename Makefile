@@ -6,7 +6,7 @@
 #    By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/25 11:12:03 by ysoroko           #+#    #+#              #
-#    Updated: 2021/03/25 14:53:45 by ysoroko          ###   ########.fr        #
+#    Updated: 2021/03/25 14:54:50 by ysoroko          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,9 +48,10 @@ clean:
 		@cd libft && make clean
 
 fclean:	clean
-		@rm -rf $(NAME) \
-		@cd libft && make fclean \
-		@rm -rf $(EXECUTABLE) \
+		@rm -rf $(NAME)
+		@rm -rf $(EXECUTABLE)
+		@cd libft && make fclean
+		
 
 re:		aclean all
 
