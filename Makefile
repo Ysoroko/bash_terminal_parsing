@@ -6,7 +6,7 @@
 #    By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/25 11:12:03 by ysoroko           #+#    #+#              #
-#    Updated: 2021/03/25 15:38:31 by ysoroko          ###   ########.fr        #
+#    Updated: 2021/03/25 17:26:54 by ysoroko          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ OBJS		=	$(SRC:.c=.o)
 
 LIBRARIES	=	libft/libft.a
 
-LIBFT		=	cd libft && make
+LIBFT		=	cd libft && make bonus
 
 NAME		=	minishell.a
 

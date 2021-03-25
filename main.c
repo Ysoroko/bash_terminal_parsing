@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 13:52:17 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/03/25 15:42:41 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/03/25 17:32:11 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,16 @@ int main(void)
 {
 	char	*str;
 
-	str = malloc(1000);
-	
+	str = malloc(INPUT_SIZE);
+	if (!str)
+		exit(EXIT_FAILURE);
 	while (1)
 	{
 		ft_display_prompt(BOLDCYAN, "minishell: ");
-		read(STDIN, str, 1000);
+		read(STDIN, str, INPUT_SIZE);
 		str = ft_cut_string_at_char(str, '\n');
 		ft_input_parsing(str);
+		ft_free_and_realloc(str, INPUT_SIZE);
 	}
 	return (1);
 }

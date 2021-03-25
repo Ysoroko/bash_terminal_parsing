@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 11:07:01 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/03/25 15:38:15 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/03/25 15:46:01 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ void	ft_input_parsing(char *input);
 #define STDIN 0
 #define STDOUT 1
 #define STDERR 2
+#define INPUT_SIZE 1000
 
 /*
 ** COLORS
