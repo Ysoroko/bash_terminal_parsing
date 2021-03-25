@@ -6,11 +6,13 @@
 #    By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/25 11:12:03 by ysoroko           #+#    #+#              #
-#    Updated: 2021/03/25 14:54:50 by ysoroko          ###   ########.fr        #
+#    Updated: 2021/03/25 15:38:31 by ysoroko          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRC			=	main.c 
+SRC			=	main.c \
+				\
+				input_parsing/ft_input_parsing.c
 
 OBJS		=	$(SRC:.c=.o)
 
@@ -34,25 +36,26 @@ $(NAME): $(OBJS)
 		@$(LIBFT)
 		@$(LINK) $(NAME) $(OBJS)
 
-run: $(NAME)
-		@gcc $(FLAGS) $(NAME) -c $(EXECUTABLE) && ./$(EXECUTABLE)
-
-test:	$(NAME)
+# Compiles everything with warning flags and runs the executable
+run:	$(NAME)
 		@gcc $(FLAGS) $(SRC) $(LIBRARIES) -o $(EXECUTABLE) && ./$(EXECUTABLE)
 
-wtest:	
-		@gcc main.c -o $(EXECUTABLE) && ./$(EXECUTABLE)
+# Compiles everything without warning flags and runs the executable
+wrun:	
+		@gcc $(SRC) $(LIBRARIES) -o $(EXECUTABLE) && ./$(EXECUTABLE)
 
+# Remove all ".o" files
 clean:
 		@rm -rf $(OBJS)
 		@cd libft && make clean
 
+# Remove all ".o / .a / minishell executable" files
 fclean:	clean
 		@rm -rf $(NAME)
 		@rm -rf $(EXECUTABLE)
 		@cd libft && make fclean
 		
 
-re:		aclean all
+re:		fclean all
 
-.PHONY: all clean fclean re run
+.PHONY: all clean fclean re run wrun
