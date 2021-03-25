@@ -6,26 +6,16 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 13:52:17 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/03/25 14:09:32 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/03/25 14:51:41 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
-
-int	ft_strlen(char *str)
-{
-	int i;
-
-	i = 0;
-	while (str[i])
-		i++;
-	return (i);
-}
+#include "./include/minishell.h"
 
 static void	ft_display_prompt(char *color, char *prompt_name)
 {
 	write(STDOUT, color, 10);
-	write(STDOUT, prompt_name, ft_strlen(prompt_name));
+	write(STDOUT, prompt_name, (int)ft_strlen(prompt_name));
 	write(STDOUT, COLOR_RESET, 5);
 }
 
