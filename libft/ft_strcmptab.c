@@ -1,27 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_strcmptab.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/17 09:38:53 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/03/26 11:41:07 by ysoroko          ###   ########.fr       */
+/*   Created: 2021/03/26 11:33:08 by ysoroko           #+#    #+#             */
+/*   Updated: 2021/03/26 11:43:50 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/libft.h"
 
-int	ft_strlen(const char *str)
-{
-	int i;
+/*
+** FT_STRCMP_TAB
+** This function checks if the *str_to_compare argument can be found
+** in the tab of strings **str_tab
+** Returns 1 if str_to_compare is equal to one of the strings of the tab
+** Returns 0 otherwise
+*/
 
-	if (!str)
-		return (0);
-	i = 0;
-	while (str[i] != '\0')
+int	ft_strcmptab(char *str_to_compare, char **str_tab)
+{
+	int	i;
+
+	i = -1;
+	while (str_tab[++i])
 	{
-		i++;
+		if (ft_strcmp(str_to_compare, str_tab[i]))
+			return (1);
 	}
-	return (i);
+	return (0);
 }

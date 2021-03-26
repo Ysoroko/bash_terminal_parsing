@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/17 15:32:25 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/03/26 09:13:45 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/03/26 12:49:38 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ char				*ft_strjoin(char const *pref, char const *suff);
 size_t				ft_strlcat(char *dst, const char *src, size_t dstsize);
 int					ft_strlcmp(char *s1, char *s2);
 size_t				ft_strlcpy(char *dest, const char *src, size_t dstsize);
-size_t				ft_strlen(const char *str);
+int					ft_strlen(const char *str);
 char				*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 int					ft_strncmp(const char *s1, const char *s2, size_t n);
 char				*ft_strnstr(const char *haystack,
@@ -81,5 +81,8 @@ int					ft_wrong_extension(char *file_name,
 											char *expected_extension);
 char				*ft_cut_string_at_char(char *str, char c);
 char				*ft_free_and_realloc(char *str, int size);
+int					ft_strcmp(char *s1, char *s2);
+int					ft_strcmptab(char *str_to_compare, char **str_tab);
+char				*ft_strstr(char *haystack, char *needle);
 
 #endif
