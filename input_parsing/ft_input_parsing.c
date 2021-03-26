@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 15:35:49 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/03/25 17:43:25 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/03/26 09:41:01 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,25 +29,39 @@
 ** chained list with every string separated by [; ' " > < >>]
 */
 
-static char	*ft_extract_next_string(char *str)
+static t_command	*ft_extract_next_command(char *input)
 {
-	return (ft_strdup(str));
+	int			i;
+	t_command	*next_command;
+	char		*string_read_so_far;
+
+	next_command = ft_new_t_command(0, 0, 0, 0);
+	string_read_so_far = malloc(ft_strlen(input) + 1);
+	if (!(string_read_so_far))
+		exit(EXIT_FAILURE);
+	i = 0;
+	while (input[++i] && !ft_redirection_detected(&(input[i])))
+	{
+
+		i++;
+	}
+	return (ft_strdup(next_command));
 }
 
 /*
 ** FT_INPUT_PARSING
 ** This is the central hub of the parsing of user's input
-** It uses chained lists to divide input in several separated stings which
-** will be read and executed as commands afterwards
+** It uses chained lists to divide input in several separated commands which
+** will be read and executed afterwards
 ** Returns a chained list containing every separate string from input
 */
 
 t_list	*ft_input_parsing(char *input)
 {
-	t_list	*string_list;
-	t_list	*new_member;
-	int		i;
-	char	*extracted_string;
+	t_list		*string_list;
+	t_list		*new_list_member;
+	int			i;
+	t_command	*command;
 
 	string_list = ft_lstnew(0);
 	if (!string_list)
@@ -55,11 +69,11 @@ t_list	*ft_input_parsing(char *input)
 	i = -1;
 	while (input[++i])
 	{
-		extracted_string = ft_extract_next_string(input);
-		new_member = ft_lstnew(extracted_string);
-		if (!new_member)
+		command = ft_extract_next_command(&input[i]);
+		new_list_member = ft_lstnew(command);
+		if (!new_list_member)
 			exit(EXIT_FAILURE);
-		ft_lstadd_back(&string_list, new_member);
+		ft_lstadd_back(&string_list, new_list_member);
 	}
 	printf("INPUT READ: [%s]\n", input);
 	return (string_list);

@@ -6,13 +6,15 @@
 #    By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/25 11:12:03 by ysoroko           #+#    #+#              #
-#    Updated: 2021/03/25 18:04:18 by ysoroko          ###   ########.fr        #
+#    Updated: 2021/03/26 09:41:35 by ysoroko          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRC			=	main.c \
 				\
 				input_parsing/ft_input_parsing.c \
+				input_parsing/ft_parsing_utils.c \
+				\
 				execute/ft_execute.c
 
 OBJS		=	$(SRC:.c=.o)

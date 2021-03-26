@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 11:07:01 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/03/25 18:04:25 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/03/26 09:40:44 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,6 @@
 #include "libft.h"
 
 /*
-** PROTOTYPES
-*/
-
-t_list	*ft_input_parsing(char *input);
-void	ft_execute(t_list *input_list);
-
-/*
 ** CONSTANT PARAMETERS
 */
 
@@ -34,6 +27,26 @@ void	ft_execute(t_list *input_list);
 #define STDOUT 1
 #define STDERR 2
 #define INPUT_SIZE 1000
+
+/*
+** STRUCTURES
+*/
+
+typedef	struct		s_command
+{
+	char	*name;
+	char	*flags;
+	char	*argument;
+	char	*redirection;
+}					t_command;
+
+/*
+** PROTOTYPES
+*/
+
+t_list		*ft_input_parsing(char *input);
+void		ft_execute(t_list *input_list);
+t_command	*ft_new_t_command(char *name, char *flags, char *arg, char *redir);
 
 /*
 ** COLORS
