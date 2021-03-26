@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/17 15:32:25 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/03/25 17:31:06 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/03/26 09:13:45 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,6 @@ int					ft_toupper(int c);
 int					ft_wrong_extension(char *file_name,
 											char *expected_extension);
 char				*ft_cut_string_at_char(char *str, char c);
-void				ft_display_prompt(char *color, char *prompt_name);
 char				*ft_free_and_realloc(char *str, int size);
 
 #endif

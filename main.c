@@ -6,11 +6,24 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 13:52:17 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/03/25 18:16:58 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/03/26 09:15:03 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./include/minishell.h"
+
+/*
+** FT_DISPLAY_PROMPT
+** This function is used to display the prompt name on STDOUT in the specified
+** color
+*/
+
+static void	ft_display_prompt(char *color, char *prompt_name)
+{
+	write(1, color, 10);
+	write(1, prompt_name, (int)ft_strlen(prompt_name));
+	write(1, "\x1b[0m", 5);
+}
 
 /*
 ** FT_INPUT_TO_STRING
@@ -44,9 +57,10 @@ static void	ft_cleanup_and_free(char *str, t_list **lst)
 ** Central hub of the minishell project
 ** Initiates the minishell prompt, stores input and calls parsing to analyze
 ** user's input
+** Cleans up and frees all used data after each user's input
 */
 
-int main(void)
+int	main(void)
 {
 	char	*str;
 	t_list	*input_as_str_list;

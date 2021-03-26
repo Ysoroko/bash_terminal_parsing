@@ -6,7 +6,7 @@
 #    By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/11/17 16:06:56 by ysoroko           #+#    #+#              #
-#    Updated: 2021/03/25 18:00:17 by ysoroko          ###   ########.fr        #
+#    Updated: 2021/03/26 09:13:38 by ysoroko          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -71,7 +71,6 @@ SRC				=	ft_atoi.c \
 					ft_wrong_extension.c \
 					\
 					ft_cut_string_at_char.c \
-					ft_display_prompt.c \
 					ft_free_and_realloc.c
 
 
