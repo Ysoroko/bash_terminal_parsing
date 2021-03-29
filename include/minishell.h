@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 11:07:01 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/03/29 11:52:04 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/03/29 12:22:45 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@
 #define STDOUT 1
 #define STDERR 2
 #define INPUT_SIZE 1000
+#define SPACES " \t\n\r\v\f"
 
 /*
 ** STRUCTURES

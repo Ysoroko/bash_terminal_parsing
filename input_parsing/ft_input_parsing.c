@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 15:35:49 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/03/29 12:10:15 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/03/29 14:41:06 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,12 @@ static void	ft_str_read_so_far(char *input_checkpnt, int i, char **read_so_far)
 	ft_strlcpy(*read_so_far, input_checkpnt, i);
 }
 
+/*
+** FT_EXTRACT_NEXT_COMMAND
+** This function analyzes the input read so far and stores it in a t_command
+** structure with distinguished command, flags, argument and redirection
+*/
+
 static t_command	*ft_extract_next_command(char *input_checkpnt, int *i)
 {
 	int			j;
@@ -87,8 +93,13 @@ static t_command	*ft_extract_next_command(char *input_checkpnt, int *i)
 		ft_str_read_so_far(input_checkpnt, j - *i, &str_read_so_far);
 		if (!command->name && ft_command_seen(str_read_so_far))
 			command->name = str_read_so_far;
+		else if (!ft_strcmp(command->name, "echo") &&
+				ft_strstr(ft_strtrim(str_read_so_far, command->name), " -n "))
+			command->flags = ft_strdup("-n");
 		j++;
 	}
+	command->argument = ft_strtrim(str_read_so_far, command->name);
+	free(str_read_so_far);
 	*i = j;
 	return (command);
 }
