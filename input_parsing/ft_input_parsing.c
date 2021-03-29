@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 15:35:49 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/03/29 14:41:06 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/03/29 16:44:27 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,18 +40,40 @@
 
 static int	ft_redirection_seen(char *str, t_command *current_command)
 {
-	current_command->redirection = 0;
-	if (ft_strstr(str, "<"))
-		current_command->redirection = strdup("<");
+	if (ft_strrchr(str, '<'))
+		current_command->redirection = ft_strdup("<");
 	else if (ft_strstr(str, ">>"))
-		current_command->redirection = strdup(">>");
-	else if (ft_strstr(str, ">"))
-		current_command->redirection = strdup(">");
-	else if (ft_strstr(str, "|"))
-		current_command->redirection = strdup("|");
-	else if (ft_strstr(str, ";"))
-		current_command->redirection = strdup(";");
-	return ((current_command->redirection != 0));
+		current_command->redirection = ft_strdup(">>");
+	else if (ft_strrchr(str, '>'))
+		current_command->redirection = ft_strdup(">");
+	else if (ft_strrchr(str, '|'))
+		current_command->redirection = ft_strdup("|");
+	else if (ft_strrchr(str, ';'))
+		current_command->redirection = ft_strdup(";");
+	if (current_command->redirection)
+		return (1);
+	return (0);
+}
+
+static int	ft_command_seen(char *str, t_command *current_command)
+{
+	if (ft_strstr(str, "echo"))
+		current_command->name = ft_strdup("echo");
+	else if (ft_strstr(str, "cd"))
+		current_command->name = ft_strdup("cd");
+	else if (ft_strstr(str, "pwd"))
+		current_command->name = ft_strdup("pwd");
+	else if (ft_strstr(str, "export"))
+		current_command->name = ft_strdup("export");
+	else if (ft_strstr(str, "unset"))
+		current_command->name = ft_strdup("unset");
+	else if (ft_strstr(str, "env"))
+		current_command->name = ft_strdup("env");
+	else if (ft_strstr(str, "exit"))
+		current_command->name = ft_strdup("exit");
+	if (current_command->name)
+		return (1);
+	return (0);
 }
 
 /*
@@ -67,10 +89,10 @@ static int	ft_redirection_seen(char *str, t_command *current_command)
 static void	ft_str_read_so_far(char *input_checkpnt, int i, char **read_so_far)
 {
 	free(*read_so_far);
-	*read_so_far = malloc(sizeof(char) * (i + 1));
+	*read_so_far = malloc(sizeof(char) * i + 1);
 	if (!*read_so_far)
 		exit(EXIT_FAILURE);
-	ft_strlcpy(*read_so_far, input_checkpnt, i);
+	ft_strlcpy(*read_so_far, input_checkpnt, i + 2);
 }
 
 /*
@@ -84,21 +106,31 @@ static t_command	*ft_extract_next_command(char *input_checkpnt, int *i)
 	int			j;
 	t_command	*command;
 	char		*str_read_so_far;
+	int			index;
 
 	command = ft_new_t_command(0, 0, 0, 0);
 	str_read_so_far = ft_calloc_exit(ft_strlen(input_checkpnt) + 1, 1);
 	j = *i;
 	while (input_checkpnt[j] && !ft_redirection_seen(str_read_so_far, command))
 	{
+		printf("j:[%d]\n", j);
 		ft_str_read_so_far(input_checkpnt, j - *i, &str_read_so_far);
-		if (!command->name && ft_command_seen(str_read_so_far))
-			command->name = str_read_so_far;
-		else if (!ft_strcmp(command->name, "echo") &&
-				ft_strstr(ft_strtrim(str_read_so_far, command->name), " -n "))
+		printf("READSOFAR: [%s]\n", str_read_so_far);
+		if (!command->name)
+		{
+			ft_command_seen(str_read_so_far, command);
+			index = j;
+		}
+		if (!command->flags && command->name && !command->argument &&
+	!ft_strcmp(command->name, "echo") && ft_strstr(str_read_so_far, " -n "))
+		{
 			command->flags = ft_strdup("-n");
+			index = j;
+		}
 		j++;
 	}
-	command->argument = ft_strtrim(str_read_so_far, command->name);
+	command->argument = ft_strtrim(&(str_read_so_far[index]), command->redirection);
+	printf("HERE\n");
 	free(str_read_so_far);
 	*i = j;
 	return (command);
@@ -126,9 +158,15 @@ t_list	*ft_input_parsing(char *input)
 	while (input[++i])
 	{
 		command = ft_extract_next_command(&input[i], &i);
+		printf("command adress: [%p]\n", command);
+		printf("Command name: [%s]\n", command->name);
+		printf("Command flag: [%s]\n", command->flags);
+		printf("Command argument: [%s]\n", command->argument);
+		printf("Command redirection: [%s]\n", command->redirection);
 		new_list_member = ft_lstnew_exit(command);
 		ft_lstadd_back(&string_list, new_list_member);
+		if (!i)
+			break;
 	}
-	printf("INPUT READ: [%s]\n", input);
 	return (string_list);
 }

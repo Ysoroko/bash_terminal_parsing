@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 13:52:17 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/03/29 14:41:32 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/03/29 15:30:21 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,35 @@ static void	ft_cleanup_and_free(char *str, t_list **lst)
 	ft_lstclear(lst, free);
 }
 
+
+
+/*
+** FT_PRINT_LST
+** 
+*/
+static void	ft_print_command_list(t_list *command_list)
+{
+	t_list		*current;
+	t_command	*command;
+	int			count;
+
+	current = command_list;
+	count = 1;
+	while (current)
+	{
+		command = (t_command *)(current->content);
+		printf("Element number: [%d]\n", count);
+		printf("command adress: [%p]\n", command);
+		printf("Command name: [%s]\n", command->name);
+		printf("Command flag: [%s]\n", command->flags);
+		printf("Command argument: [%s]\n", command->argument);
+		printf("Command redirection: [%s]\n", command->redirection);
+		printf("_______________________\n");
+		count++;
+		current = current->next;
+	}
+}
+
 /*
 ** MAIN
 ** Central hub of the minishell project
@@ -63,16 +92,16 @@ static void	ft_cleanup_and_free(char *str, t_list **lst)
 int	main(void)
 {
 	char	*str;
-	t_list	*input_as_str_list;
+	t_list	*input_as_command_list;
 
 	while (1)
 	{
 		ft_display_prompt(BOLDCYAN, "minishell: ");
 		ft_input_to_string(&str);
-		input_as_str_list = ft_input_parsing(str);
-		ft_execute(input_as_str_list);
-		ft_lstclear(&input_as_str_list, free);
-		ft_cleanup_and_free(str, 0);
+		printf("INPUT: [%s]\n", str);
+		input_as_command_list = ft_input_parsing(str);
+		ft_print_command_list(input_as_command_list);
+		//ft_cleanup_and_free(str, 0);
 	}
 	return (1);
 }

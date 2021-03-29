@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/26 12:48:11 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/03/26 12:49:25 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/03/29 14:54:58 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,6 @@ char	*ft_strstr(char *haystack, char *needle)
 {
 	size_t	i;
 	size_t	j;
-	char	*haystack;
-	char	*needle;
 
 	i = 0;
 	if (needle[0] == '\0')

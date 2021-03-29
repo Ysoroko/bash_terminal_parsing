@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/26 11:34:49 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/03/26 11:39:43 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/03/29 15:24:58 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,9 @@ int	ft_strcmp(char *s1, char *s2)
 	int		i;
 
 	i = 0;
-	while (s1[i] == s2[i] && s1[i] != '\0' && s2[i] != '\0')
+	if (!s1 || !s2)
+		return (0);
+	while (s1[i] == s2[i] && s1[i] && s2[i])
 		i++;
 	return ((s1[i]) - (s2[i]));
 }

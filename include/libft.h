@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/17 15:32:25 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/03/29 11:49:06 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/03/29 14:59:25 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,6 @@ int					ft_strcmp(char *s1, char *s2);
 int					ft_strcmptab(char *str_to_compare, char **str_tab);
 char				*ft_strstr(char *haystack, char *needle);
 t_list				*ft_lstnew_exit(void *content);
-void				*ft_calloc(size_t count, size_t size);
+void				*ft_calloc_exit(size_t count, size_t size);
 
 #endif

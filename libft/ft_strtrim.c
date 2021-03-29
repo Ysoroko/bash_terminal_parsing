@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/19 16:31:28 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/01/22 14:47:46 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/03/29 16:46:51 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,8 +70,10 @@ char				*ft_strtrim(char const *str, char const *except)
 	int		i;
 	int		j;
 
-	if (str == 0 || except == 0)
+	if (str == 0)
 		return (0);
+	if (!except)
+		return (ft_strdup(str));
 	my_str = (char *)(str);
 	my_except = (char *)(except);
 	i = ft_find_i(my_str, my_except) - 1;
