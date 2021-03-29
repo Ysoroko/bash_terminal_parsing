@@ -1,26 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstnew.c                                        :+:      :+:    :+:   */
+/*   ft_lstnew_exit.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/22 14:11:54 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/03/29 11:48:27 by ysoroko          ###   ########.fr       */
+/*   Created: 2021/03/29 11:47:31 by ysoroko           #+#    #+#             */
+/*   Updated: 2021/03/29 11:48:03 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/libft.h"
 
-t_list	*ft_lstnew(void *content)
+t_list	*ft_lstnew_exit(void *content)
 {
 	t_list *pnt;
 
 	pnt = malloc(sizeof(t_list));
-	if (pnt == 0)
-	{
-		return (0);
-	}
+	if (!pnt)
+		exit(EXIT_FAILURE);
 	pnt->content = content;
 	pnt->next = 0;
 	return (pnt);

@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 11:07:01 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/03/26 11:14:14 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/03/29 11:52:04 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,6 @@ typedef	struct		s_command
 t_list		*ft_input_parsing(char *input);
 void		ft_execute(t_list *input_list);
 t_command	*ft_new_t_command(char *name, char *flags, char *arg, char *redir);
-void		ft_str_read_so_far(char *input_checkpoint, int i, char **read_so_far);
 
 /*
 ** COLORS
