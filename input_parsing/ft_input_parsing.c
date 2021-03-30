@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 15:35:49 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/03/30 16:02:14 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/03/30 18:04:53 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,13 @@ t_list	*ft_input_parsing(char *input)
 	while (input[++i])
 	{
 		command = ft_extract_next_command(&input[i], &i);
-		new_list_member = ft_lstnew_exit(command);
-		ft_lstadd_back(&command_list, new_list_member);
+		if (!command_list->content)
+			command_list->content = command;
+		else
+		{
+			new_list_member = ft_lstnew_exit(command);
+			ft_lstadd_back(&command_list, new_list_member);
+		}
 		if (!input[i])
 			break ;
 	}

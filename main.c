@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 13:52:17 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/03/30 17:55:02 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/03/30 18:02:02 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ static void	ft_print_command_list(t_list *command_list)
 	t_command	*command;
 	int			count;
 
-	current = command_list->next;
+	current = command_list;
 	count = 1;
 	while (current)
 	{
