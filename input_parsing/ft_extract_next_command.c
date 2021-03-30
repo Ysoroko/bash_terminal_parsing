@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/30 15:52:06 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/03/30 16:25:48 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/03/30 17:50:46 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ static void	ft_check_if_command_seen(char *str, t_command *command, int *index)
 			command->name = ft_strdup("env");
 		else if (ft_strstr(str, "exit"))
 			command->name = ft_strdup("exit");
-		*index = ft_strlen(str);
+		*index = ft_strlen(str) - 1;
 	}
 }
 
@@ -85,7 +85,7 @@ static void	ft_check_for_flags(char *str, t_command *command, int *index)
 	!ft_strcmp(command->name, "echo") && ft_strstr(str, " -n "))
 	{
 		command->flags = ft_strdup("-n");
-		*index = ft_strlen(str);
+		*index = ft_strlen(str) - 1;
 	}
 }
 

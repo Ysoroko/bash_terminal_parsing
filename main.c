@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 13:52:17 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/03/30 16:37:14 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/03/30 17:55:02 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,15 +68,14 @@ static void	ft_print_command_list(t_list *command_list)
 	count = 1;
 	while (current)
 	{
+		printf("\n\n\n");
 		command = (t_command *)(current->content);
-		printf("_______________________\n\n");
-		printf("Element number: [%d]\n", count);
-		//printf("command adress: [%p]\n", command);
-		printf("Command name: [%s]\n", command->name);
-		printf("Command flag: [%s]\n", command->flags);
-		printf("Command argument: [%s]\n", command->argument);
-		printf("Command redirection: [%s]\n", command->redirection);
-		printf("_______________________\n\n");
+		printf("___________________[%d]___________________\n\n", count);
+		printf("%-12s [%s]\n", "Command:", command->name);
+		printf("%-12s [%s]\n", "Flag:", command->flags);
+		printf("%-12s [%s]\n", "Argument:", command->argument);
+		printf("%-12s [%s]\n", "Redirection:", command->redirection);
+		printf("_________________________________________\n\n");
 		count++;
 		current = current->next;
 	}
