@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 15:35:49 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/03/30 12:43:16 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/03/30 14:37:11 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,8 @@ static t_command	*ft_extract_next_command(char *input_checkpnt, int *i)
 
 	command = ft_new_t_command(0, 0, 0, 0);
 	str_read_so_far = ft_calloc_exit(ft_strlen(input_checkpnt) + 1, 1);
+	printf("STR: [%s]\n", str_read_so_far);
+	printf("I_C: [%s]\n", input_checkpnt);
 	j = *i;
 	while (!ft_redirection_seen(str_read_so_far, command) && input_checkpnt[j])
 	{
@@ -147,27 +149,20 @@ static t_command	*ft_extract_next_command(char *input_checkpnt, int *i)
 
 t_list	*ft_input_parsing(char *input)
 {
-	t_list		*string_list;
+	t_list		*command_list;
 	t_list		*new_list_member;
 	int			i;
-	int			start_index;
 	t_command	*command;
 
-	string_list = ft_lstnew_exit(0);
+	command_list = ft_lstnew_exit(0);
 	i = -1;
-	start_index = 0;
 	while (input[++i])
 	{
 		command = ft_extract_next_command(&input[i], &i);
-		printf("command adress: [%p]\n", command);
-		printf("Command name: [%s]\n", command->name);
-		printf("Command flag: [%s]\n", command->flags);
-		printf("Command argument: [%s]\n", command->argument);
-		printf("Command redirection: [%s]\n", command->redirection);
 		new_list_member = ft_lstnew_exit(command);
-		ft_lstadd_back(&string_list, new_list_member);
-		if (!i)
+		ft_lstadd_back(&command_list, new_list_member);
+		if (!input[i])
 			break ;
 	}
-	return (string_list);
+	return (command_list);
 }

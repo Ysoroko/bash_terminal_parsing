@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 13:52:17 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/03/29 15:30:21 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/03/30 12:58:18 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,23 +52,24 @@ static void	ft_cleanup_and_free(char *str, t_list **lst)
 	ft_lstclear(lst, free);
 }
 
-
-
 /*
-** FT_PRINT_LST
-** 
+** FT_PRINT_COMMAND_LIST
+** A debugging function used to print the list of our commands and related
+** flags/arguments/redirections to make sure everything is running smoothly
 */
+
 static void	ft_print_command_list(t_list *command_list)
 {
 	t_list		*current;
 	t_command	*command;
 	int			count;
 
-	current = command_list;
+	current = command_list->next;
 	count = 1;
 	while (current)
 	{
 		command = (t_command *)(current->content);
+		printf("_______________________\n");
 		printf("Element number: [%d]\n", count);
 		printf("command adress: [%p]\n", command);
 		printf("Command name: [%s]\n", command->name);
@@ -98,8 +99,8 @@ int	main(void)
 	{
 		ft_display_prompt(BOLDCYAN, "minishell: ");
 		ft_input_to_string(&str);
-		printf("INPUT: [%s]\n", str);
 		input_as_command_list = ft_input_parsing(str);
+		printf("command adress before printing: [%p]\n", input_as_command_list);
 		ft_print_command_list(input_as_command_list);
 		//ft_cleanup_and_free(str, 0);
 	}
