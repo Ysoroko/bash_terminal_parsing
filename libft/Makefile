@@ -6,7 +6,7 @@
 #    By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/11/17 16:06:56 by ysoroko           #+#    #+#              #
-#    Updated: 2021/03/30 12:35:38 by ysoroko          ###   ########.fr        #
+#    Updated: 2021/03/30 16:32:41 by ysoroko          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -77,7 +77,8 @@ SRC				=	ft_atoi.c \
 					ft_strstr.c \
 					ft_calloc_exit.c \
 					ft_lstnew_exit.c \
-					ft_strtrim_exit.c 
+					ft_strtrim_exit.c \
+					ft_free_str.c
 
 
 BONUS			=	ft_lstadd_back.c \

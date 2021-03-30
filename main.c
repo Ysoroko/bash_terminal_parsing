@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 13:52:17 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/03/30 12:58:18 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/03/30 16:37:14 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,8 @@ static void	ft_input_to_string(char **str)
 
 static void	ft_cleanup_and_free(char *str, t_list **lst)
 {
-	free(str);
-	ft_lstclear(lst, free);
+	ft_free_str(str);
+	ft_lstclear(lst, &ft_free_t_command);
 }
 
 /*
@@ -69,14 +69,14 @@ static void	ft_print_command_list(t_list *command_list)
 	while (current)
 	{
 		command = (t_command *)(current->content);
-		printf("_______________________\n");
+		printf("_______________________\n\n");
 		printf("Element number: [%d]\n", count);
-		printf("command adress: [%p]\n", command);
+		//printf("command adress: [%p]\n", command);
 		printf("Command name: [%s]\n", command->name);
 		printf("Command flag: [%s]\n", command->flags);
 		printf("Command argument: [%s]\n", command->argument);
 		printf("Command redirection: [%s]\n", command->redirection);
-		printf("_______________________\n");
+		printf("_______________________\n\n");
 		count++;
 		current = current->next;
 	}
@@ -100,9 +100,8 @@ int	main(void)
 		ft_display_prompt(BOLDCYAN, "minishell: ");
 		ft_input_to_string(&str);
 		input_as_command_list = ft_input_parsing(str);
-		printf("command adress before printing: [%p]\n", input_as_command_list);
 		ft_print_command_list(input_as_command_list);
-		//ft_cleanup_and_free(str, 0);
+		ft_cleanup_and_free(str, 0);
 	}
 	return (1);
 }
