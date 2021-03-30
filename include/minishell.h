@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 11:07:01 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/03/29 16:15:50 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/03/30 12:34:54 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@
 #define STDERR 2
 #define INPUT_SIZE 1000
 #define SPACES " \t\n\r\v\f"
+#define SPACES_AND_REDIRECTIONS " \t\n\r\v\f><;|"
 
 /*
 ** STRUCTURES

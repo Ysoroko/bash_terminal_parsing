@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 15:35:49 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/03/29 16:44:27 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/03/30 12:43:16 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,7 @@ static t_command	*ft_extract_next_command(char *input_checkpnt, int *i)
 	command = ft_new_t_command(0, 0, 0, 0);
 	str_read_so_far = ft_calloc_exit(ft_strlen(input_checkpnt) + 1, 1);
 	j = *i;
-	while (input_checkpnt[j] && !ft_redirection_seen(str_read_so_far, command))
+	while (!ft_redirection_seen(str_read_so_far, command) && input_checkpnt[j])
 	{
 		printf("j:[%d]\n", j);
 		ft_str_read_so_far(input_checkpnt, j - *i, &str_read_so_far);
@@ -129,7 +129,8 @@ static t_command	*ft_extract_next_command(char *input_checkpnt, int *i)
 		}
 		j++;
 	}
-	command->argument = ft_strtrim(&(str_read_so_far[index]), command->redirection);
+	command->argument = ft_strtrim_exit(&str_read_so_far[index + 1],
+										SPACES_AND_REDIRECTIONS);
 	printf("HERE\n");
 	free(str_read_so_far);
 	*i = j;
@@ -166,7 +167,7 @@ t_list	*ft_input_parsing(char *input)
 		new_list_member = ft_lstnew_exit(command);
 		ft_lstadd_back(&string_list, new_list_member);
 		if (!i)
-			break;
+			break ;
 	}
 	return (string_list);
 }
