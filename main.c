@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 13:52:17 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/03/30 18:02:02 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/03/30 18:09:38 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,9 @@ static void	ft_print_command_list(t_list *command_list)
 	t_list		*current;
 	t_command	*command;
 	int			count;
+	int			spaces;
 
+	spaces = -12;
 	current = command_list;
 	count = 1;
 	while (current)
@@ -71,10 +73,10 @@ static void	ft_print_command_list(t_list *command_list)
 		printf("\n\n\n");
 		command = (t_command *)(current->content);
 		printf("___________________[%d]___________________\n\n", count);
-		printf("%-12s [%s]\n", "Command:", command->name);
-		printf("%-12s [%s]\n", "Flag:", command->flags);
-		printf("%-12s [%s]\n", "Argument:", command->argument);
-		printf("%-12s [%s]\n", "Redirection:", command->redirection);
+		printf("%*s [%s]\n", spaces, "Command:", command->name);
+		printf("%*s [%s]\n", spaces, "Flag:", command->flags);
+		printf("%*s [%s]\n", spaces, "Argument:", command->argument);
+		printf("%*s [%s]\n", spaces, "Redirection:", command->redirection);
 		printf("_________________________________________\n\n");
 		count++;
 		current = current->next;
