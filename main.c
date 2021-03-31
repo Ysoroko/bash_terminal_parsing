@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 13:52:17 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/03/30 18:09:38 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/03/31 16:24:22 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,8 @@ static void	ft_input_to_string(char **str)
 		exit(EXIT_FAILURE);
 	if (read(STDIN, *str, INPUT_SIZE) < 0)
 		exit(EXIT_FAILURE);
-	*str = ft_cut_string_at_char(*str, '\n');
+	if (str)
+		*str = ft_cut_string_at_char(*str, '\n');
 }
 
 /*
@@ -58,7 +59,7 @@ static void	ft_cleanup_and_free(char *str, t_list **lst)
 ** flags/arguments/redirections to make sure everything is running smoothly
 */
 
-static void	ft_print_command_list(t_list *command_list)
+static void	ft_print_command_list(t_list *command_list, char *str)
 {
 	t_list		*current;
 	t_command	*command;
@@ -68,6 +69,9 @@ static void	ft_print_command_list(t_list *command_list)
 	spaces = -12;
 	current = command_list;
 	count = 1;
+	printf("\n\n_________________________________________\n\n");
+	printf("INPUT READ: [%s]\n", str);
+	printf("_________________________________________\n\n");
 	while (current)
 	{
 		printf("\n\n\n");
@@ -100,9 +104,12 @@ int	main(void)
 	{
 		ft_display_prompt(BOLDCYAN, "minishell: ");
 		ft_input_to_string(&str);
-		input_as_command_list = ft_input_parsing(str);
-		ft_print_command_list(input_as_command_list);
-		ft_cleanup_and_free(str, 0);
+		if (str && str[0])
+		{
+			input_as_command_list = ft_input_parsing(str);
+			ft_print_command_list(input_as_command_list, str);
+			ft_cleanup_and_free(str, 0);
+		}
 	}
 	return (1);
 }

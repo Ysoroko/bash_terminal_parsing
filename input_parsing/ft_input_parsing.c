@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 15:35:49 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/03/30 18:04:53 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/03/31 16:03:25 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ t_list	*ft_input_parsing(char *input)
 			command_list->content = command;
 		else
 		{
-			new_list_member = ft_lstnew_exit(command);
+			new_list_member = ft_lstnew_exit((void *)command);
 			ft_lstadd_back(&command_list, new_list_member);
 		}
 		if (!input[i])

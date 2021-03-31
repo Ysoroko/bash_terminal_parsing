@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/26 09:36:36 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/03/30 16:38:59 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/03/31 17:05:21 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,17 @@
 
 void	ft_update_str_read_so_far(char *input_checkpnt, int i, char **prev)
 {
-	free(*prev);
-	*prev = malloc(sizeof(char) * i + 1);
+	int to_copy;
+
+	if (!i)
+		to_copy = 1;
+	else
+		to_copy = i;
+	ft_free_str(*prev);
+	*prev = malloc(sizeof(char) * (to_copy + 2));
 	if (!(*prev))
 		exit(EXIT_FAILURE);
-	ft_strlcpy(*prev, input_checkpnt, i + 2);
+	ft_strlcpy(*prev, input_checkpnt, to_copy + 2);
 }
 
 /*
