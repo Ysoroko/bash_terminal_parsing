@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 13:52:17 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/04/01 11:53:02 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/04/01 14:06:08 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,9 +75,12 @@ int	main(void)
 {
 	char	*str;
 	t_list	*input_as_command_list;
+	char	*term_type;
+	int		ret;
 
 	str = 0;
 	input_as_command_list = 0;
+	ft_initialize_termcaps(&term_type, &ret);
 	ft_setup_signals();
 	while (1)
 	{

@@ -6,7 +6,7 @@
 #    By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/25 11:12:03 by ysoroko           #+#    #+#              #
-#    Updated: 2021/04/01 11:39:00 by ysoroko          ###   ########.fr        #
+#    Updated: 2021/04/01 14:05:23 by ysoroko          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,6 +17,8 @@ SRC			=	main.c \
 				input_parsing/ft_extract_next_command.c \
 				\
 				execute/ft_execute.c \
+				\
+				termcaps/ft_termcaps.c \
 				\
 				utils/signal/ft_signal_handler.c
 

@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 11:07:01 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/04/01 11:39:13 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/04/01 14:05:52 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <signal.h>
+#include <curses.h>
+#include <term.h>
 #include "libft.h"
 
 /*
@@ -54,7 +56,7 @@ void		ft_update_str_read_so_far(char *input_checkpnt, int i, char **prev);
 t_command	*ft_extract_next_command(char *input_checkpnt, int *i);
 void		ft_execute(t_list *command_list);
 void		ft_signal_handler(int no_matter);
-
+void		ft_initialize_termcaps(char **term_type, int *ret);
 
 /*
 ** COLORS
