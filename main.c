@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 13:52:17 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/03/31 16:24:22 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/04/01 11:53:02 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@
 
 static void	ft_display_prompt(char *color, char *prompt_name)
 {
-	write(1, color, 10);
-	write(1, prompt_name, (int)ft_strlen(prompt_name));
-	write(1, "\x1b[0m", 5);
+	write(STDOUT, color, 10);
+	write(STDOUT, prompt_name, (int)ft_strlen(prompt_name));
+	write(STDOUT, "\x1b[0m", 5);
 }
 
 /*
@@ -54,37 +54,13 @@ static void	ft_cleanup_and_free(char *str, t_list **lst)
 }
 
 /*
-** FT_PRINT_COMMAND_LIST
-** A debugging function used to print the list of our commands and related
-** flags/arguments/redirections to make sure everything is running smoothly
+** FT_SETUP_SIGNALS
+** This function modifies the behavious when specific actions are done
+** When we press CTRL+D, it will not 
 */
-
-static void	ft_print_command_list(t_list *command_list, char *str)
+static void	ft_setup_signals(void)
 {
-	t_list		*current;
-	t_command	*command;
-	int			count;
-	int			spaces;
-
-	spaces = -12;
-	current = command_list;
-	count = 1;
-	printf("\n\n_________________________________________\n\n");
-	printf("INPUT READ: [%s]\n", str);
-	printf("_________________________________________\n\n");
-	while (current)
-	{
-		printf("\n\n\n");
-		command = (t_command *)(current->content);
-		printf("___________________[%d]___________________\n\n", count);
-		printf("%*s [%s]\n", spaces, "Command:", command->name);
-		printf("%*s [%s]\n", spaces, "Flag:", command->flags);
-		printf("%*s [%s]\n", spaces, "Argument:", command->argument);
-		printf("%*s [%s]\n", spaces, "Redirection:", command->redirection);
-		printf("_________________________________________\n\n");
-		count++;
-		current = current->next;
-	}
+	signal(SIGINT, ft_signal_handler);
 }
 
 /*
@@ -100,6 +76,9 @@ int	main(void)
 	char	*str;
 	t_list	*input_as_command_list;
 
+	str = 0;
+	input_as_command_list = 0;
+	ft_setup_signals();
 	while (1)
 	{
 		ft_display_prompt(BOLDCYAN, "minishell: ");
@@ -107,7 +86,7 @@ int	main(void)
 		if (str && str[0])
 		{
 			input_as_command_list = ft_input_parsing(str);
-			ft_print_command_list(input_as_command_list, str);
+			ft_execute(input_as_command_list);
 			ft_cleanup_and_free(str, 0);
 		}
 	}

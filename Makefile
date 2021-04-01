@@ -6,7 +6,7 @@
 #    By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/25 11:12:03 by ysoroko           #+#    #+#              #
-#    Updated: 2021/03/30 15:59:57 by ysoroko          ###   ########.fr        #
+#    Updated: 2021/04/01 11:39:00 by ysoroko          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,9 @@ SRC			=	main.c \
 				input_parsing/ft_parsing_utils.c \
 				input_parsing/ft_extract_next_command.c \
 				\
-				execute/ft_execute.c
+				execute/ft_execute.c \
+				\
+				utils/signal/ft_signal_handler.c
 
 OBJS		=	$(SRC:.c=.o)
 
