@@ -6,7 +6,7 @@
 #    By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/25 11:12:03 by ysoroko           #+#    #+#              #
-#    Updated: 2021/04/02 14:38:02 by ysoroko          ###   ########.fr        #
+#    Updated: 2021/04/02 15:11:37 by ysoroko          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,6 +23,11 @@ SRC			=	main.c \
 				utils/signal/ft_signal_handler.c
 
 OBJS		=	$(SRC:.c=.o)
+
+# Termcap
+# Linking command required to be able to use termcap commands
+# Without it, some termcap functions are not recognized despite the #include
+TERMCAP		=	-ltermcap
 
 LIBRARIES	=	libft/libft.a
 
@@ -46,11 +51,11 @@ $(NAME): $(OBJS)
 
 # Compiles everything with warning flags and runs the executable
 run:	$(NAME)
-		@gcc $(FLAGS) $(SRC) $(LIBRARIES) -o $(EXECUTABLE) && ./$(EXECUTABLE)
+		@gcc $(FLAGS) $(SRC) $(LIBRARIES) $(TERMCAP) -o $(EXECUTABLE) && ./$(EXECUTABLE)
 
 # Compiles everything without warning flags and runs the executable
 wrun:	$(NAME)
-		@gcc $(SRC) $(LIBRARIES) -o $(EXECUTABLE) && ./$(EXECUTABLE)
+		@gcc $(SRC) $(LIBRARIES) $(TERMCAP) -o $(EXECUTABLE) && ./$(EXECUTABLE)
 
 # Remove all ".o" files
 clean:
