@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/27 10:36:18 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/01/27 10:54:51 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/04/02 11:25:01 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 
 int	ft_wrong_extension(char *file_name, char *expected_extension)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (file_name[i] && file_name[i] != '.')

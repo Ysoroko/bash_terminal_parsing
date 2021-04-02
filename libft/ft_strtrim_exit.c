@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/30 11:41:34 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/03/30 12:33:51 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/04/02 11:23:25 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static int	ft_char_is_in_str(char c, char *str)
 
 static char	*return_empty_string(void)
 {
-	char *ret;
+	char	*ret;
 
 	ret = ft_strdup("");
 	if (!ret)
@@ -37,7 +37,7 @@ static char	*return_empty_string(void)
 
 static char	*return_source_duplicate(char *src)
 {
-	char *ret;
+	char	*ret;
 
 	ret = ft_strdup(src);
 	if (!ret)

@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/22 13:26:52 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/01/22 14:47:03 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/04/02 11:11:55 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_putnbr_fd(int n, int fd)
 {
-	unsigned int m;
+	unsigned int	m;
 
 	m = (unsigned int)n;
 	if (n < 0)

@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/26 17:17:22 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/01/26 17:20:46 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/04/02 11:09:08 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 int	ft_longest_strlen_in_strtab(char **str_tab)
 {
-	int i;
-	int max;
-	int current;
+	int	i;
+	int	max;
+	int	current;
 
 	if (!str_tab)
 		return (0);
@@ -24,7 +24,8 @@ int	ft_longest_strlen_in_strtab(char **str_tab)
 	max = 0;
 	while (str_tab[++i])
 	{
-		if ((current = (int)ft_strlen(str_tab[i])) > max)
+		current = (int)ft_strlen(str_tab[i]);
+		if (current > max)
 			max = current;
 	}
 	return (max);

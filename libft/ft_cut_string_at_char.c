@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 14:55:36 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/03/25 14:59:59 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/04/02 11:06:15 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 char	*ft_cut_string_at_char(char *str, char c)
 {
-	int i;
+	int	i;
 
 	i = -1;
 	while (str[++i])

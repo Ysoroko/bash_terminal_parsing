@@ -6,13 +6,13 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/17 11:23:49 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/01/22 14:48:02 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/04/02 11:04:48 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/libft.h"
 
-static int		my_isspace(char c)
+static int	my_isspace(char c)
 {
 	char	tab[6];
 	int		i;
@@ -35,7 +35,7 @@ static int		my_isspace(char c)
 	return (0);
 }
 
-static int		ft_extreme(int number, unsigned long long extreme, int sign)
+static int	ft_extreme(int number, unsigned long long extreme, int sign)
 {
 	unsigned long long	min;
 	unsigned long long	max;
@@ -49,7 +49,7 @@ static int		ft_extreme(int number, unsigned long long extreme, int sign)
 	return (number * sign);
 }
 
-static int		ft_plus_or_minus(char *str, int i, int *sign)
+static int	ft_plus_or_minus(char *str, int i, int *sign)
 {
 	if (str[i] == '-')
 	{
@@ -61,7 +61,7 @@ static int		ft_plus_or_minus(char *str, int i, int *sign)
 	return (i);
 }
 
-int				ft_atoi(const char *str)
+int	ft_atoi(const char *str)
 {
 	int					i;
 	int					sign;

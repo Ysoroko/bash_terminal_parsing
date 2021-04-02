@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/22 16:13:04 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/01/26 18:04:58 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/04/02 11:11:09 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 int	ft_n_chars_in_str(char *str, char c)
 {
-	int count;
-	int i;
+	int	count;
+	int	i;
 
 	if (!str)
 		return (0);

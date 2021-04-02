@@ -6,15 +6,15 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/20 13:42:23 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/01/22 14:51:51 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/04/02 11:07:55 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/libft.h"
 
-static void			ft_putnbr_base(unsigned int nbr, char *str, int i)
+static void	ft_putnbr_base(unsigned int nbr, char *str, int i)
 {
-	unsigned int n;
+	unsigned int	n;
 
 	n = nbr;
 	if (n >= 10)
@@ -28,9 +28,9 @@ static void			ft_putnbr_base(unsigned int nbr, char *str, int i)
 	}
 }
 
-static int			ft_count_mem(int m)
+static int	ft_count_mem(int m)
 {
-	int mem_length;
+	int	mem_length;
 
 	mem_length = 0;
 	if (m < 0)
@@ -45,7 +45,7 @@ static int			ft_count_mem(int m)
 	return (mem_length);
 }
 
-static char			*rev_str(char *str, int i)
+static char	*rev_str(char *str, int i)
 {
 	int		j;
 	char	temp;
@@ -66,7 +66,7 @@ static char			*rev_str(char *str, int i)
 	return (str);
 }
 
-char				*ft_itoa(int n)
+char	*ft_itoa(int n)
 {
 	unsigned int	m;
 	int				mem_length;
@@ -76,7 +76,8 @@ char				*ft_itoa(int n)
 	m = n;
 	i = 0;
 	mem_length = ft_count_mem(n);
-	if (!(str = malloc(sizeof(char) * (mem_length + 1))))
+	str = malloc(sizeof(char) * (mem_length + 1));
+	if (!str)
 		return (0);
 	if (n < 0)
 	{

@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/22 14:48:52 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/01/22 14:49:02 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/04/02 11:11:32 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 ** separated by anything but a digit
 */
 
-int		ft_n_ints_in_line(char *str)
+int	ft_n_ints_in_line(char *str)
 {
 	int	count;
 	int	i;

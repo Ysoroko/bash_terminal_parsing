@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/26 17:26:39 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/01/26 17:27:19 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/04/02 11:05:45 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,8 @@ char	*ft_char_alloc(int n_chars, char c)
 	char	*ret_str;
 	int		i;
 
-	if (!(ret_str = malloc(sizeof(*ret_str) * (n_chars + 1))))
+	ret_str = malloc(sizeof(*ret_str) * (n_chars + 1));
+	if (!(ret_str))
 		return (0);
 	i = -1;
 	while (++i < n_chars)

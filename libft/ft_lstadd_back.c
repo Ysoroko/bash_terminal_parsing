@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/22 15:00:08 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/01/22 14:52:19 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/04/02 11:09:28 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,10 @@
 
 void	ft_lstadd_back(t_list **lst, t_list *new)
 {
-	t_list *current;
+	t_list	*current;
 
-	if (lst == 0 || new == 0)
-	{
+	if (!lst || !new)
 		return ;
-	}
 	current = *lst;
 	if (current == 0)
 		*lst = new;

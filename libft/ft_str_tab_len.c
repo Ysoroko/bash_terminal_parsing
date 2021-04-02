@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/26 17:30:28 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/01/26 17:31:29 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/04/02 11:16:54 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	ft_str_tab_len(char **str_tab)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	if (!str_tab)

@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/22 14:11:54 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/03/29 11:48:27 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/04/02 11:10:48 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 t_list	*ft_lstnew(void *content)
 {
-	t_list *pnt;
+	t_list	*pnt;
 
 	pnt = malloc(sizeof(t_list));
 	if (pnt == 0)

@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/17 09:39:00 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/01/22 14:47:59 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/04/02 11:22:15 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,25 +16,24 @@ char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 {
 	size_t	i;
 	size_t	j;
-	char	*my_haystack;
-	char	*my_needle;
+	char	*my_h;
+	char	*my_n;
 
 	i = 0;
-	my_haystack = (char *)(haystack);
-	my_needle = (char *)(needle);
-	if (my_needle[0] == '\0')
-		return (my_haystack);
-	while (my_haystack[i] != '\0' && i < len)
+	my_h = (char *)(haystack);
+	my_n = (char *)(needle);
+	if (my_n[0] == '\0')
+		return (my_h);
+	while (my_h[i] != '\0' && i < len)
 	{
 		j = 0;
-		while (my_needle[j] == my_haystack[i + j] && my_haystack[i + j] != '\0'
-				&& my_needle[j] != '\0' && i + j < len)
+		while (my_n[j] == my_h[i + j] && my_h[i + j] && my_n[j] && i + j < len)
 		{
 			j++;
 		}
-		if (my_needle[j] == '\0')
+		if (my_n[j] == '\0')
 		{
-			return (&my_haystack[i]);
+			return (&my_h[i]);
 		}
 		i++;
 	}

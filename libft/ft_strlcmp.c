@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/27 10:41:15 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/01/27 17:39:34 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/04/02 11:18:43 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 ** Returns a difference between first two different encountered chars otherwise
 */
 
-int			ft_strlcmp(char *s1, char *s2)
+int	ft_strlcmp(char *s1, char *s2)
 {
 	int	i;
 
