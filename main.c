@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 13:52:17 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/04/01 14:06:08 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/04/02 14:23:32 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,8 @@ static void	ft_cleanup_and_free(char *str, t_list **lst)
 /*
 ** FT_SETUP_SIGNALS
 ** This function modifies the behavious when specific actions are done
-** When we press CTRL+D, it will not 
+** When we press CTRL+C, instead of quitting it will call the function
+** ft_signal handler
 */
 static void	ft_setup_signals(void)
 {

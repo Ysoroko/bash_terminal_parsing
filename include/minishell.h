@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 11:07:01 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/04/01 14:05:52 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/04/02 14:39:07 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,15 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <signal.h>
-#include <curses.h>
 #include <term.h>
+#include <curses.h>
 #include "libft.h"
 
+extern char PC;
+       extern char * UP;
+       extern char * BC;
+       extern short ospeed;
+	   
 /*
 ** CONSTANT PARAMETERS
 */
