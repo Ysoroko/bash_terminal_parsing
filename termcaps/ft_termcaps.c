@@ -6,11 +6,17 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/01 14:03:58 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/04/02 15:11:47 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/04/04 13:16:51 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
+
+/*
+** FT_INITIALIZE_TERMCAPS
+** This function will setup the termcaps needed for the manipulation
+** of the cursor in our minishell terminal
+*/
 
 void	ft_initialize_termcaps(char **term_type, int *ret)
 {

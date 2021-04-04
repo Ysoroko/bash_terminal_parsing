@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 17:46:26 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/04/02 10:51:50 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/04/04 13:16:08 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,14 @@ static void	*ft_print_command_list(void *current_command)
 **		ft_exit(command->flags, command->argument);
 **	return (0);
 **}
+*/
+
+/*
+** FT_EXECUTE
+** This function is the main bridge between parsing and executing commands
+** It takes the parsing as a t_list* structure, passes it to a different
+** function which will execute all the commands for every element of 
+** the t_list* structure
 */
 
 void	ft_execute(t_list *command_list)

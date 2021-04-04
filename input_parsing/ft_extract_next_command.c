@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/30 15:52:06 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/03/31 16:37:14 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/04/04 13:33:13 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 ** or 0 otherwise
 */
 
-static int	ft_redirection_seen(char *str, t_command *current_command, int j,
+static int	ft_redirection_seen(char *str, t_command *current_command, int *j,
 																char *input)
 {
 	if (!str)
@@ -32,10 +32,10 @@ static int	ft_redirection_seen(char *str, t_command *current_command, int j,
 		current_command->redirection = ft_strdup(">>");
 	else if (ft_strrchr(str, '>'))
 	{
-		if (input[j + 1] == '>')
+		if (input[*j] == '>')
 		{
 			current_command->redirection = ft_strdup(">>");
-			ft_update_str_read_so_far(input, j, &str);
+			*j += 1;
 		}
 		else
 			current_command->redirection = ft_strdup(">");
@@ -130,10 +130,11 @@ t_command	*ft_extract_next_command(char *input_checkpnt, int *i)
 	command = ft_new_t_command(0, 0, 0, 0);
 	str_read_so_far = 0;
 	j = 0;
-	while (!ft_redirection_seen(str_read_so_far, command, j, input_checkpnt)
+	while (!ft_redirection_seen(str_read_so_far, command, &j, input_checkpnt)
 														 && input_checkpnt[j])
 	{
 		ft_update_str_read_so_far(input_checkpnt, j, &str_read_so_far);
+		//printf("str_read_so_far: [%s]\n", str_read_so_far);
 		ft_check_if_command_seen(str_read_so_far, command, &index);
 		ft_check_for_flags(str_read_so_far, command, &index);
 		j++;
