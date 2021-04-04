@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 17:46:26 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/04/04 13:16:08 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/04/04 17:12:31 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 ** flags/arguments/redirections to make sure everything is running smoothly
 */
 
-static void	*ft_print_command_list(void *current_command)
+static void	ft_print_command_list(void *current_command)
 {
 	t_command	*command;
 	int			spaces;
@@ -32,7 +32,6 @@ static void	*ft_print_command_list(void *current_command)
 	printf("%*s [%s]\n", spaces, "Argument:", command->argument);
 	printf("%*s [%s]\n", spaces, "Redirection:", command->redirection);
 	printf("_________________________________________\n\n");
-	return (0);
 }
 
 /*
@@ -74,5 +73,5 @@ static void	*ft_print_command_list(void *current_command)
 
 void	ft_execute(t_list *command_list)
 {
-	ft_lstmap(command_list, ft_print_command_list, ft_free_t_command);
+	ft_lstiter(command_list, ft_print_command_list);
 }

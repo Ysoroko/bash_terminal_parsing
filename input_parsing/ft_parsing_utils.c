@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/26 09:36:36 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/03/31 17:05:21 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/04/04 17:00:07 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,17 +24,17 @@
 
 void	ft_update_str_read_so_far(char *input_checkpnt, int i, char **prev)
 {
-	int to_copy;
+	int	to_copy;
 
 	if (!i)
 		to_copy = 1;
 	else
-		to_copy = i;
-	ft_free_str(*prev);
-	*prev = malloc(sizeof(char) * (to_copy + 2));
+		to_copy = i + 1;
+	ft_free_str(prev);
+	*prev = malloc(sizeof(char) * (to_copy + 1));
 	if (!(*prev))
 		exit(EXIT_FAILURE);
-	ft_strlcpy(*prev, input_checkpnt, to_copy + 2);
+	ft_strlcpy(*prev, input_checkpnt, to_copy + 1);
 }
 
 /*
@@ -73,13 +73,13 @@ void	ft_free_t_command(void *command_pointer)
 		return ;
 	command = (t_command *)(command_pointer);
 	if (command->name)
-		ft_free_str(command->name);
+		ft_free_str(&(command->name));
 	if (command->flags)
-		ft_free_str(command->flags);
+		ft_free_str(&(command->flags));
 	if (command->argument)
-		ft_free_str(command->argument);
+		ft_free_str(&(command->argument));
 	if (command->redirection)
-		ft_free_str(command->redirection);
-	free(command);
-	command = 0;
+		ft_free_str(&(command->redirection));
+	free(command_pointer);
+	command_pointer = 0;
 }

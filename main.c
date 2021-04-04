@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 13:52:17 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/04/02 14:23:32 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/04/04 16:57:35 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 ** FT_DISPLAY_PROMPT
 ** This function is used to display the prompt name on STDOUT in the specified
 ** color
+** The last line is used to reset the color after displaying the prompt
+** so that the input is written in standard white
 */
 
 static void	ft_display_prompt(char *color, char *prompt_name)
@@ -47,7 +49,7 @@ static void	ft_input_to_string(char **str)
 ** during a single user's input
 */
 
-static void	ft_cleanup_and_free(char *str, t_list **lst)
+static void	ft_cleanup_and_free(char **str, t_list **lst)
 {
 	ft_free_str(str);
 	ft_lstclear(lst, &ft_free_t_command);
@@ -91,7 +93,7 @@ int	main(void)
 		{
 			input_as_command_list = ft_input_parsing(str);
 			ft_execute(input_as_command_list);
-			ft_cleanup_and_free(str, 0);
+			ft_cleanup_and_free(&str, &input_as_command_list);
 		}
 	}
 	return (1);

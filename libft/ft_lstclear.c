@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/22 15:43:21 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/01/22 14:52:16 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/04/04 17:04:27 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,18 +15,17 @@
 void	ft_lstclear(t_list **lst, void (*del)(void*))
 {
 	t_list	*temp;
-	t_list	*temp2;
+	t_list	*last_address_of_temp;
 
 	if (lst == 0 || del == 0 || *lst == 0)
 		return ;
 	temp = *lst;
-	temp2 = temp;
+	last_address_of_temp = temp;
 	while (temp != 0)
 	{
 		del(temp->content);
 		temp = temp->next;
-		free(temp2);
-		temp2 = temp;
+		free(last_address_of_temp);
+		last_address_of_temp = temp;
 	}
-	*lst = 0;
 }

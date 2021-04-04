@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/19 13:11:12 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/04/02 11:18:34 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/04/04 16:50:26 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,6 @@ char	*ft_strdup(const char *src)
 	my_src = (char *)(src);
 	str = malloc(sizeof(*str) * (ft_strlen(my_src) + 1));
 	if (str == 0)
-		exit(EXIT_FAILURE);
+		return (0);
 	return (ft_strcpy(str, my_src));
 }

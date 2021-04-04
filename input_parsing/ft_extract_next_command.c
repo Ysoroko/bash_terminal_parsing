@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/30 15:52:06 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/04/04 15:49:41 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/04/04 17:07:22 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,23 +27,23 @@ static int	ft_redirection_seen(char *str, t_command *current_command, int *j,
 	if (!str)
 		return (0);
 	if (ft_strrchr(str, '<'))
-		current_command->redirection = ft_strdup("<");
+		current_command->redirection = ft_strdup_exit("<");
 	else if (ft_strstr(str, ">>"))
-		current_command->redirection = ft_strdup(">>");
+		current_command->redirection = ft_strdup_exit(">>");
 	else if (ft_strrchr(str, '>'))
 	{
 		if (input[*j] == '>')
 		{
-			current_command->redirection = ft_strdup(">>");
+			current_command->redirection = ft_strdup_exit(">>");
 			*j += 1;
 		}
 		else
-			current_command->redirection = ft_strdup(">");
+			current_command->redirection = ft_strdup_exit(">");
 	}
 	else if (ft_strrchr(str, '|'))
-		current_command->redirection = ft_strdup("|");
+		current_command->redirection = ft_strdup_exit("|");
 	else if (ft_strrchr(str, ';'))
-		current_command->redirection = ft_strdup(";");
+		current_command->redirection = ft_strdup_exit(";");
 	if (current_command->redirection)
 		return (1);
 	return (0);
@@ -63,19 +63,19 @@ static void	ft_check_if_command_seen(char *str, t_command *command, int *index)
 	if (!command->name)
 	{
 		if (ft_strstr(str, "echo"))
-			command->name = ft_strdup("echo");
+			command->name = ft_strdup_exit("echo");
 		else if (ft_strstr(str, "cd"))
-			command->name = ft_strdup("cd");
+			command->name = ft_strdup_exit("cd");
 		else if (ft_strstr(str, "pwd"))
-			command->name = ft_strdup("pwd");
+			command->name = ft_strdup_exit("pwd");
 		else if (ft_strstr(str, "export"))
-			command->name = ft_strdup("export");
+			command->name = ft_strdup_exit("export");
 		else if (ft_strstr(str, "unset"))
-			command->name = ft_strdup("unset");
+			command->name = ft_strdup_exit("unset");
 		else if (ft_strstr(str, "env"))
-			command->name = ft_strdup("env");
+			command->name = ft_strdup_exit("env");
 		else if (ft_strstr(str, "exit"))
-			command->name = ft_strdup("exit");
+			command->name = ft_strdup_exit("exit");
 		*index = ft_strlen(str);
 	}
 }
@@ -93,7 +93,7 @@ static void	ft_check_for_flags(char *str, t_command *command, int *index)
 	if (!command->flags && command->name && !command->argument &&
 	!ft_strcmp(command->name, "echo") && ft_strstr(str, " -n "))
 	{
-		command->flags = ft_strdup("-n");
+		command->flags = ft_strdup_exit("-n");
 		*index = ft_strlen(str);
 	}
 }
@@ -110,6 +110,8 @@ static void	ft_extract_the_argument(char *str, int index, t_command *command)
 {
 	command->argument = ft_strtrim_exit(&str[index],
 										SPACES_AND_REDIRECTIONS);
+	if (command->argument && !command->argument[0])
+		ft_free_str(&command->argument);
 }
 
 /*
@@ -142,7 +144,7 @@ t_command	*ft_extract_next_command(char *input_checkpnt, int *i)
 		j++;
 	}
 	ft_extract_the_argument(str_read_so_far, index, command);
-	ft_free_str(str_read_so_far);
+	ft_free_str(&str_read_so_far);
 	if (j == 0)
 		*i += 1;
 	else

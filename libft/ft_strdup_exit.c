@@ -1,28 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_free_str.c                                      :+:      :+:    :+:   */
+/*   ft_strdup_exit.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/30 16:31:16 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/04/04 16:42:05 by ysoroko          ###   ########.fr       */
+/*   Created: 2021/04/04 16:50:36 by ysoroko           #+#    #+#             */
+/*   Updated: 2021/04/04 16:56:22 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/libft.h"
 
-/*
-** FT_FREE_STR
-** This function frees its argument and sets its pointer to NULL to avoid
-** double free in the future
-*/
-
-void	ft_free_str(char **str)
+static char	*ft_strcpy(char *dest, const char *src)
 {
-	if (str && *str)
+	int		i;
+	char	*my_src;
+
+	my_src = (char *)(src);
+	i = 0;
+	while (my_src[i] != '\0')
 	{
-		free(*str);
-		*str = 0;
+		dest[i] = my_src[i];
+		i++;
 	}
+	dest[i] = '\0';
+	return (dest);
+}
+
+char	*ft_strdup_exit(const char *src)
+{
+	char	*str;
+	char	*my_src;
+
+	if (!src)
+		return (0);
+	my_src = (char *)(src);
+	str = malloc(sizeof(*str) * (ft_strlen(my_src) + 1));
+	if (!str)
+		exit(EXIT_FAILURE);
+	return (ft_strcpy(str, my_src));
 }
