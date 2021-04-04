@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/30 15:52:06 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/04/04 13:33:13 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/04/04 15:42:22 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,7 @@ static void	ft_extract_the_argument(char *str, int index, t_command *command)
 {
 	command->argument = ft_strtrim_exit(&str[index],
 										SPACES_AND_REDIRECTIONS);
+	printf("HERE");
 }
 
 /*
@@ -130,11 +131,13 @@ t_command	*ft_extract_next_command(char *input_checkpnt, int *i)
 	command = ft_new_t_command(0, 0, 0, 0);
 	str_read_so_far = 0;
 	j = 0;
+	ft_update_str_read_so_far(input_checkpnt, j, &str_read_so_far);
+	printf("input_checkpoint: [%s]\n", input_checkpnt);
 	while (!ft_redirection_seen(str_read_so_far, command, &j, input_checkpnt)
 														 && input_checkpnt[j])
 	{
 		ft_update_str_read_so_far(input_checkpnt, j, &str_read_so_far);
-		//printf("str_read_so_far: [%s]\n", str_read_so_far);
+		printf("str_read_so_far: [%s]\n", str_read_so_far);
 		ft_check_if_command_seen(str_read_so_far, command, &index);
 		ft_check_for_flags(str_read_so_far, command, &index);
 		j++;

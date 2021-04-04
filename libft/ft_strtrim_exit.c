@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/30 11:41:34 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/04/02 11:23:25 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/04/04 15:43:15 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,8 @@ char	*ft_strtrim_exit(char *str, char *except)
 	while (ft_char_is_in_str(str[j], except))
 		j--;
 	j++;
+	if (j <= i)
+		return (0);
 	ret = malloc(sizeof(char) * (j - i + 1));
 	if (!ret)
 		exit(EXIT_FAILURE);
