@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/30 15:52:06 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/04/05 11:41:56 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/04/05 13:28:07 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,32 +51,17 @@ static int	ft_redirection_seen(char *str, t_command *current_command, int *j,
 
 /*
 ** FT_COMMAND_SEEN
-** This function checks if the there is a command in the user's input
-** we've read so far. It is only called until current t_command structure
+** This function extracts the first word from user's input as a command.
+** It is only called until current t_command structure
 ** has a name element defined
-** Returns 1 and sets the t_command->name if the command name has been seen
-** Returns 0 if no command name has been seen so far
 */
 
-static void	ft_check_if_command_seen(char *str, t_command *command, int *index)
+static void	ft_extract_command(char *input, t_command *command, int *index)
 {
 	if (!command->name)
 	{
-		if (ft_strstr(str, "echo"))
-			command->name = ft_strdup_exit("echo");
-		else if (ft_strstr(str, "cd"))
-			command->name = ft_strdup_exit("cd");
-		else if (ft_strstr(str, "pwd"))
-			command->name = ft_strdup_exit("pwd");
-		else if (ft_strstr(str, "export"))
-			command->name = ft_strdup_exit("export");
-		else if (ft_strstr(str, "unset"))
-			command->name = ft_strdup_exit("unset");
-		else if (ft_strstr(str, "env"))
-			command->name = ft_strdup_exit("env");
-		else if (ft_strstr(str, "exit"))
-			command->name = ft_strdup_exit("exit");
-		*index = ft_strlen(str);
+		command->name = ft_extract_first_word(input, SPACES_AND_REDIRECTIONS);
+		*index = ft_strlen(command->name);
 	}
 }
 
@@ -91,10 +76,11 @@ static void	ft_check_if_command_seen(char *str, t_command *command, int *index)
 static void	ft_check_for_flags(char *str, t_command *command, int *index)
 {
 	if (!command->flags && command->name && !command->argument &&
-	!ft_strcmp(command->name, "echo") && ft_strstr(str, " -n "))
+	!ft_strcmp(command->name, "echo"))
 	{
-		command->flags = ft_strdup_exit("-n");
-		*index = ft_strlen(str);
+		command->flags = ft_extract_second_word(str, SPACES_AND_REDIRECTIONS);
+		if (!ft_strcmp(command->flags, "-n"))
+			*index = ft_strlen(str);
 	}
 }
 
@@ -108,15 +94,12 @@ static void	ft_check_for_flags(char *str, t_command *command, int *index)
 
 static void	ft_extract_the_argument(char *str, int index, t_command *command)
 {
+	if (!str[index] || ft_strchr(REDIRECTIONS, str[index]))
+		return ;
 	command->argument = ft_strtrim_exit(&str[index],
 										SPACES_AND_REDIRECTIONS);
 	if (command->argument && !command->argument[0])
 		ft_free_str(&command->argument);
-	printf("command->name [%s]\n", command->name);
-	if (!command->name)
-		command->name = ft_extract_first_word(str, SPACES_AND_REDIRECTIONS);
-	printf("str [%s]\n", str);
-	printf("command->name [%s]\n", command->name);
 }
 
 /*
@@ -142,17 +125,16 @@ t_command	*ft_extract_next_command(char *input_checkpnt, int *i)
 	while (!ft_redirection_seen(str_read_so_far, command, &j, input_checkpnt)
 														 && input_checkpnt[j])
 	{
+		ft_extract_command(input_checkpnt, command, &index);
 		ft_update_str_read_so_far(input_checkpnt, j, &str_read_so_far);
 		//printf("str_read_so_far: [%s]\n", str_read_so_far);
-		ft_check_if_command_seen(str_read_so_far, command, &index);
 		ft_check_for_flags(str_read_so_far, command, &index);
 		j++;
 	}
 	ft_extract_the_argument(str_read_so_far, index, command);
 	ft_free_str(&str_read_so_far);
-	if (j == 0)
+	if(!j)
 		*i += 1;
-	else
-		*i += (j - 1);
+	*i += j - 1;
 	return (command);
 }
