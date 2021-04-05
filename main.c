@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 13:52:17 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/04/04 16:57:35 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/04/05 11:11:15 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,8 +93,8 @@ int	main(void)
 		{
 			input_as_command_list = ft_input_parsing(str);
 			ft_execute(input_as_command_list);
-			ft_cleanup_and_free(&str, &input_as_command_list);
 		}
+		ft_cleanup_and_free(&str, &input_as_command_list);
 	}
 	return (1);
 }

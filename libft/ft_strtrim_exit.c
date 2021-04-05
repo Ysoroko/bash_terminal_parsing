@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/30 11:41:34 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/04/04 16:55:14 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/04/05 11:40:59 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ char	*ft_strtrim_exit(char *str, char *except)
 
 	if (!str)
 		return (0);
-	if (!ft_strcmp(str, except) || !str[0])
+	if (!str[0])
 		return (ft_strdup_exit(""));
 	if (!except || !except[0] || !str[0])
 		return (ft_strdup_exit(str));

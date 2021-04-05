@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/17 15:32:25 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/04/04 16:51:28 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/04/05 11:42:34 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <stdlib.h>
 # include <unistd.h>
+# include <stdio.h>
 
 typedef	struct		s_list
 {
@@ -89,5 +90,6 @@ void				*ft_calloc_exit(size_t count, size_t size);
 char				*ft_strtrim_exit(char *str, char *except);
 void				ft_free_str(char **str);
 char				*ft_strdup_exit(const char *src);
+char				*ft_extract_first_word(char *from, char *separators);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/30 15:52:06 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/04/04 17:07:22 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/04/05 11:41:56 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,6 +112,11 @@ static void	ft_extract_the_argument(char *str, int index, t_command *command)
 										SPACES_AND_REDIRECTIONS);
 	if (command->argument && !command->argument[0])
 		ft_free_str(&command->argument);
+	printf("command->name [%s]\n", command->name);
+	if (!command->name)
+		command->name = ft_extract_first_word(str, SPACES_AND_REDIRECTIONS);
+	printf("str [%s]\n", str);
+	printf("command->name [%s]\n", command->name);
 }
 
 /*
