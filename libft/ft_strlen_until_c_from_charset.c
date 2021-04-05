@@ -1,40 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcpy_until_c.c                                :+:      :+:    :+:   */
+/*   ft_strlen_until_c_from_charset.c                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/04/05 17:25:13 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/04/05 18:03:53 by ysoroko          ###   ########.fr       */
+/*   Created: 2021/04/05 17:39:34 by ysoroko           #+#    #+#             */
+/*   Updated: 2021/04/05 18:05:31 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/libft.h"
 
 /*
-** FT_STRCPY_UNTIL_C
-** Same as strcpy, but will stop copying if a 'c' argument character is seen 
-** This character seen is included in the copy (useful for minishell)
+** FT_STRLEN_UNTIL_C_FROM_CHARSET
+** Same as strlen, but will stop counting if a character  from "charset"
+** argument is seen 
+** This character seen is included in the count (useful for minishell)
 */
 
-char	*ft_strcpy_until_c(char *dest, const char *src, char c)
+int	ft_strlen_until_c_from_charset(const char *str, char *charset)
 {
-	int		i;
-	char	*my_src;
+	int	i;
 
-	my_src = (char *)(src);
+	if (!str)
+		return (0);
 	i = 0;
-	while (my_src[i] && my_src[i] != c)
-	{
-		dest[i] = my_src[i];
+	while (str[i] && !ft_strchr(charset, str[i]))
 		i++;
-	}
-	if (my_src[i] == c)
-	{
-		dest[i] = my_src[i];
+	if (ft_strchr(charset, str[i]))
 		i++;
-	}
-	dest[i] = '\0';
-	return (dest);
+	return (i);
 }

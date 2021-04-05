@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/30 15:52:06 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/04/05 15:50:37 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/04/05 17:58:40 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,12 +56,12 @@ static int	ft_redirection_seen(char *str, t_command *current_command, int *j,
 ** has a name element defined
 */
 
-static void	ft_extract_command(char *input, t_command *command, int *index)
+static void	ft_extract_command_name(char *input, t_command *command, int *indx)
 {
 	if (!command->name)
 	{
 		command->name = ft_extract_first_word(input, SPACES_AND_REDIRECTIONS);
-		*index = ft_strlen(command->name) + 1;
+		*indx = ft_strlen(command->name) + 1;
 	}
 }
 
@@ -81,6 +81,8 @@ static void	ft_check_for_flags(char *str, t_command *command, int *index)
 		command->flags = ft_extract_second_word(str, SPACES_AND_REDIRECTIONS);
 		if (!ft_strcmp(command->flags, "-n"))
 			*index = ft_strchrn(str, 'n') + 1;
+		else
+			ft_free_str(&command->flags);
 	}
 }
 
@@ -114,25 +116,21 @@ t_command	*ft_extract_next_command(char *input_checkpnt, int *i)
 {
 	int			j;
 	t_command	*command;
-	char		*str_read_so_far;
+	char		*next_command_as_str;
 	int			index;
 
 	command = ft_new_t_command(0, 0, 0, 0);
-	str_read_so_far = 0;
-	j = 0;
-	ft_update_str_read_so_far(input_checkpnt, j, &str_read_so_far);
-	//printf("input_checkpoint: [%s]\n", input_checkpnt);
-	ft_extract_command(input_checkpnt, command, &index);
+	next_command_as_str = ft_extract_next_command_string(input_checkpnt);
+	printf("next_command_as_str: [%s]\n", next_command_as_str);
+	if (!next_command_as_str)
+		return (command);
+	j = ft_strlen(next_command_as_str);
+	ft_extract_command_name(input_checkpnt, command, &index);
 	ft_check_for_flags(input_checkpnt, command, &index);
-	while (!ft_redirection_seen(str_read_so_far, command, &j, input_checkpnt)
-														 && input_checkpnt[j])
-	{
-		ft_update_str_read_so_far(input_checkpnt, j, &str_read_so_far);
-		j++;
-	}
-	ft_extract_the_argument(str_read_so_far, index, command);
-	ft_free_str(&str_read_so_far);
-	if(!j)
+	ft_redirection_seen(next_command_as_str, command, &j, input_checkpnt);
+	ft_extract_the_argument(next_command_as_str, index, command);
+	ft_free_str(&next_command_as_str);
+	if (!j)
 		*i += 1;
 	*i += j - 1;
 	return (command);

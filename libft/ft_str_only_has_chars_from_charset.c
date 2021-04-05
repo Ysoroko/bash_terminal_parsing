@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/05 15:59:00 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/04/05 17:26:31 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/04/05 18:00:29 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	ft_str_only_has_chars_from_charset(char *str, char *charset)
 	i = -1;
 	while (str[++i])
 	{
-		if (ft_strchr(charset, str[i]))
+		if (!ft_strchr(charset, str[i]))
 			return (0);
 	}
 	return (1);

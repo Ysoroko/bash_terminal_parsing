@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/17 15:32:25 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/04/05 17:28:41 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/04/05 17:40:58 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,5 +99,13 @@ int					ft_str_only_has_chars_from_charset(char *str,
 char				*ft_strcpy(char *dest, const char *src);
 char				*ft_strcpy_until_c(char *dest, const char *src, char c);
 char				*ft_strdup_until_c(const char *src, char c);
+char				*ft_strdup_until_c_from_charset(const char *src,
+						char *charset);
+char				*ft_strcpy_until_c_from_charset(char *dest,
+						const char *src, char *set);
+int					ft_strlen_until_c_from_charset(const char *str,
+						char *charset);
+int					ft_strlen_until_c(const char *str, char c);
+
 
 #endif
