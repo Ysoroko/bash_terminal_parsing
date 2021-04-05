@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/17 15:32:25 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/04/05 15:17:31 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/04/05 17:28:41 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,5 +93,11 @@ char				*ft_strdup_exit(const char *src);
 char				*ft_extract_first_word(char *from, char *separators);
 char				*ft_extract_second_word(char *from, char *separators);
 int					ft_strchrn(char *str, int c);
+char				*ft_cut_string_at_charset(char *str, char *charset);
+int					ft_str_only_has_chars_from_charset(char *str,
+												char *charset);
+char				*ft_strcpy(char *dest, const char *src);
+char				*ft_strcpy_until_c(char *dest, const char *src, char c);
+char				*ft_strdup_until_c(const char *src, char c);
 
 #endif

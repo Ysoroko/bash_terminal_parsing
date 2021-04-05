@@ -6,7 +6,7 @@
 #    By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/11/17 16:06:56 by ysoroko           #+#    #+#              #
-#    Updated: 2021/04/05 15:19:06 by ysoroko          ###   ########.fr        #
+#    Updated: 2021/04/05 17:28:36 by ysoroko          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -82,7 +82,13 @@ SRC				=	ft_atoi.c \
 					ft_strdup_exit.c \
 					ft_extract_first_word.c \
 					ft_extract_second_word.c \
-					ft_strchrn.c
+					ft_strchrn.c \
+					ft_cut_string_at_charset.c \
+					ft_str_only_has_chars_from_charset.c \
+					ft_strcpy.c \
+					ft_strcpy_until_c.c \
+					ft_strdup_until_c.c
+
 
 
 BONUS			=	ft_lstadd_back.c \

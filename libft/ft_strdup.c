@@ -6,27 +6,11 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/19 13:11:12 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/04/04 16:50:26 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/04/05 17:28:50 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/libft.h"
-
-static char	*ft_strcpy(char *dest, const char *src)
-{
-	int		i;
-	char	*my_src;
-
-	my_src = (char *)(src);
-	i = 0;
-	while (my_src[i] != '\0')
-	{
-		dest[i] = my_src[i];
-		i++;
-	}
-	dest[i] = '\0';
-	return (dest);
-}
 
 char	*ft_strdup(const char *src)
 {
