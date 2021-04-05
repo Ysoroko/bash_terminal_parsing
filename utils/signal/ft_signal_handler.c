@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/01 11:36:31 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/04/04 13:19:39 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/04/05 15:01:15 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,5 +24,6 @@
 void	ft_signal_handler(int no_matter)
 {
 	//printf("NO_CAN_DO\n");
+	no_matter += 1;
 	exit(EXIT_SUCCESS);
 }

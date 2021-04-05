@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/17 15:32:25 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/04/05 13:25:39 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/04/05 15:17:31 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,5 +92,6 @@ void				ft_free_str(char **str);
 char				*ft_strdup_exit(const char *src);
 char				*ft_extract_first_word(char *from, char *separators);
 char				*ft_extract_second_word(char *from, char *separators);
+int					ft_strchrn(char *str, int c);
 
 #endif

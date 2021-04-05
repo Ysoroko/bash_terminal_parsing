@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/30 15:52:06 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/04/05 13:28:07 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/04/05 15:50:37 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ static void	ft_extract_command(char *input, t_command *command, int *index)
 	if (!command->name)
 	{
 		command->name = ft_extract_first_word(input, SPACES_AND_REDIRECTIONS);
-		*index = ft_strlen(command->name);
+		*index = ft_strlen(command->name) + 1;
 	}
 }
 
@@ -80,7 +80,7 @@ static void	ft_check_for_flags(char *str, t_command *command, int *index)
 	{
 		command->flags = ft_extract_second_word(str, SPACES_AND_REDIRECTIONS);
 		if (!ft_strcmp(command->flags, "-n"))
-			*index = ft_strlen(str);
+			*index = ft_strchrn(str, 'n') + 1;
 	}
 }
 
@@ -122,13 +122,12 @@ t_command	*ft_extract_next_command(char *input_checkpnt, int *i)
 	j = 0;
 	ft_update_str_read_so_far(input_checkpnt, j, &str_read_so_far);
 	//printf("input_checkpoint: [%s]\n", input_checkpnt);
+	ft_extract_command(input_checkpnt, command, &index);
+	ft_check_for_flags(input_checkpnt, command, &index);
 	while (!ft_redirection_seen(str_read_so_far, command, &j, input_checkpnt)
 														 && input_checkpnt[j])
 	{
-		ft_extract_command(input_checkpnt, command, &index);
 		ft_update_str_read_so_far(input_checkpnt, j, &str_read_so_far);
-		//printf("str_read_so_far: [%s]\n", str_read_so_far);
-		ft_check_for_flags(str_read_so_far, command, &index);
 		j++;
 	}
 	ft_extract_the_argument(str_read_so_far, index, command);

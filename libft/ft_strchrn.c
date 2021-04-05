@@ -1,34 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_extract_second_word.c                           :+:      :+:    :+:   */
+/*   ft_strchrn.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/04/05 13:21:56 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/04/05 15:05:19 by ysoroko          ###   ########.fr       */
+/*   Created: 2021/04/05 15:14:06 by ysoroko           #+#    #+#             */
+/*   Updated: 2021/04/05 15:17:18 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/libft.h"
 
 /*
-** FT_EXTRACT_SECOND_WORD
-** This function extracts the second word from the "from" argument
-** depending on the "separators" argument
-** This is used to extract the flags in minishell
+** FT_STRCHRN
+** This function is a copy of strchr
+** It looks for the character c inside the str argument, but returns the
+** position of the character as an int (= Nth character) rather than the 
+** address of the string starting at the character
+** Returns -1 if the character wasn't found
 */
 
-char	*ft_extract_second_word(char *from, char *separators)
+int	ft_strchrn(char *str, int c)
 {
-	int		i;
-	char	*ret;
+	int	i;
 
-	i = 0;
-	while (ft_strchr(separators, from[i]))
+	i = -1;
+	while (str[++i])
+	{
+		if (str[i] == c)
+			return (i);
 		i++;
-	while (!ft_strchr(separators, from[i]))
-		i++;
-	ret = ft_extract_first_word(&(from[i]), separators);
-	return (ret);
+	}
+	if (str[i] == c)
+		return (str[i]);
+	return (-1);
 }

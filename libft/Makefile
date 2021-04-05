@@ -6,7 +6,7 @@
 #    By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/11/17 16:06:56 by ysoroko           #+#    #+#              #
-#    Updated: 2021/04/05 13:26:16 by ysoroko          ###   ########.fr        #
+#    Updated: 2021/04/05 15:19:06 by ysoroko          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -81,7 +81,8 @@ SRC				=	ft_atoi.c \
 					ft_free_str.c \
 					ft_strdup_exit.c \
 					ft_extract_first_word.c \
-					ft_extract_second_word.c
+					ft_extract_second_word.c \
+					ft_strchrn.c
 
 
 BONUS			=	ft_lstadd_back.c \
@@ -92,7 +93,8 @@ BONUS			=	ft_lstadd_back.c \
 					ft_lstlast.c \
 					ft_lstmap.c \
 					ft_lstnew.c \
-					ft_lstsize.c
+					ft_lstsize.c \
+					
 
 MAIN_PART		=	$(filter-out $(BONUS), $(SRC))
 
