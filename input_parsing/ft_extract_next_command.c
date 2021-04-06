@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/30 15:52:06 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/04/06 17:00:09 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/04/06 17:40:10 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,18 @@
 
 /*
 ** FT_REDIRECTION_SEEN
-** This function checks if the string we're currently reading has reached
-** the end of the command (which is verified by the presence of "< > >> | ;"
-** inside it
-** Returns 1 if we find one of these things inside (and sets t_command->redir)
-** or 0 otherwise
+** This function checks if current_command_as_str has one of the redirection
+** symbols inside of it and if so stores the corresponding redirection in 
+** command->redirection element
 */
 
-static int	ft_redirection_seen(char *str, t_command *current_command, int *j,
-																char *input)
+static void	ft_check_for_redirections(char *str, t_command *current_command,
+										int *j, char *input)
 {
 	if (!str)
-		return (0);
+		return ;
 	if (ft_strrchr(str, '<'))
 		current_command->redirection = ft_strdup_exit("<");
-	else if (ft_strstr(str, ">>"))
-		current_command->redirection = ft_strdup_exit(">>");
 	else if (ft_strrchr(str, '>'))
 	{
 		if (input[*j] == '>')
@@ -44,16 +40,12 @@ static int	ft_redirection_seen(char *str, t_command *current_command, int *j,
 		current_command->redirection = ft_strdup_exit("|");
 	else if (ft_strrchr(str, ';'))
 		current_command->redirection = ft_strdup_exit(";");
-	if (current_command->redirection)
-		return (1);
-	return (0);
 }
 
 /*
 ** FT_COMMAND_SEEN
 ** This function extracts the first word from user's input as a command.
-** It is only called until current t_command structure
-** has a name element defined
+** It stores it in command->name element
 */
 
 static void	ft_extract_command_name(char *input, t_command *command, int *indx)
@@ -73,9 +65,11 @@ static void	ft_extract_command_name(char *input, t_command *command, int *indx)
 /*
 ** FT_CHECK_FOR_FLAGS
 ** The only command which can have flags for this project is "echo"
-** with a flag "-n". Therefore, we are only checking if we have a "-n"
-** flag while our command name is "echo". If it's the case, then
-** we fill the t_command structure with the corresponding flag
+** with a flag "-n". Therefore, we are only checking if we have a
+** flag while our command name is "echo". If it's the case, and the encountered
+** flag is "-n", we fill the t_command structure with the corresponding flag
+** If the flag isn't "-n", we ignore it as a flag 
+** and consider it being a part of the argument
 */
 
 static void	ft_check_for_flags(char *str, t_command *command, int *index)
@@ -95,9 +89,11 @@ static void	ft_check_for_flags(char *str, t_command *command, int *index)
 /*
 ** FT_EXTRACT_THE_ARGUMENT
 ** This function uses the previously saved index (which tell at which character
-** of the string_read_so_far the argument starts
+** of the next_command_as_str the argument starts
 ** (after the command name or after the flag) and it extracts the argument
-** starting from that position. It removes the spaces and redirection symbol
+** as a string starting from that position. 
+** It also removes the spaces and redirection symbols at the start and at 
+** the end of the resulting string
 */
 
 static void	ft_extract_the_argument(char *str, int index, t_command *command)
@@ -137,7 +133,7 @@ t_command	*ft_extract_next_command(char *input_checkpnt, int *i)
 	j = ft_strlen(next_command_as_str);
 	ft_extract_command_name(input_checkpnt, command, &index);
 	ft_check_for_flags(input_checkpnt, command, &index);
-	ft_redirection_seen(next_command_as_str, command, &j, input_checkpnt);
+	ft_check_for_redirections(next_command_as_str, command, &j, input_checkpnt);
 	ft_extract_the_argument(next_command_as_str, index, command);
 	ft_free_str(&next_command_as_str);
 	if (!j)

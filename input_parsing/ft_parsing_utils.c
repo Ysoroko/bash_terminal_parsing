@@ -6,36 +6,11 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/26 09:36:36 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/04/06 10:59:00 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/04/06 17:31:25 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
-
-/*
-** FT_STR_READ_SO_FAR
-** This function frees the previous string read so far, malloc's a new one and
-** returns the string resulting in reading [i] characters of input
-** It is used to progressiverly read a string character by character
-** and after each character extract the result as a string
-** This result is later used to see if we have read a command / flag
-** / argument /redirection etc
-*/
-
-void	ft_update_str_read_so_far(char *input_checkpnt, int i, char **prev)
-{
-	int	to_copy;
-
-	if (!i)
-		to_copy = 1;
-	else
-		to_copy = i + 1;
-	ft_free_str(prev);
-	*prev = malloc(sizeof(char) * (to_copy + 1));
-	if (!(*prev))
-		exit(EXIT_FAILURE);
-	ft_strlcpy(*prev, input_checkpnt, to_copy + 1);
-}
 
 /*
 ** FT_NEW_T_COMMAND
@@ -86,7 +61,7 @@ void	ft_free_t_command(void *command_pointer)
 
 /*
 ** FT_EXTRACT_NEXT_COMMAND_STRING
-** THis function will create a malloc'd duplicate of inupt_checkpoint
+** This function will create a malloc'd duplicate of inupt_checkpoint
 ** argument, ending at the first redirection character
 */
 
