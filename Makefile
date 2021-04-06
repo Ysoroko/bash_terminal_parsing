@@ -6,23 +6,34 @@
 #    By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/25 11:12:03 by ysoroko           #+#    #+#              #
-#    Updated: 2021/04/02 15:11:37 by ysoroko          ###   ########.fr        #
+#    Updated: 2021/04/06 12:23:18 by ysoroko          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRC			=	main.c \
-				\
-				input_parsing/ft_input_parsing.c \
-				input_parsing/ft_parsing_utils.c \
-				input_parsing/ft_extract_next_command.c \
-				\
-				execute/ft_execute.c \
-				\
-				termcaps/ft_termcaps.c \
-				\
-				utils/signal/ft_signal_handler.c
+SRC					=	main.c \
+						\
+						input_parsing/ft_input_parsing.c \
+						input_parsing/ft_parsing_utils.c \
+						input_parsing/ft_extract_next_command.c \
+						\
+						execute/ft_execute.c \
+						\
+						termcaps/ft_termcaps.c \
+						\
+						utils/signal/ft_signal_handler.c
 
-OBJS		=	$(SRC:.c=.o)
+OBJS				=	$(SRC:.c=.o)
+
+BOLD_GREEN			=	\033[1;32m
+
+NO_COLOR			=	\033[0m
+
+COPMILING_LIBFT		=	"\n\n$(BOLD_GREEN)Compiling Libft... 🛠️\n"
+
+LIBFT_COMPILED		=	"Libft compiled! ✅\n$(NO_COLOR)"
+
+.c.o:	
+	@${CC} ${CFLAGS} -I include -c $< -o ${<:.c=.o}
 
 # Termcap
 # Linking command required to be able to use termcap commands

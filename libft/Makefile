@@ -6,7 +6,7 @@
 #    By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/11/17 16:06:56 by ysoroko           #+#    #+#              #
-#    Updated: 2021/04/05 17:41:20 by ysoroko          ###   ########.fr        #
+#    Updated: 2021/04/06 12:23:56 by ysoroko          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -103,8 +103,20 @@ BONUS			=	ft_lstadd_back.c \
 					ft_lstlast.c \
 					ft_lstmap.c \
 					ft_lstnew.c \
-					ft_lstsize.c \
+					ft_lstsize.c
+
+BOLD_GREEN			=	\033[1;32m
+
+NO_COLOR			=	\033[0m
+
+COPMILING_LIBFT:
+					@echo "\n$(BOLD_GREEN)Compiling Libft... 🛠️\n";
+
+LIBFT_COMPILED:
+					@echo "Libft compiled! ✅\n$(NO_COLOR)";
 					
+.c.o:	
+	@${CC} ${CFLAGS} -I includes -c $< -o ${<:.c=.o} \
 
 MAIN_PART		=	$(filter-out $(BONUS), $(SRC))
 
@@ -118,10 +130,10 @@ LINK			=	ar rc
 
 all: 		$(NAME)
 
-$(NAME):	$(MAIN_PART_OBJS)
+$(NAME):	COPMILING_LIBFT $(MAIN_PART_OBJS) LIBFT_COMPILED
 			@$(LINK) $(NAME) $(MAIN_PART_OBJS)
 
-bonus:		$(OBJS)
+bonus:		COPMILING_LIBFT $(OBJS) LIBFT_COMPILED
 			@$(LINK) $(NAME) $(OBJS)
 
 clean:
