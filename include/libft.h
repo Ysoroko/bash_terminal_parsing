@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/17 15:32:25 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/04/05 17:40:58 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/04/06 16:57:53 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,11 @@
 # include <unistd.h>
 # include <stdio.h>
 
-typedef	struct		s_list
+typedef struct s_list
 {
 	void			*content;
 	struct s_list	*next;
-}					t_list;
+}				t_list;
 
 int					ft_atoi(const char *str);
 void				ft_bzero(void *str, size_t n);
@@ -42,7 +42,7 @@ void				ft_lstdelone(t_list *lst, void (*del)(void*));
 void				ft_lstiter(t_list *lst, void (*f)(void *));
 t_list				*ft_lstlast(t_list *lst);
 t_list				*ft_lstmap(t_list *lst, void *(*f)(void *),
-									void (*del)(void *));
+						void (*del)(void *));
 t_list				*ft_lstnew(void *content);
 int					ft_lstsize(t_list *lst);
 void				*ft_memccpy(void *dst, const void *src, int c, size_t n);
@@ -71,7 +71,7 @@ int					ft_strlen(const char *str);
 char				*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 int					ft_strncmp(const char *s1, const char *s2, size_t n);
 char				*ft_strnstr(const char *haystack,
-									const char *needle, size_t len);
+						const char *needle, size_t len);
 char				*ft_strrchr(const char *s, int c);
 int					ft_str_tab_len(char **str_tab);
 char				*ft_strtrim(char const *str, char const *except);
@@ -79,7 +79,7 @@ char				*ft_substr(char const *s, unsigned int start, size_t len);
 int					ft_tolower(int c);
 int					ft_toupper(int c);
 int					ft_wrong_extension(char *file_name,
-											char *expected_extension);
+						char *expected_extension);
 char				*ft_cut_string_at_char(char *str, char c);
 char				*ft_free_and_realloc(char *str, int size);
 int					ft_strcmp(char *s1, char *s2);
@@ -95,7 +95,7 @@ char				*ft_extract_second_word(char *from, char *separators);
 int					ft_strchrn(char *str, int c);
 char				*ft_cut_string_at_charset(char *str, char *charset);
 int					ft_str_only_has_chars_from_charset(char *str,
-												char *charset);
+						char *charset);
 char				*ft_strcpy(char *dest, const char *src);
 char				*ft_strcpy_until_c(char *dest, const char *src, char c);
 char				*ft_strdup_until_c(const char *src, char c);
@@ -106,6 +106,5 @@ char				*ft_strcpy_until_c_from_charset(char *dest,
 int					ft_strlen_until_c_from_charset(const char *str,
 						char *charset);
 int					ft_strlen_until_c(const char *str, char c);
-
 
 #endif

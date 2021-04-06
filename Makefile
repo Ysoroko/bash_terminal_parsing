@@ -6,7 +6,7 @@
 #    By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/25 11:12:03 by ysoroko           #+#    #+#              #
-#    Updated: 2021/04/06 16:40:15 by ysoroko          ###   ########.fr        #
+#    Updated: 2021/04/06 17:01:19 by ysoroko          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,7 @@ OBJS				=	$(SRC:.c=.o)
 
 BOLD_PURPLE			=	\033[1;35m
 
-BOLD_CYAN			=	\033[1;34m
+BOLD_CYAN			=	\033[1;36m
 
 BOLD_YELLOW			=	\033[1;33m
 

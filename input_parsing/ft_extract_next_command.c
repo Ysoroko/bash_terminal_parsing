@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/30 15:52:06 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/04/06 11:30:42 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/04/06 17:00:09 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,8 +80,8 @@ static void	ft_extract_command_name(char *input, t_command *command, int *indx)
 
 static void	ft_check_for_flags(char *str, t_command *command, int *index)
 {
-	if (!command->flags && command->name && !command->argument &&
-	!ft_strcmp(command->name, "echo"))
+	if (!command->flags && command->name && !command->argument
+		&& !ft_strcmp(command->name, "echo"))
 	{
 		command->flags = ft_extract_second_word(str, SPACES);
 		if (!ft_strcmp(command->flags, "-n"))
@@ -107,7 +107,7 @@ static void	ft_extract_the_argument(char *str, int index, t_command *command)
 	//printf("arg: [%s]\n", command->argument);
 	//printf("&str[index]: [%s]\n", &str[index]);
 	command->argument = ft_strtrim_exit(&(str[index]),
-										SPACES_AND_REDIRECTIONS);
+			SPACES_AND_REDIRECTIONS);
 	//printf("arg: [%s]\n", command->argument);
 	if (command->argument && !command->argument[0])
 		ft_free_str(&command->argument);
