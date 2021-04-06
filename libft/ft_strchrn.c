@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/05 15:14:06 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/04/05 15:17:18 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/04/06 10:28:38 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,7 @@ int	ft_strchrn(char *str, int c)
 	while (str[++i])
 	{
 		if (str[i] == c)
-			return (i);
-		i++;
+			return (i + 1);
 	}
-	if (str[i] == c)
-		return (str[i]);
 	return (-1);
 }

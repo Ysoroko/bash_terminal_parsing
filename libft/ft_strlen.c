@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/17 09:38:53 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/04/02 11:18:57 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/04/06 10:49:38 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,7 @@ int	ft_strlen(const char *str)
 	if (!str)
 		return (0);
 	i = 0;
-	while (str[i] != '\0')
-	{
+	while (str[i])
 		i++;
-	}
 	return (i);
 }

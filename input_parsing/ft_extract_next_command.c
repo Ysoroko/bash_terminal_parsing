@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/30 15:52:06 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/04/05 17:58:40 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/04/06 11:01:05 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,11 +58,16 @@ static int	ft_redirection_seen(char *str, t_command *current_command, int *j,
 
 static void	ft_extract_command_name(char *input, t_command *command, int *indx)
 {
+	char	*temp;
+
+	temp = ft_strdup_until_c_from_charset(input, REDIRECTIONS);
 	if (!command->name)
 	{
-		command->name = ft_extract_first_word(input, SPACES_AND_REDIRECTIONS);
+		command->name = ft_extract_first_word(temp, SPACES_AND_REDIRECTIONS);
 		*indx = ft_strlen(command->name) + 1;
+		//printf("index after name: [%d]\n", *indx);
 	}
+	ft_free_str(&temp);
 }
 
 /*
@@ -78,11 +83,12 @@ static void	ft_check_for_flags(char *str, t_command *command, int *index)
 	if (!command->flags && command->name && !command->argument &&
 	!ft_strcmp(command->name, "echo"))
 	{
-		command->flags = ft_extract_second_word(str, SPACES_AND_REDIRECTIONS);
+		command->flags = ft_extract_second_word(str, SPACES);
 		if (!ft_strcmp(command->flags, "-n"))
 			*index = ft_strchrn(str, 'n') + 1;
 		else
 			ft_free_str(&command->flags);
+		//printf("index after flags: [%d]\n", *index);
 	}
 }
 
@@ -98,8 +104,11 @@ static void	ft_extract_the_argument(char *str, int index, t_command *command)
 {
 	if (!str[index] || ft_strchr(REDIRECTIONS, str[index]))
 		return ;
-	command->argument = ft_strtrim_exit(&str[index],
+	//printf("arg: [%s]\n", command->argument);
+	//printf("&str[index]: [%s]\n", &str[index]);
+	command->argument = ft_strtrim_exit(&(str[index]),
 										SPACES_AND_REDIRECTIONS);
+	//printf("arg: [%s]\n", command->argument);
 	if (command->argument && !command->argument[0])
 		ft_free_str(&command->argument);
 }
@@ -119,9 +128,10 @@ t_command	*ft_extract_next_command(char *input_checkpnt, int *i)
 	char		*next_command_as_str;
 	int			index;
 
+	index = 0;
 	command = ft_new_t_command(0, 0, 0, 0);
 	next_command_as_str = ft_extract_next_command_string(input_checkpnt);
-	printf("next_command_as_str: [%s]\n", next_command_as_str);
+	//printf("next_command_as_str: [%s]\n", next_command_as_str);
 	if (!next_command_as_str)
 		return (command);
 	j = ft_strlen(next_command_as_str);

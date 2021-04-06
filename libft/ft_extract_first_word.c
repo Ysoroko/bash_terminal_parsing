@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/05 11:19:31 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/04/05 11:47:45 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/04/06 10:58:16 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,11 @@ char	*ft_extract_first_word(char *from, char *separators)
 
 	i = -1;
 	temp_copy = ft_strtrim_exit(from, separators);
+	if (!temp_copy || !temp_copy[0])
+	{
+		ft_free_str(&temp_copy);
+		return (0);
+	}
 	while (temp_copy[++i])
 	{
 		if (ft_strchr(separators, temp_copy[i]))
