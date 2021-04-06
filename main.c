@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 13:52:17 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/04/05 11:11:15 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/04/06 11:32:17 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static void	ft_input_to_string(char **str)
 		exit(EXIT_FAILURE);
 	if (read(STDIN, *str, INPUT_SIZE) < 0)
 		exit(EXIT_FAILURE);
-	if (str)
+	if (str && str[0])
 		*str = ft_cut_string_at_char(*str, '\n');
 }
 
