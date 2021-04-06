@@ -6,7 +6,7 @@
 #    By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/25 11:12:03 by ysoroko           #+#    #+#              #
-#    Updated: 2021/04/06 12:23:18 by ysoroko          ###   ########.fr        #
+#    Updated: 2021/04/06 16:27:07 by ysoroko          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,25 +22,23 @@ SRC					=	main.c \
 						\
 						utils/signal/ft_signal_handler.c
 
+LIBRARIES			=	libft/libft.a \
+						minishell.a
+
 OBJS				=	$(SRC:.c=.o)
 
-BOLD_GREEN			=	\033[1;32m
+BOLD_PURPLE			=	\033[1;35m
+
+BOLD_CYAN			=	\033[1;34m
+
+BOLD_YELLOW			=	\033[1;33m
 
 NO_COLOR			=	\033[0m
-
-COPMILING_LIBFT		=	"\n\n$(BOLD_GREEN)Compiling Libft... 🛠️\n"
-
-LIBFT_COMPILED		=	"Libft compiled! ✅\n$(NO_COLOR)"
-
-.c.o:	
-	@${CC} ${CFLAGS} -I include -c $< -o ${<:.c=.o}
 
 # Termcap
 # Linking command required to be able to use termcap commands
 # Without it, some termcap functions are not recognized despite the #include
 TERMCAP		=	-ltermcap
-
-LIBRARIES	=	libft/libft.a
 
 LIBFT		=	cd libft && make bonus
 
@@ -54,31 +52,48 @@ INCLUDE		=	-I include
 
 EXECUTABLE	=	minishell
 
+MINISHELL_COMPILED = echo "\n$(BOLD_PURPLE)Executable $(BOLD_CYAN)\"$(EXECUTABLE)\" $(BOLD_PURPLE)created and ready for use! ✅\n$(NO_COLOR)"
+
+# Prints "Compiling Minishell..." on the output
+compiling_minishell:
+						@echo "\n$(BOLD_PURPLE)Compiling Minishell... 🐚\n"
+
+CLEANED		=	echo "\n$(BOLD_YELLOW)Clean: $(NO_COLOR)Removed all the \".o\" files 🧼\n"
+
+FCLEANED	=	echo "\n$(BOLD_YELLOW)Fclean: $(NO_COLOR)Removed all the \".a\" files and the \"minishell\" executable 🧽\n"						
+
+.c.o:	
+	@${CC} ${CFLAGS} -I include -c $< -o ${<:.c=.o}
+
 all: $(NAME)
 
-$(NAME): $(OBJS)
+$(NAME): compiling_minishell $(OBJS)
 		@$(LIBFT)
 		@$(LINK) $(NAME) $(OBJS)
+		@gcc $(FLAGS) $(LIBRARIES) $(TERMCAP) -o $(EXECUTABLE)
+		@$(MINISHELL_COMPILED)
 
 # Compiles everything with warning flags and runs the executable
 run:	$(NAME)
-		@gcc $(FLAGS) $(SRC) $(LIBRARIES) $(TERMCAP) -o $(EXECUTABLE) && ./$(EXECUTABLE)
+		./$(EXECUTABLE)
 
 # Compiles everything without warning flags and runs the executable
 wrun:	$(NAME)
-		@gcc $(SRC) $(LIBRARIES) $(TERMCAP) -o $(EXECUTABLE) && ./$(EXECUTABLE)
+		@gcc $(LIBRARIES) $(TERMCAP) -o $(EXECUTABLE) && ./$(EXECUTABLE)
 
 # Remove all ".o" files
 clean:
 		@rm -rf $(OBJS)
 		@cd libft && make clean
+		@$(CLEANED)
 
 # Remove all ".o / .a / minishell executable" files
 fclean:	clean
 		@rm -rf $(NAME)
 		@rm -rf $(EXECUTABLE)
 		@cd libft && make fclean
+		@$(FCLEANED)
 
 re:		fclean all
 
-.PHONY: all clean fclean re run wrun
+.PHONY: all clean fclean re run wrun compiling_minishell .c.o
