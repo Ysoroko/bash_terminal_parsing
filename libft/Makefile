@@ -6,7 +6,7 @@
 #    By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/11/17 16:06:56 by ysoroko           #+#    #+#              #
-#    Updated: 2021/04/06 12:30:05 by ysoroko          ###   ########.fr        #
+#    Updated: 2021/04/06 16:39:30 by ysoroko          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -110,10 +110,10 @@ BOLD_GREEN			=	\033[1;32m
 NO_COLOR			=	\033[0m
 
 COPMILING_LIBFT:
-					@echo "\n$(BOLD_GREEN)Compiling Libft... 📚\n";
+					@echo "\n📚 $(BOLD_GREEN)Compiling Libft... \n";
 
 LIBFT_COMPILED:
-					@echo "Libft compiled! ✅\n$(NO_COLOR)";
+					@echo "✅ Libft compiled! \n$(NO_COLOR)";
 					
 .c.o:	
 	@${CC} ${CFLAGS} -I includes -c $< -o ${<:.c=.o} \

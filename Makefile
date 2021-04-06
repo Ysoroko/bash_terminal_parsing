@@ -6,7 +6,7 @@
 #    By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/25 11:12:03 by ysoroko           #+#    #+#              #
-#    Updated: 2021/04/06 16:27:07 by ysoroko          ###   ########.fr        #
+#    Updated: 2021/04/06 16:40:15 by ysoroko          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,22 +52,18 @@ INCLUDE		=	-I include
 
 EXECUTABLE	=	minishell
 
-MINISHELL_COMPILED = echo "\n$(BOLD_PURPLE)Executable $(BOLD_CYAN)\"$(EXECUTABLE)\" $(BOLD_PURPLE)created and ready for use! ✅\n$(NO_COLOR)"
+MINISHELL_COMPILED = echo "\n🐚 $(BOLD_PURPLE)Executable $(BOLD_CYAN)\"$(EXECUTABLE)\" $(BOLD_PURPLE)created and ready for use!\n$(NO_COLOR)"
 
-# Prints "Compiling Minishell..." on the output
-compiling_minishell:
-						@echo "\n$(BOLD_PURPLE)Compiling Minishell... 🐚\n"
+CLEANED		=	echo "\n🧼 $(BOLD_YELLOW)Clean: $(NO_COLOR)Removed all the \".o\" files \n"
 
-CLEANED		=	echo "\n$(BOLD_YELLOW)Clean: $(NO_COLOR)Removed all the \".o\" files 🧼\n"
-
-FCLEANED	=	echo "\n$(BOLD_YELLOW)Fclean: $(NO_COLOR)Removed all the \".a\" files and the \"minishell\" executable 🧽\n"						
+FCLEANED	=	echo "\n🧽 $(BOLD_YELLOW)Fclean: $(NO_COLOR)Removed all the \".a\" files and the \"minishell\" executable \n"						
 
 .c.o:	
 	@${CC} ${CFLAGS} -I include -c $< -o ${<:.c=.o}
 
 all: $(NAME)
 
-$(NAME): compiling_minishell $(OBJS)
+$(NAME): $(OBJS)
 		@$(LIBFT)
 		@$(LINK) $(NAME) $(OBJS)
 		@gcc $(FLAGS) $(LIBRARIES) $(TERMCAP) -o $(EXECUTABLE)
@@ -75,7 +71,7 @@ $(NAME): compiling_minishell $(OBJS)
 
 # Compiles everything with warning flags and runs the executable
 run:	$(NAME)
-		./$(EXECUTABLE)
+		@./$(EXECUTABLE)
 
 # Compiles everything without warning flags and runs the executable
 wrun:	$(NAME)
@@ -96,4 +92,4 @@ fclean:	clean
 
 re:		fclean all
 
-.PHONY: all clean fclean re run wrun compiling_minishell .c.o
+.PHONY: all clean fclean re run wrun compiling_minishell .c.o minishell
