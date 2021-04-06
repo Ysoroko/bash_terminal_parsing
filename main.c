@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 13:52:17 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/04/06 16:41:20 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/04/06 16:55:13 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static void	ft_input_to_string(char **str)
 		exit(EXIT_FAILURE);
 	if (read(STDIN, *str, INPUT_SIZE) < 0)
 		exit(EXIT_FAILURE);
-	if (str && str[0])
+	if (*str && (*str)[0] && !ft_str_only_has_chars_from_charset(*str, SPACES))
 		*str = ft_cut_string_at_char(*str, '\n');
 }
 
@@ -83,7 +83,6 @@ int	main(void)
 
 	str = 0;
 	input_as_command_list = 0;
-	ft_initialize_termcaps(&term_type, &ret);
 	ft_setup_signals();
 	while (1)
 	{
