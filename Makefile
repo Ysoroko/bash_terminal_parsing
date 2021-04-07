@@ -6,7 +6,7 @@
 #    By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/25 11:12:03 by ysoroko           #+#    #+#              #
-#    Updated: 2021/04/06 17:01:19 by ysoroko          ###   ########.fr        #
+#    Updated: 2021/04/07 13:23:53 by ysoroko          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,6 +27,7 @@ LIBRARIES			=	libft/libft.a \
 
 OBJS				=	$(SRC:.c=.o)
 
+# Colors
 BOLD_PURPLE			=	\033[1;35m
 
 BOLD_CYAN			=	\033[1;36m
@@ -58,7 +59,7 @@ CLEANED		=	echo "\n🧼 $(BOLD_YELLOW)Clean: $(NO_COLOR)Removed all the \".o\" f
 
 FCLEANED	=	echo "\n🧽 $(BOLD_YELLOW)Fclean: $(NO_COLOR)Removed all the \".a\" files and the \"minishell\" executable \n"						
 
-.c.o:	
+.c.o:
 	@${CC} ${CFLAGS} -I include -c $< -o ${<:.c=.o}
 
 all: $(NAME)
@@ -92,4 +93,4 @@ fclean:	clean
 
 re:		fclean all
 
-.PHONY: all clean fclean re run wrun compiling_minishell .c.o minishell
+.PHONY: all clean fclean re run wrun compiling_minishell .c.o minishell.a
