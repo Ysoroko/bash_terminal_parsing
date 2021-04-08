@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/17 15:32:25 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/04/06 16:57:53 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/04/08 17:54:53 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,26 @@
 # include <unistd.h>
 # include <stdio.h>
 
+/*
+** STRUCTURES
+*/
+
 typedef struct s_list
 {
 	void			*content;
 	struct s_list	*next;
 }				t_list;
+
+typedef struct s_dl_lst
+{
+	void			*content;
+	struct s_dl_lst	*next;
+	struct s_dl_lst	*previous;
+}				t_dl_lst;
+
+/*
+** PROTOTYPES
+*/
 
 int					ft_atoi(const char *str);
 void				ft_bzero(void *str, size_t n);
@@ -106,5 +121,22 @@ char				*ft_strcpy_until_c_from_charset(char *dest,
 int					ft_strlen_until_c_from_charset(const char *str,
 						char *charset);
 int					ft_strlen_until_c(const char *str, char c);
+t_dl_lst			*ft_dl_lst_new_exit(void *content);
+void				ft_dl_lst_add_front(t_dl_lst *add_before,
+						t_dl_lst *new_member);
+int					ft_dl_lst_size(t_dl_lst *first);
+t_dl_lst			*ft_dl_lst_last(t_dl_lst *first);
+t_dl_lst			*ft_dl_lst_first(t_dl_lst *last);
+void				ft_dl_lst_insert_element(t_dl_lst *to_insert,
+						t_dl_lst *after_this);
+void				ft_dl_lst_add_back(t_dl_lst *add_after,
+						t_dl_lst *new_member);
+void 				ft_dl_lstdelone(t_dl_lst *to_delete, void (*del)(void*));
+void				ft_dl_lstdelone_relink(t_dl_lst *to_delete,
+						void (*del)(void*));
+void				ft_dl_lstclear(t_dl_lst *lst, void (*del)(void*));
+void				ft_dl_lstiter(t_dl_lst *lst, void (*f)(void *));
+t_dl_lst			*ft_dl_lstmap_exit(t_dl_lst *l, void *(*f)(void *),
+						void (*del)(void *));
 
 #endif

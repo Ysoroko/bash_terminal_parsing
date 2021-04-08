@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 17:46:26 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/04/08 15:25:13 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/04/08 15:27:31 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static void	ft_print_command_list(void *current_command)
 	printf("%*s [%s]\n", spaces, "Flag:", command->flags);
 	printf("%*s [%s]\n", spaces, "Argument:", command->argument);
 	printf("%*s [%s]\n", spaces, "Redirection:", command->redirection);
-	printf("%*s [%s]\n", spaces, "Previous:", prev_address);
+	printf("%*s [%s]\n", spaces, "Previous (name):", prev_address);
 	printf("_________________________________________\n\n");
 }
 

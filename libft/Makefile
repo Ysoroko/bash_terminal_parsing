@@ -6,7 +6,7 @@
 #    By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/11/17 16:06:56 by ysoroko           #+#    #+#              #
-#    Updated: 2021/04/06 16:39:30 by ysoroko          ###   ########.fr        #
+#    Updated: 2021/04/08 17:55:03 by ysoroko          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -69,6 +69,19 @@ SRC				=	ft_atoi.c \
 					ft_strchrset.c \
 					ft_strlcmp.c \
 					ft_wrong_extension.c \
+					\
+					ft_dl_lst_new_exit.c \
+					ft_dl_lst_add_front.c \
+					ft_dl_lst_add_back.c \
+					ft_dl_lst_size.c \
+					ft_dl_lst_last.c \
+					ft_dl_lst_first.c \
+					ft_dl_lst_insert_element.c \
+					ft_dl_lst_delone.c \
+					ft_dl_lst_delone_relink.c \
+					ft_dl_lstclear.c \
+					ft_dl_lstiter.c \
+					ft_dl_lstmap_exit.c \
 					\
 					ft_cut_string_at_char.c \
 					ft_free_and_realloc.c \
