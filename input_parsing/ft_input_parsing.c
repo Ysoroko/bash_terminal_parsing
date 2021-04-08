@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 15:35:49 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/04/06 17:32:12 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/04/08 14:44:32 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ t_list	*ft_input_parsing(char *input)
 	while (input[++i])
 	{
 		command = ft_extract_next_command(&input[i], &i);
+		command->prev_command = (t_command *)ft_lstlast(command_list)->content;
 		if (!command_list->content)
 			command_list->content = command;
 		else

@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 13:52:17 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/04/06 17:29:48 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/04/08 14:55:54 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,11 +80,13 @@ int	main(void)
 {
 	char	*str;
 	t_list	*input_as_command_list;
+	t_list	*all_user_input_list;
 	char	*term_type;
 	int		ret;
 
 	str = 0;
 	input_as_command_list = 0;
+	all_user_input_list = 0;
 	ft_setup_signals();
 	while (1)
 	{

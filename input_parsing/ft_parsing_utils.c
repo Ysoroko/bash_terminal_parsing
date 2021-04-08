@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/26 09:36:36 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/04/06 17:31:25 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/04/08 15:21:45 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ t_command	*ft_new_t_command(char *name, char *flags, char *arg, char *redir)
 	new_command->flags = flags;
 	new_command->argument = arg;
 	new_command->redirection = redir;
+	new_command->prev_command = 0;
 	return (new_command);
 }
 

@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 11:07:01 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/04/06 16:59:06 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/04/08 14:55:22 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,18 @@
 
 typedef struct s_command
 {
-	char	*name;
-	char	*flags;
-	char	*argument;
-	char	*redirection;
+	char				*name;
+	char				*flags;
+	char				*argument;
+	char				*redirection;
+	struct s_command	*prev_command;
 }	t_command;
+
+typedef struct s_input_list
+{
+	char	*input;
+	t_list	*previous_t_list;
+}	t_input_list;
 
 /*
 ** PROTOTYPES
