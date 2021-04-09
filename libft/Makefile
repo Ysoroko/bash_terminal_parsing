@@ -6,7 +6,7 @@
 #    By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/11/17 16:06:56 by ysoroko           #+#    #+#              #
-#    Updated: 2021/04/08 17:55:03 by ysoroko          ###   ########.fr        #
+#    Updated: 2021/04/09 11:58:22 by ysoroko          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -104,7 +104,9 @@ SRC				=	ft_atoi.c \
 					ft_strcpy_until_c_from_charset.c \
 					ft_strdup_until_c_from_charset.c \
 					ft_strlen_until_c_from_charset.c \
-					ft_strlen_until_c.c
+					ft_strlen_until_c.c \
+					ft_str_has_unclosed_quotes.c \
+					ft_strrchr_not_in_quotes.c
 
 
 
