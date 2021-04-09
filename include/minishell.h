@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 11:07:01 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/04/09 09:52:17 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/04/09 14:02:46 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ void		ft_execute(t_dl_lst *command_list);
 void		ft_signal_handler(int no_matter);
 void		ft_initialize_termcaps(char **term_type, int *ret);
 char		*ft_extract_next_command_string(char *input_checkpoint);
+void		ft_check_for_unclosed_quotes(char **input);
 
 /*
 ** COLORS

@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/09 10:59:26 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/04/09 11:33:05 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/04/09 14:00:51 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,9 @@ static void	ft_initialize_variables_at_zero(int *a, int *b, int *c, int *d)
 ** inside the other quotes
 */
 
-static void	ft_add_quotes_and_lock(int *count, int *inside)
+static void	ft_add_quote_and_lock(int *count, int *inside)
 {
-	*count++;
+	*count += 1;
 	if (*count % 2)
 		*inside = 1;
 	else
@@ -91,10 +91,10 @@ int	ft_str_has_unclosed_quotes(char *s)
 	{
 		if (((s[i] == '\'' && i && s[i - 1] != '\\') || (s[i] == '\'' && !i))
 			&& !inside_double_quotes)
-			ft_add_quotes_and_lock(count_simple_quotes, inside_simple_quotes);
+			ft_add_quote_and_lock(&count_simple_quotes, &inside_simple_quotes);
 		if (((s[i] == '\"' && i && s[i - 1] != '\\') || (s[i] == '\"' && !i))
 			&& !inside_simple_quotes)
-			ft_add_quotes_and_lock(count_double_quotes, inside_double_quotes);
+			ft_add_quote_and_lock(&count_double_quotes, &inside_double_quotes);
 	}
 	return (ft_return(inside_simple_quotes, inside_double_quotes));
 }

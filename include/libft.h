@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/17 15:32:25 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/04/09 11:58:05 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/04/09 13:59:09 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,5 +140,7 @@ t_dl_lst			*ft_dl_lstmap_exit(t_dl_lst *l, void *(*f)(void *),
 						void (*del)(void *));
 int					ft_str_has_unclosed_quotes(char *s);
 char				*ft_strrchr_not_in_quotes(char *str, char c);
+char				*ft_strjoin_free_pref_exit(char **pref, char *suff);
+char				*ft_strjoin_exit(char *pref, char *suff);
 
 #endif
