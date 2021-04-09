@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/08 17:39:41 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/04/08 17:42:29 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/04/09 10:12:11 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 /*
 ** FT_DL_LSTITER
-** Unlike its t_lst equivalent, it will apply function f to all of the element
+** It will apply function f to all of the elements
 ** before and after the *lst element
 */
 
@@ -24,16 +24,10 @@ void	ft_dl_lstiter(t_dl_lst *lst, void (*f)(void *))
 
 	if (!lst || !f)
 		return ;
-	temp = lst->next;
+	temp = ft_dl_lst_first(lst);
 	while (temp != 0)
 	{
 		f(temp->content);
 		temp = temp->next;
-	}
-	temp = lst;
-	while (temp != 0)
-	{
-		f(temp->content);
-		temp = temp->previous;
 	}
 }

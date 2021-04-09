@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 17:46:26 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/04/08 15:27:31 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/04/09 10:10:48 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,20 +22,15 @@ static void	ft_print_command_list(void *current_command)
 {
 	t_command	*command;
 	int			spaces;
-	char		*prev_address;
 
-	prev_address = 0;
 	spaces = -16;
 	printf("\n\n\n");
 	command = (t_command *)(current_command);
-	if (command && command->prev_command)
-		prev_address = command->prev_command->name;
 	printf("_________________________________________\n\n");
 	printf("%*s [%s]\n", spaces, "Command:", command->name);
 	printf("%*s [%s]\n", spaces, "Flag:", command->flags);
 	printf("%*s [%s]\n", spaces, "Argument:", command->argument);
 	printf("%*s [%s]\n", spaces, "Redirection:", command->redirection);
-	printf("%*s [%s]\n", spaces, "Previous (name):", prev_address);
 	printf("_________________________________________\n\n");
 }
 
@@ -76,7 +71,7 @@ static void	ft_print_command_list(void *current_command)
 ** the t_list* structure
 */
 
-void	ft_execute(t_list *command_list)
+void	ft_execute(t_dl_lst *command_list)
 {
-	ft_lstiter(command_list, ft_print_command_list);
+	ft_dl_lstiter(command_list, ft_print_command_list);
 }

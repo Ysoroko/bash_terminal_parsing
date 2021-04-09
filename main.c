@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 13:52:17 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/04/08 14:55:54 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/04/09 10:17:35 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ static void	ft_input_to_string(char **str)
 		exit(EXIT_FAILURE);
 	if (*str && (*str)[0] && !ft_str_only_has_chars_from_charset(*str, SPACES))
 		*str = ft_cut_string_at_char(*str, '\n');
+	else
+		ft_free_str(str);
 }
 
 /*
@@ -51,10 +53,10 @@ static void	ft_input_to_string(char **str)
 ** all of its content
 */
 
-static void	ft_cleanup_and_free(char **str, t_list **lst)
+static void	ft_cleanup_and_free(char **str, t_dl_lst **lst)
 {
 	ft_free_str(str);
-	ft_lstclear(lst, &ft_free_t_command);
+	ft_dl_lstclear(*lst, &ft_free_t_command);
 }
 
 /*
@@ -78,11 +80,11 @@ static void	ft_setup_signals(void)
 
 int	main(void)
 {
-	char	*str;
-	t_list	*input_as_command_list;
-	t_list	*all_user_input_list;
-	char	*term_type;
-	int		ret;
+	char		*str;
+	t_dl_lst	*input_as_command_list;
+	t_dl_lst	*all_user_input_list;
+	char		*term_type;
+	int			ret;
 
 	str = 0;
 	input_as_command_list = 0;
@@ -92,7 +94,7 @@ int	main(void)
 	{
 		ft_display_prompt(BOLDCYAN, "minishell: ");
 		ft_input_to_string(&str);
-		if (str && str[0])
+		if (str)
 		{
 			input_as_command_list = ft_input_parsing(str);
 			ft_execute(input_as_command_list);

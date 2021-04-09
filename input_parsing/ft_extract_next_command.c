@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/30 15:52:06 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/04/06 17:40:10 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/04/09 09:53:44 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,7 +117,7 @@ static void	ft_extract_the_argument(char *str, int index, t_command *command)
 ** t_command structure
 */
 
-t_command	*ft_extract_next_command(char *input_checkpnt, int *i)
+t_command	*ft_extract_next_command(char *input_checkpt, int *i)
 {
 	int			j;
 	t_command	*command;
@@ -126,14 +126,14 @@ t_command	*ft_extract_next_command(char *input_checkpnt, int *i)
 
 	index = 0;
 	command = ft_new_t_command(0, 0, 0, 0);
-	next_command_as_str = ft_extract_next_command_string(input_checkpnt);
+	next_command_as_str = ft_extract_next_command_string(input_checkpt);
 	//printf("next_command_as_str: [%s]\n", next_command_as_str);
 	if (!next_command_as_str)
 		return (command);
 	j = ft_strlen(next_command_as_str);
-	ft_extract_command_name(input_checkpnt, command, &index);
-	ft_check_for_flags(input_checkpnt, command, &index);
-	ft_check_for_redirections(next_command_as_str, command, &j, input_checkpnt);
+	ft_extract_command_name(input_checkpt, command, &index);
+	ft_check_for_flags(input_checkpt, command, &index);
+	ft_check_for_redirections(next_command_as_str, command, &j, input_checkpt);
 	ft_extract_the_argument(next_command_as_str, index, command);
 	ft_free_str(&next_command_as_str);
 	if (!j)

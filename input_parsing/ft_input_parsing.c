@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 15:35:49 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/04/08 14:44:32 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/04/09 09:56:21 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,25 +21,24 @@
 ** arguments / redirections
 */
 
-t_list	*ft_input_parsing(char *input)
+t_dl_lst	*ft_input_parsing(char *input)
 {
-	t_list		*command_list;
-	t_list		*new_list_member;
+	t_dl_lst	*command_list;
+	t_dl_lst	*new_list_member;
 	int			i;
 	t_command	*command;
 
-	command_list = ft_lstnew_exit(0);
+	command_list = ft_dl_lst_new_exit(0);
 	i = -1;
 	while (input[++i])
 	{
 		command = ft_extract_next_command(&input[i], &i);
-		command->prev_command = (t_command *)ft_lstlast(command_list)->content;
 		if (!command_list->content)
 			command_list->content = command;
 		else
 		{
-			new_list_member = ft_lstnew_exit((void *)command);
-			ft_lstadd_back(&command_list, new_list_member);
+			new_list_member = ft_dl_lst_new_exit((void *)command);
+			ft_dl_lst_add_back(command_list, new_list_member);
 		}
 		if (!input[i])
 			break ;

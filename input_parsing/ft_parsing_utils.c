@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/26 09:36:36 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/04/08 15:21:45 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/04/09 10:15:24 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ t_command	*ft_new_t_command(char *name, char *flags, char *arg, char *redir)
 	new_command->flags = flags;
 	new_command->argument = arg;
 	new_command->redirection = redir;
-	new_command->prev_command = 0;
+	new_command->result = 0;
 	return (new_command);
 }
 
@@ -56,6 +56,8 @@ void	ft_free_t_command(void *command_pointer)
 		ft_free_str(&(command->argument));
 	if (command->redirection)
 		ft_free_str(&(command->redirection));
+	if (command->result)
+		ft_free_str(&(command->result));
 	free(command_pointer);
 	command_pointer = 0;
 }

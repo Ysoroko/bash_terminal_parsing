@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 11:07:01 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/04/08 14:55:22 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/04/09 09:52:17 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,25 +44,19 @@ typedef struct s_command
 	char				*flags;
 	char				*argument;
 	char				*redirection;
-	struct s_command	*prev_command;
+	char				*result;
 }	t_command;
-
-typedef struct s_input_list
-{
-	char	*input;
-	t_list	*previous_t_list;
-}	t_input_list;
 
 /*
 ** PROTOTYPES
 */
 
-t_list		*ft_input_parsing(char *input);
+t_dl_lst	*ft_input_parsing(char *input);
 t_command	*ft_new_t_command(char *name, char *flags, char *arg, char *redir);
 void		ft_free_t_command(void *command_pointer);
 void		ft_update_str_read_so_far(char *input_checkpnt, int i, char **prev);
 t_command	*ft_extract_next_command(char *input_checkpnt, int *i);
-void		ft_execute(t_list *command_list);
+void		ft_execute(t_dl_lst *command_list);
 void		ft_signal_handler(int no_matter);
 void		ft_initialize_termcaps(char **term_type, int *ret);
 char		*ft_extract_next_command_string(char *input_checkpoint);
