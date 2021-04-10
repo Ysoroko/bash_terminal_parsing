@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/26 09:36:36 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/04/10 12:30:28 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/04/10 17:29:04 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,11 +68,11 @@ void	ft_free_t_command(void *command_pointer)
 ** argument, ending at the first redirection character
 */
 
-char	*ft_extract_next_command_string(char *input_checkpoint)
+char	*ft_extract_next_command_string(char *checkpoint)
 {
 	char	*ret;
 
-	ret = ft_strdup_until_c_from_charset(input_checkpoint, REDIRECTIONS);
+	ret = ft_strdup_until_c_from_charset_not_quoted(checkpoint, REDIRECTIONS);
 	if (ft_str_only_has_chars_from_charset(ret, SPACES))
 		ft_free_str(&ret);
 	return (ret);

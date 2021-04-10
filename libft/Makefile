@@ -6,7 +6,7 @@
 #    By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/11/17 16:06:56 by ysoroko           #+#    #+#              #
-#    Updated: 2021/04/10 17:05:27 by ysoroko          ###   ########.fr        #
+#    Updated: 2021/04/10 17:47:59 by ysoroko          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -115,7 +115,7 @@ SRC				=	ft_atoi.c \
 					ft_strcpy_until_c_from_charset_not_quoted.c \
 					ft_strtrim_exit_replace_src.c \
 					ft_strldup_exit.c \
-					ft_char_between_the_quotes.c
+					ft_char_between_the_quotes.c \
 					
 					
 

@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/10 17:00:36 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/04/10 17:02:57 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/04/10 17:23:55 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,9 @@ char	*ft_strldup_exit(const char *src, int n_chars)
 	if (!src)
 		return (0);
 	my_src = (char *)(src);
-	str = malloc(sizeof(*str) * (ft_strlen(my_src) + 1));
+	str = malloc(sizeof(char) * (n_chars + 1));
 	if (!str)
 		exit(EXIT_FAILURE);
-	return (ft_strlcpy(str, my_src, n_chars));
+	ft_strlcpy(str, my_src, n_chars);
+	return (str);
 }

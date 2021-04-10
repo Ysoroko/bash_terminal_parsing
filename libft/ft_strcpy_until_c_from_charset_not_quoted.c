@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/10 15:36:06 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/04/10 15:54:00 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/04/10 17:50:22 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,17 +25,16 @@ char	*ft_strcpy_until_c_from_charset_not_quoted(char *d, char *s, char *set)
 {
 	int		i;
 
-	s = (char *)(s);
 	i = 0;
-	while (s[i] && !ft_strchr(set, s[i]))
+	while (s[i])
 	{
 		d[i] = s[i];
-		i++;
-	}
-	if (ft_strchr(set, s[i]))
-	{
-		d[i] = s[i];
-		i++;
+		if (ft_strchr(set, s[i]) && !ft_char_between_the_quotes(i, s))
+		{
+			i++;
+			break;
+		}
+		i++;	
 	}
 	d[i] = '\0';
 	return (d);

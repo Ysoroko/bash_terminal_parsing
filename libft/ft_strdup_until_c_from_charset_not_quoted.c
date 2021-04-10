@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/10 15:31:22 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/04/10 15:36:58 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/04/10 17:51:44 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,9 @@ char	*ft_strdup_until_c_from_charset_not_quoted(const char *src, char *set)
 	if (!src)
 		return (0);
 	my_src = (char *)(src);
-	len = ft_strlen_until_c_from_charset(my_src, set);
-	str = malloc(sizeof(*str) * (len + 1));
+	len = ft_strlen_until_c_from_charset_not_quoted(my_src, set);
+	str = malloc(sizeof(char) * (len + 1));
 	if (!str)
 		exit(EXIT_FAILURE);
-	return (ft_strcpy_until_c_from_charset(str, my_src, set));
+	return (ft_strcpy_until_c_from_charset_not_quoted(str, my_src, set));
 }

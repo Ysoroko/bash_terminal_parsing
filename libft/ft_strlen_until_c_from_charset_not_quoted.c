@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/10 15:32:45 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/04/10 15:34:35 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/04/10 17:51:50 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,16 +21,18 @@
 ** This character seen is included in the count (useful for minishell)
 */
 
-int	ft_strlen_until_c_from_charset_not_quoted(const char *str, char *charset)
+int	ft_strlen_until_c_from_charset_not_quoted(char *str, char *charset)
 {
 	int	i;
 
 	if (!str)
 		return (0);
 	i = 0;
-	while (str[i] && !ft_strchr(charset, str[i]))
+	while (str[i])
+	{
 		i++;
-	if (ft_strchr(charset, str[i]))
-		i++;
+		if (ft_strchr(charset, str[i]) && !ft_char_between_the_quotes(i, str))
+			break;
+	}
 	return (i);
 }
