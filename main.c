@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 13:52:17 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/04/10 12:49:38 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/04/10 13:12:43 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ static void	ft_display_prompt(char *color, char *prompt_name)
 /*
 ** FT_INPUT_TO_STRING
 ** This function will transform user's input input into one string
+** It will also check for unclosed quotes in the input
 */
 
 static void	ft_input_to_string(char **str)
@@ -37,16 +38,11 @@ static void	ft_input_to_string(char **str)
 	char	*temp;
 	char	unclosed_quote;
 	
-	*str = malloc(INPUT_SIZE);
-	if (!*str)
-		exit(EXIT_FAILURE);
+	*str = ft_calloc_exit(sizeof(char), INPUT_SIZE);
 	if (read(STDIN, *str, INPUT_SIZE) < 0)
 		exit(EXIT_FAILURE);
 	if (*str && (*str)[0] && !ft_str_only_has_chars_from_charset(*str, SPACES))
-	{
-		ft_cut_string_at_char(*str, '\n');
 		ft_check_for_unclosed_quotes(str);
-	}
 	else
 		ft_free_str(str);
 }
@@ -84,12 +80,10 @@ void	ft_check_for_unclosed_quotes(char **input)
 	unclosed_quote = ft_str_has_unclosed_quotes(*input);
 	if (unclosed_quote)
 	{
-		additional_input = ft_calloc(sizeof(char), INPUT_SIZE);
-		if (!additional_input)
-			exit(EXIT_FAILURE);
-		while (!ft_strchr(additional_input, unclosed_quote))
+		additional_input = ft_calloc_exit(sizeof(char), INPUT_SIZE);
+		while (ft_str_has_unclosed_quotes(*input))
 		{
-			ft_display_prompt(BOLDCYAN, ">");
+			ft_display_prompt(BOLDCYAN, "> ");
 			read_ret = read(STDIN, additional_input, INPUT_SIZE);
 			if (read_ret < 0)
 				exit(EXIT_FAILURE);
@@ -121,12 +115,12 @@ static void	ft_setup_signals(void)
 int	main(void)
 {
 	char		*str;
-	t_dl_lst	*input_as_command_list;
+	t_dl_lst	*input_as_dl_command_list;
 	char		*term_type;
 	int			ret;
 
 	str = 0;
-	input_as_command_list = 0;
+	input_as_dl_command_list = 0;
 	ft_setup_signals();
 	while (1)
 	{
@@ -134,10 +128,10 @@ int	main(void)
 		ft_input_to_string(&str);
 		if (str)
 		{
-			input_as_command_list = ft_input_parsing(str);
-			ft_execute(input_as_command_list);
+			input_as_dl_command_list = ft_input_parsing(str);
+			ft_execute(input_as_dl_command_list);
 		}
-		ft_cleanup_and_free(&str, input_as_command_list);
+		ft_cleanup_and_free(&str, input_as_dl_command_list);
 	}
 	return (1);
 }
