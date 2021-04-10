@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 13:52:17 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/04/10 13:41:36 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/04/10 14:28:29 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,7 @@ static void	ft_input_to_string(char **str)
 	char	unclosed_quote;
 	
 	*str = ft_calloc_exit(sizeof(char), INPUT_SIZE);
-	if (read(STDIN, *str, INPUT_SIZE) < 0)
-		exit(EXIT_FAILURE);
+	ft_read_exit(STDIN, *str, INPUT_SIZE);
 	if (*str && (*str)[0] && !ft_str_only_has_chars_from_charset(*str, SPACES))
 		ft_check_for_unclosed_quotes(str);
 	else
@@ -65,28 +64,22 @@ static void	ft_cleanup_and_free(char **str, t_dl_lst *lst)
 ** FT_CHECK_FOR_UNCLOSED_QUOTES
 ** This function is used to analyze user's input
 ** and if it has unclosed quotes, it will display ">"
-** in prompt until the unclosed quote is provided
+** in prompt until the unclosed quote is provided in input
 */
 
 void	ft_check_for_unclosed_quotes(char **input)
 {
-	char	unclosed_quote;
 	char	*additional_input;
-	char	*temp;
-	int		read_ret;
 
 	if (!input || !*input)
 		return ;
-	unclosed_quote = ft_str_has_unclosed_quotes(*input);
-	if (unclosed_quote)
+	if (ft_str_has_unclosed_quotes(*input))
 	{
 		additional_input = ft_calloc_exit(sizeof(char), INPUT_SIZE);
 		while (ft_str_has_unclosed_quotes(*input))
 		{
 			ft_display_prompt(BOLDCYAN, "> ");
-			read_ret = read(STDIN, additional_input, INPUT_SIZE);
-			if (read_ret < 0)
-				exit(EXIT_FAILURE);
+			ft_read_exit(STDIN, additional_input, INPUT_SIZE);
 			*input = ft_strjoin_free_pref_exit(input, additional_input);
 		}
 		ft_free_str(&additional_input);

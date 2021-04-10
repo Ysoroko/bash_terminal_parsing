@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/17 15:32:25 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/04/10 12:42:04 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/04/10 14:10:28 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,5 +142,6 @@ char				ft_str_has_unclosed_quotes(char *s);
 char				*ft_strrchr_not_in_quotes(char *str, char c);
 char				*ft_strjoin_free_pref_exit(char **pref, char *suff);
 char				*ft_strjoin_exit(char *pref, char *suff);
+int					ft_read_exit(int fd, void *buff, size_t b_bytes);
 
 #endif

@@ -6,7 +6,7 @@
 #    By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/11/17 16:06:56 by ysoroko           #+#    #+#              #
-#    Updated: 2021/04/09 13:54:11 by ysoroko          ###   ########.fr        #
+#    Updated: 2021/04/10 13:53:29 by ysoroko          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -108,7 +108,8 @@ SRC				=	ft_atoi.c \
 					ft_str_has_unclosed_quotes.c \
 					ft_strrchr_not_in_quotes.c \
 					ft_strjoin_free_pref_exit.c \
-					ft_strjoin_exit.c
+					ft_strjoin_exit.c \
+					ft_read_exit.c
 
 
 
