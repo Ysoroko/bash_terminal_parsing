@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 13:52:17 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/04/10 15:04:02 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/04/10 16:54:31 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,7 @@ static void	ft_extract_user_input_to_string(char **str)
 	*str = ft_calloc_exit(sizeof(char), INPUT_SIZE);
 	ft_read_exit(STDIN, *str, INPUT_SIZE);
 	if (*str && !ft_str_only_has_chars_from_charset(*str, SPACES))
-	{
-		ft_check_for_unclosed_quotes(str);
-		ft_cut_string_at_last_char(*str, '\n');
-	}
+		ft_check_for_unclosed_quotes(str);	
 	else
 		ft_free_str(str);
 }
@@ -87,6 +84,7 @@ void	ft_check_for_unclosed_quotes(char **input)
 		}
 		ft_free_str(&additional_input);
 	}
+	*input = ft_strtrim_exit_replace_src(input, SPACES);
 }
 
 /*
@@ -103,9 +101,11 @@ static void	ft_setup_signals(void)
 /*
 ** MAIN
 ** Central hub of the minishell project
-** Initiates the minishell prompt, stores input and calls parsing to analyze
-** user's input
-** After the parsing, it executes all of the commands from the user's input
+** Here we display the "minishell" prompt and extract user's input.
+** The parsing then transforms user's input from a string format to a double
+** linked list format (a linked list where each element has the address of both
+** the next and the previous element of the list)
+** It executes all of the commands from the user's input one by one
 ** Cleans up and frees all used data after each user's input
 */
 
@@ -119,7 +119,6 @@ int	main(void)
 	{
 		ft_display_prompt(BOLDCYAN, "minishell: ");
 		ft_extract_user_input_to_string(&user_input_str);
-		printf("input: [%s]\n", user_input_str);
 		input_as_dl_command_list = ft_input_parsing(user_input_str);
 		ft_execute(input_as_dl_command_list);
 		ft_cleanup_and_free(&user_input_str, input_as_dl_command_list);

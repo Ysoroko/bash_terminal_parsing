@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/17 15:32:25 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/04/10 15:03:03 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/04/10 17:05:10 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,5 +145,16 @@ char				*ft_strjoin_exit(char *pref, char *suff);
 int					ft_read_exit(int fd, void *buff, size_t b_bytes);
 void				ft_cut_string_at_last_char(char *str, char c);
 void				ft_cut_string_at_last_charset(char *str, char *charset);
+int					ft_strlen_until_c_from_charset_not_quoted(const char *str,
+						char *charset);
+char				*ft_strdup_until_c_from_charset_not_quoted(const char *src,
+						char *set);
+char				*ft_strcpy_until_c_from_charset_not_quoted(char *d,
+						char *s, char *set);
+char				*ft_strtrim_exit_replace_src(char **src, char *except);
+char				*ft_strldup_exit(const char *src, int n_chars);
+char				ft_char_between_the_quotes(int char_position,
+						char *str_containing_c);
+
 
 #endif

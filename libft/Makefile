@@ -6,7 +6,7 @@
 #    By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/11/17 16:06:56 by ysoroko           #+#    #+#              #
-#    Updated: 2021/04/10 15:01:35 by ysoroko          ###   ########.fr        #
+#    Updated: 2021/04/10 17:05:27 by ysoroko          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -106,13 +106,18 @@ SRC				=	ft_atoi.c \
 					ft_strlen_until_c_from_charset.c \
 					ft_strlen_until_c.c \
 					ft_str_has_unclosed_quotes.c \
-					ft_strrchr_not_in_quotes.c \
 					ft_strjoin_free_pref_exit.c \
 					ft_strjoin_exit.c \
 					ft_read_exit.c \
 					ft_cut_string_at_last_char.c \
-
-
+					ft_strdup_until_c_from_charset_not_quoted.c \
+					ft_strlen_until_c_from_charset_not_quoted.c \
+					ft_strcpy_until_c_from_charset_not_quoted.c \
+					ft_strtrim_exit_replace_src.c \
+					ft_strldup_exit.c \
+					ft_char_between_the_quotes.c
+					
+					
 
 BONUS			=	ft_lstadd_back.c \
 					ft_lstadd_front.c \

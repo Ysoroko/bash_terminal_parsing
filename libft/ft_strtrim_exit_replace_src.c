@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strtrim_exit.c                                  :+:      :+:    :+:   */
+/*   ft_strtrim_exit_replace_src.c                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/30 11:41:34 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/04/10 16:43:08 by ysoroko          ###   ########.fr       */
+/*   Created: 2021/04/10 16:40:24 by ysoroko           #+#    #+#             */
+/*   Updated: 2021/04/10 16:49:19 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static int	ft_char_is_in_str(char c, char *str)
 }
 
 /*
-** FT_STRTRIM_EXIT
+** FT_STRTRIM_EXIT_REPLACE_SRC
 ** This function removes all characters present in "except" argument
 ** at the start and the end of "str" argument (but not in its middle)
 ** The difference with ft_strtrim lies in use of exit function in case
@@ -34,25 +34,25 @@ static int	ft_char_is_in_str(char c, char *str)
 ** Returns the malloc'd version of str without all the characters
 ** from "except at the start and the end of the string
 ** Example: str = "_ ;bon; _jour;_", except = "; _" ->result = "bon; _jour"
+** Unlike ft_strtrim_exit it will not simply create a new result string, but 
+** also free **src string and return the result
 */
 
-char	*ft_strtrim_exit(char *str, char *except)
+char	*ft_strtrim_exit_replace_src(char **src, char *except)
 {
 	int		i;
 	int		j;
 	char	*ret;
 
-	if (!str)
+	if (!src)
 		return (0);
-	if (!str[0])
-		return (ft_strdup_exit(""));
-	if (!except || !except[0])
-		return (ft_strdup_exit(str));
+	if (!(*src)[0] || !except || !except[0])
+		return (*src);
 	i = 0;
-	j = ft_strlen(str) - 1;
-	while (ft_char_is_in_str(str[i], except))
+	j = ft_strlen(*src) - 1;
+	while (ft_char_is_in_str((*src)[i], except))
 		i++;
-	while (ft_char_is_in_str(str[j], except))
+	while (ft_char_is_in_str((*src)[j], except))
 		j--;
 	j++;
 	if (j <= i)
@@ -60,6 +60,7 @@ char	*ft_strtrim_exit(char *str, char *except)
 	ret = malloc(sizeof(char) * (j - i + 1));
 	if (!ret)
 		exit(EXIT_FAILURE);
-	ft_strlcpy(ret, &str[i], j - i + 1);
+	ft_strlcpy(ret, &((*src)[i]), j - i + 1);
+	ft_free_str(src);
 	return (ret);
 }

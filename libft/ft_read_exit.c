@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/10 13:49:08 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/04/10 13:54:02 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/04/10 16:14:23 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,9 @@ int	ft_read_exit(int fd, void *buff, size_t b_bytes)
 
 	ret = read(fd, buff, b_bytes);
 	if (ret < 0)
+	{
+		printf("can't read\n");
 		exit(EXIT_FAILURE);
+	}
 	return (ret);
 }

@@ -1,32 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_cut_string_at_last_char.c                       :+:      :+:    :+:   */
+/*   ft_strldup_exit.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/04/10 15:00:17 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/04/10 16:29:12 by ysoroko          ###   ########.fr       */
+/*   Created: 2021/04/10 17:00:36 by ysoroko           #+#    #+#             */
+/*   Updated: 2021/04/10 17:02:57 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/libft.h"
 
 /*
-** FT_CUT_STRING_AT_LAST_CHAR
-** Replaces the last occurence of char c in string str by a '\0'
+** FT_STRLDUP_EXIT
+** Same as ft_strldup_exit, but will only copy first n_chars characters
+** Returns the malloc'd result string
 */
 
-void	ft_cut_string_at_last_char(char *str, char c)
+char	*ft_strldup_exit(const char *src, int n_chars)
 {
-	int	i;
+	char	*str;
+	char	*my_src;
 
+	if (!src)
+		return (0);
+	my_src = (char *)(src);
+	str = malloc(sizeof(*str) * (ft_strlen(my_src) + 1));
 	if (!str)
-		return ;
-	i = ft_strlen(str);
-	while (--i >= 0)
-	{
-		if (str[i] == c)
-			str[i] = 0;
-	}
+		exit(EXIT_FAILURE);
+	return (ft_strlcpy(str, my_src, n_chars));
 }
