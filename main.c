@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 13:52:17 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/04/10 13:12:43 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/04/10 13:41:36 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,6 +109,7 @@ static void	ft_setup_signals(void)
 ** Central hub of the minishell project
 ** Initiates the minishell prompt, stores input and calls parsing to analyze
 ** user's input
+** After the parsing, it executes all of the commands from the user's input
 ** Cleans up and frees all used data after each user's input
 */
 
