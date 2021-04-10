@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 15:35:49 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/04/09 09:56:21 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/04/10 14:50:57 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ t_dl_lst	*ft_input_parsing(char *input)
 	int			i;
 	t_command	*command;
 
+	if (!input)
+		return (0);
 	command_list = ft_dl_lst_new_exit(0);
 	i = -1;
 	while (input[++i])

@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 17:46:26 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/04/09 10:10:48 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/04/10 14:50:37 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,5 +73,7 @@ static void	ft_print_command_list(void *current_command)
 
 void	ft_execute(t_dl_lst *command_list)
 {
+	if (!command_list)
+		return ;
 	ft_dl_lstiter(command_list, ft_print_command_list);
 }

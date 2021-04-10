@@ -1,25 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_cut_string_at_char.c                            :+:      :+:    :+:   */
+/*   ft_cut_string_at_first_charset.c                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/25 14:55:36 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/04/10 12:46:57 by ysoroko          ###   ########.fr       */
+/*   Created: 2021/04/05 15:57:21 by ysoroko           #+#    #+#             */
+/*   Updated: 2021/04/10 15:04:38 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/libft.h"
 
-void	ft_cut_string_at_char(char *str, char c)
+void	ft_cut_string_at_first_charset(char *str, char *charset)
 {
 	int	i;
 
 	i = -1;
 	while (str[++i])
 	{
-		if (str[i] == c)
+		if (ft_strchr(charset, str[i]))
 			str[i] = 0;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/17 15:32:25 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/04/10 14:10:28 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/04/10 15:03:03 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ int					ft_tolower(int c);
 int					ft_toupper(int c);
 int					ft_wrong_extension(char *file_name,
 						char *expected_extension);
-void				ft_cut_string_at_char(char *str, char c);
+void				ft_cut_string_at_first_char(char *str, char c);
 char				*ft_free_and_realloc(char *str, int size);
 int					ft_strcmp(char *s1, char *s2);
 int					ft_strcmptab(char *str_to_compare, char **str_tab);
@@ -108,7 +108,7 @@ char				*ft_strdup_exit(const char *src);
 char				*ft_extract_first_word(char *from, char *separators);
 char				*ft_extract_second_word(char *from, char *separators);
 int					ft_strchrn(char *str, int c);
-char				*ft_cut_string_at_charset(char *str, char *charset);
+void				ft_cut_string_at_first_charset(char *str, char *charset);
 int					ft_str_only_has_chars_from_charset(char *str,
 						char *charset);
 char				*ft_strcpy(char *dest, const char *src);
@@ -143,5 +143,7 @@ char				*ft_strrchr_not_in_quotes(char *str, char c);
 char				*ft_strjoin_free_pref_exit(char **pref, char *suff);
 char				*ft_strjoin_exit(char *pref, char *suff);
 int					ft_read_exit(int fd, void *buff, size_t b_bytes);
+void				ft_cut_string_at_last_char(char *str, char c);
+void				ft_cut_string_at_last_charset(char *str, char *charset);
 
 #endif

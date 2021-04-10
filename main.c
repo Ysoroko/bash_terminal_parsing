@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 13:52:17 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/04/10 14:28:29 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/04/10 15:04:02 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,20 +28,23 @@ static void	ft_display_prompt(char *color, char *prompt_name)
 }
 
 /*
-** FT_INPUT_TO_STRING
+** FT_EXTRACT_USER_INPUT_TO_STRING
 ** This function will transform user's input input into one string
 ** It will also check for unclosed quotes in the input
 */
 
-static void	ft_input_to_string(char **str)
+static void	ft_extract_user_input_to_string(char **str)
 {
 	char	*temp;
 	char	unclosed_quote;
 	
 	*str = ft_calloc_exit(sizeof(char), INPUT_SIZE);
 	ft_read_exit(STDIN, *str, INPUT_SIZE);
-	if (*str && (*str)[0] && !ft_str_only_has_chars_from_charset(*str, SPACES))
+	if (*str && !ft_str_only_has_chars_from_charset(*str, SPACES))
+	{
 		ft_check_for_unclosed_quotes(str);
+		ft_cut_string_at_last_char(*str, '\n');
+	}
 	else
 		ft_free_str(str);
 }
@@ -108,24 +111,18 @@ static void	ft_setup_signals(void)
 
 int	main(void)
 {
-	char		*str;
+	char		*user_input_str;
 	t_dl_lst	*input_as_dl_command_list;
-	char		*term_type;
-	int			ret;
 
-	str = 0;
-	input_as_dl_command_list = 0;
 	ft_setup_signals();
 	while (1)
 	{
 		ft_display_prompt(BOLDCYAN, "minishell: ");
-		ft_input_to_string(&str);
-		if (str)
-		{
-			input_as_dl_command_list = ft_input_parsing(str);
-			ft_execute(input_as_dl_command_list);
-		}
-		ft_cleanup_and_free(&str, input_as_dl_command_list);
+		ft_extract_user_input_to_string(&user_input_str);
+		printf("input: [%s]\n", user_input_str);
+		input_as_dl_command_list = ft_input_parsing(user_input_str);
+		ft_execute(input_as_dl_command_list);
+		ft_cleanup_and_free(&user_input_str, input_as_dl_command_list);
 	}
 	return (1);
 }

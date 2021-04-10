@@ -1,33 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_dl_lstiter.c                                    :+:      :+:    :+:   */
+/*   ft_cut_string_at_last_charset.c                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/04/08 17:39:41 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/04/10 15:03:13 by ysoroko          ###   ########.fr       */
+/*   Created: 2021/04/10 15:01:51 by ysoroko           #+#    #+#             */
+/*   Updated: 2021/04/10 15:04:30 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/libft.h"
 
-/*
-** FT_DL_LSTITER
-** It will apply function f to all of the elements
-** before and after the *lst element
-*/
-
-void	ft_dl_lstiter(t_dl_lst *lst, void (*f)(void *))
+void	ft_cut_string_at_last_charset(char *str, char *charset)
 {
-	t_dl_lst	*temp;
+	int	i;
 
-	if (!lst || !f)
-		return ;
-	temp = ft_dl_lst_first(lst);
-	while (temp)
+	i = ft_strlen(str);
+	while (--i >= 0)
 	{
-		f(temp->content);
-		temp = temp->next;
+		if (ft_strchr(charset, str[i]))
+			str[i] = 0;
 	}
 }
