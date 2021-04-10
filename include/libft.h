@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/17 15:32:25 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/04/09 13:59:09 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/04/10 12:42:04 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ int					ft_tolower(int c);
 int					ft_toupper(int c);
 int					ft_wrong_extension(char *file_name,
 						char *expected_extension);
-char				*ft_cut_string_at_char(char *str, char c);
+void				ft_cut_string_at_char(char *str, char c);
 char				*ft_free_and_realloc(char *str, int size);
 int					ft_strcmp(char *s1, char *s2);
 int					ft_strcmptab(char *str_to_compare, char **str_tab);
@@ -138,7 +138,7 @@ void				ft_dl_lstclear(t_dl_lst *lst, void (*del)(void*));
 void				ft_dl_lstiter(t_dl_lst *lst, void (*f)(void *));
 t_dl_lst			*ft_dl_lstmap_exit(t_dl_lst *l, void *(*f)(void *),
 						void (*del)(void *));
-int					ft_str_has_unclosed_quotes(char *s);
+char				ft_str_has_unclosed_quotes(char *s);
 char				*ft_strrchr_not_in_quotes(char *str, char c);
 char				*ft_strjoin_free_pref_exit(char **pref, char *suff);
 char				*ft_strjoin_exit(char *pref, char *suff);

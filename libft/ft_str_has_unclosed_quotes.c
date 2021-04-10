@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/09 10:59:26 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/04/09 14:00:51 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/04/10 11:48:18 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,17 +48,17 @@ static void	ft_add_quote_and_lock(int *count, int *inside)
 ** FT_RETURN
 ** This function is used to return the needed value in 
 ** ft_str_has_unclosed_quotes function.
-** Returns 1 if there are unclosed single quotes,
-** Returns 2 if there are unclosed double quotes,
-** Returns 0 if all quotes are closed
+** Returns "\'" if there are unclosed single quotes,
+** Returns "\"" if there are unclosed double quotes,
+** Returns "\0" if all quotes are closed
 */
 
-static int	ft_return(int inside_single_quotes, int inside_double_quotes)
+static char	ft_return(int inside_single_quotes, int inside_double_quotes)
 {
 	if (inside_single_quotes)
-		return (1);
+		return ('\'');
 	else if (inside_double_quotes)
-		return (2);
+		return ('\"');
 	else
 		return (0);
 }
@@ -69,12 +69,10 @@ static int	ft_return(int inside_single_quotes, int inside_double_quotes)
 ** It counts the number of single and double quotes (while ignoring the
 ** single quotes inside of double quotes and vice versa) and checks
 ** it its numbers are even
-** Returns 1 if it has unclosed single quotes
-** Returns 2 if it has unclosed double quotes
-** Returns 0 if there is no unclosed quotes inside the string
+** Returns the unclosed quote ('\'' or '\"') or '\0' if all quotes are closed
 */
 
-int	ft_str_has_unclosed_quotes(char *s)
+char	ft_str_has_unclosed_quotes(char *s)
 {
 	int	i;
 	int	count_simple_quotes;

@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/08 16:39:13 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/04/08 16:41:05 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/04/10 12:36:46 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,10 @@ t_dl_lst	*ft_dl_lst_first(t_dl_lst *last)
 {
 	t_dl_lst	*ret;
 
+	if (!last)
+		return (0);
 	ret = last;
-	while (ret && ret->previous)
+	while (ret->previous)
 		ret = ret->previous;
 	return (ret);
 }

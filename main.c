@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 13:52:17 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/04/09 14:02:26 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/04/10 12:49:38 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,10 +43,12 @@ static void	ft_input_to_string(char **str)
 	if (read(STDIN, *str, INPUT_SIZE) < 0)
 		exit(EXIT_FAILURE);
 	if (*str && (*str)[0] && !ft_str_only_has_chars_from_charset(*str, SPACES))
-		*str = ft_cut_string_at_char(*str, '\n');
+	{
+		ft_cut_string_at_char(*str, '\n');
+		ft_check_for_unclosed_quotes(str);
+	}
 	else
 		ft_free_str(str);
-	ft_check_for_unclosed_quotes(str);
 }
 
 /*
@@ -57,10 +59,10 @@ static void	ft_input_to_string(char **str)
 ** all of its content
 */
 
-static void	ft_cleanup_and_free(char **str, t_dl_lst **lst)
+static void	ft_cleanup_and_free(char **str, t_dl_lst *lst)
 {
 	ft_free_str(str);
-	ft_dl_lstclear(*lst, &ft_free_t_command);
+	ft_dl_lstclear(lst, &ft_free_t_command);
 }
 
 /*
@@ -77,11 +79,9 @@ void	ft_check_for_unclosed_quotes(char **input)
 	char	*temp;
 	int		read_ret;
 
-	unclosed_quote = 0;
-	if (ft_str_has_unclosed_quotes(*input) == 1)
-		unclosed_quote = '\'';
-	else if (ft_str_has_unclosed_quotes(*input) == 2)
-		unclosed_quote = '\"';
+	if (!input || !*input)
+		return ;
+	unclosed_quote = ft_str_has_unclosed_quotes(*input);
 	if (unclosed_quote)
 	{
 		additional_input = ft_calloc(sizeof(char), INPUT_SIZE);
@@ -95,8 +95,8 @@ void	ft_check_for_unclosed_quotes(char **input)
 				exit(EXIT_FAILURE);
 			*input = ft_strjoin_free_pref_exit(input, additional_input);
 		}
+		ft_free_str(&additional_input);
 	}
-	ft_free_str(&additional_input);
 }
 
 /*
@@ -137,7 +137,7 @@ int	main(void)
 			input_as_command_list = ft_input_parsing(str);
 			ft_execute(input_as_command_list);
 		}
-		ft_cleanup_and_free(&str, &input_as_command_list);
+		ft_cleanup_and_free(&str, input_as_command_list);
 	}
 	return (1);
 }

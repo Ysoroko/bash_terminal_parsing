@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/08 17:32:23 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/04/08 17:46:19 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/04/10 12:51:37 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,20 +27,12 @@ void	ft_dl_lstclear(t_dl_lst *lst, void (*del)(void*))
 
 	if (!lst || !del)
 		return ;
-	temp = lst->next;
+	temp = ft_dl_lst_first(lst);
 	last_address_of_temp = temp;
 	while (temp)
 	{
 		temp = temp->next;
-		last_address_of_temp = temp;
 		ft_dl_lstdelone(last_address_of_temp, del);
-	}
-	temp = lst;
-	last_address_of_temp = temp;
-	while (temp)
-	{
-		temp = temp->previous;
 		last_address_of_temp = temp;
-		ft_dl_lstdelone(last_address_of_temp, del);
 	}
 }
