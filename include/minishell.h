@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 11:07:01 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/04/12 11:07:25 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/04/12 12:25:56 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,12 @@
 # define STDERR 2
 # define INPUT_SIZE 1000
 # define SPACES " \t\n\r\v\f"
-# define SPACES_AND_REDIRECTIONS " \t\n\r\v\f><;|"
 # define REDIRECTIONS "><"
 # define PIPES ";|"
+# define SPACES_REDIRS_PIPES " \t\n\r\v\f><;|"
+# define REDIRS_AND_PIPES "><;|"
+# define SPACES_AND_PIPES " \t\n\r\v\f;|"
+# define SPACES_AND_REDIRECTIONS " \t\n\r\v\f><"
 
 /*
 ** STRUCTURES
@@ -47,7 +50,7 @@ typedef struct s_command
 	char				*redirection;
 	char				*redir_arg;
 	char				*result;
-	char				*pipe;
+	char				pipe;
 }	t_command;
 
 /*
@@ -63,6 +66,7 @@ void		ft_signal_handler(int no_matter);
 void		ft_initialize_termcaps(char **term_type, int *ret);
 char		*ft_extract_next_command_string(char *input_checkpoint);
 void		ft_check_for_unclosed_quotes(char **input);
+void		ft_check_for_pipe(char *str_command, t_command *command);
 
 /*
 ** COLORS

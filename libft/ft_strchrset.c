@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/27 11:50:53 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/04/02 11:18:04 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/04/12 11:45:43 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ char	*ft_strchrset(char *str, char *charset)
 	int		i;
 	char	*found;
 
+	if (!str || !charset)
+		return (0);
 	i = -1;
 	while (str[++i])
 	{

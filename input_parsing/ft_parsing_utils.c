@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/26 09:36:36 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/04/12 11:08:20 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/04/12 13:46:39 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,6 @@ void	ft_free_t_command(void *command_pointer)
 		ft_free_str(&(command->redirection));
 	if (command->result)
 		ft_free_str(&(command->result));
-	if (command->pipe)
-		ft_free_str(&(command->pipe));
 	if (command->redir_arg)
 		ft_free_str(&(command->redir_arg));
 	free(command_pointer);
@@ -58,4 +56,22 @@ char	*ft_extract_next_command_string(char *checkpoint)
 	if (ft_str_only_has_chars_from_charset(ret, SPACES))
 		ft_free_str(&ret);
 	return (ret);
+}
+
+/*
+** FT_CHECK_FOR_PIPE
+** This functions checks if we have a redirection char in str_command
+** argument and stores it in t_command "pipe" element
+*/
+
+void	ft_check_for_pipe(char *str_command, t_command *command)
+{
+	int	len;
+
+	if (!str_command || !command)
+		return ;
+	len = ft_strlen(str_command);
+	printf("pipe? str_command[len-1]: [%c]\n", str_command[len - 1]);
+	if (str_command[len - 1] == '|' || str_command[len - 1] == ';')
+		command->pipe = str_command[len - 1];
 }
