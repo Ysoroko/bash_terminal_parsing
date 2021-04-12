@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/30 15:52:06 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/04/12 13:43:34 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/04/12 15:09:03 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ static void	ft_extract_command_name(char *input, t_command *command, int *indx)
 {
 	if (!command->name)
 	{
-		command->name = ft_extract_first_word(input, SPACES_REDIRS_PIPES);
+		command->name = ft_extract_first_word_qx(input, SPACES_REDIRS_PIPES);
 		*indx = ft_strlen(command->name) + 1;
 		//printf("index after name: [%d]\n", *indx);
 	}
@@ -77,7 +77,8 @@ static void	ft_check_for_flags(char *str, t_command *command, int *index)
 	if (!command->flags && command->name && !command->argument
 		&& !ft_strcmp(command->name, "echo"))
 	{
-		command->flags = ft_extract_second_word(str, SPACES);
+		command->flags = ft_extract_second_word_qx(str, SPACES);
+		printf("flags: [%s]\n",command->flags);
 		if (!ft_strcmp(command->flags, "-n"))
 			*index = ft_strchrn(str, 'n') + 1;
 		else

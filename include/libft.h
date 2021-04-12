@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/17 15:32:25 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/04/10 17:50:51 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/04/12 15:03:47 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -155,6 +155,9 @@ char				*ft_strtrim_exit_replace_src(char **src, char *except);
 char				*ft_strldup_exit(const char *src, int n_chars);
 char				ft_char_between_the_quotes(int char_position,
 						char *str_containing_c);
+char				*ft_extract_first_word_qx(char *from, char *separators);
+char				*ft_extract_second_word_qx(char *from, char *separators);
+char				*ft_strxtrim_char(char *str, char except);
 
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/26 09:36:36 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/04/12 13:46:39 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/04/12 14:31:26 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,6 @@ void	ft_check_for_pipe(char *str_command, t_command *command)
 	if (!str_command || !command)
 		return ;
 	len = ft_strlen(str_command);
-	printf("pipe? str_command[len-1]: [%c]\n", str_command[len - 1]);
 	if (str_command[len - 1] == '|' || str_command[len - 1] == ';')
 		command->pipe = str_command[len - 1];
 }
