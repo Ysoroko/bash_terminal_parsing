@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/30 15:52:06 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/04/10 17:51:37 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/04/12 11:08:03 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,7 +125,7 @@ t_command	*ft_extract_next_command(char *input_checkpt, int *i)
 	int			index;
 
 	index = 0;
-	command = ft_new_t_command(0, 0, 0, 0);
+	command = ft_calloc_exit(1, sizeof(t_command));
 	next_command_as_str = ft_extract_next_command_string(input_checkpt);
 	//printf("next_command_as_str: [%s]\n", next_command_as_str);
 	if (!next_command_as_str)

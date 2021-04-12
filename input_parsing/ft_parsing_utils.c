@@ -6,33 +6,11 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/26 09:36:36 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/04/10 17:29:04 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/04/12 11:08:20 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
-
-/*
-** FT_NEW_T_COMMAND
-** This function creates a new t_command structure, malloc's it and
-** assigns its elements to be the arguments
-** Returns the pointer to the newly created structure
-*/
-
-t_command	*ft_new_t_command(char *name, char *flags, char *arg, char *redir)
-{
-	t_command	*new_command;
-
-	new_command = malloc(sizeof(t_command));
-	if (!new_command)
-		exit(EXIT_FAILURE);
-	new_command->name = name;
-	new_command->flags = flags;
-	new_command->argument = arg;
-	new_command->redirection = redir;
-	new_command->result = 0;
-	return (new_command);
-}
 
 /*
 ** FT_FREE_T_COMMAND
@@ -58,6 +36,10 @@ void	ft_free_t_command(void *command_pointer)
 		ft_free_str(&(command->redirection));
 	if (command->result)
 		ft_free_str(&(command->result));
+	if (command->pipe)
+		ft_free_str(&(command->pipe));
+	if (command->redir_arg)
+		ft_free_str(&(command->redir_arg));
 	free(command_pointer);
 	command_pointer = 0;
 }
@@ -72,7 +54,7 @@ char	*ft_extract_next_command_string(char *checkpoint)
 {
 	char	*ret;
 
-	ret = ft_strdup_until_c_from_charset_not_quoted(checkpoint, REDIRECTIONS);
+	ret = ft_strdup_until_c_from_charset_not_quoted(checkpoint, PIPES);
 	if (ft_str_only_has_chars_from_charset(ret, SPACES))
 		ft_free_str(&ret);
 	return (ret);

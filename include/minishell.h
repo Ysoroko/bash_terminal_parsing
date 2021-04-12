@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 11:07:01 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/04/09 14:02:46 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/04/12 11:07:25 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,8 @@
 # define INPUT_SIZE 1000
 # define SPACES " \t\n\r\v\f"
 # define SPACES_AND_REDIRECTIONS " \t\n\r\v\f><;|"
-# define REDIRECTIONS "><;|"
+# define REDIRECTIONS "><"
+# define PIPES ";|"
 
 /*
 ** STRUCTURES
@@ -44,7 +45,9 @@ typedef struct s_command
 	char				*flags;
 	char				*argument;
 	char				*redirection;
+	char				*redir_arg;
 	char				*result;
+	char				*pipe;
 }	t_command;
 
 /*
@@ -52,7 +55,6 @@ typedef struct s_command
 */
 
 t_dl_lst	*ft_input_parsing(char *input);
-t_command	*ft_new_t_command(char *name, char *flags, char *arg, char *redir);
 void		ft_free_t_command(void *command_pointer);
 void		ft_update_str_read_so_far(char *input_checkpnt, int i, char **prev);
 t_command	*ft_extract_next_command(char *input_checkpnt, int *i);
