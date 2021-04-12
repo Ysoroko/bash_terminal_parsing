@@ -1,37 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchrset.c                                     :+:      :+:    :+:   */
+/*   ft_strchr_not_quoted.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/27 11:50:53 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/04/12 17:42:27 by ysoroko          ###   ########.fr       */
+/*   Created: 2021/04/12 16:00:16 by ysoroko           #+#    #+#             */
+/*   Updated: 2021/04/12 16:03:09 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/libft.h"
 
 /*
-** Same as ft_strchr, but instead of looking for only one character,
-** is looking for one of the characters of the charset
-** Returns the address of the first occurence of one of the charset characters
-** or a NULL pointer if none were found
+** FT_STRCHR_NOT_QUOTED
+** Same as ft_strchr, but only considers a character to be found if it's not
+** between two quotes
 */
 
-char	*ft_strchrset(char *str, char *charset)
+char	*ft_strchr_not_quoted(const char *str, int c)
 {
 	int		i;
-	char	*found;
+	char	*my_str;
 
-	if (!str || !charset)
-		return (0);
-	i = -1;
-	while (str[++i])
+	my_str = (char *)(str);
+	i = 0;
+	while (my_str[i] != '\0')
 	{
-		found = ft_strchr(charset, str[i]);
-		if (found)
-			return (found);
+		if (my_str[i] == c && !ft_char_between_the_quotes(i, my_str))
+			return (&my_str[i]);
+		i++;
 	}
+	if (my_str[i] == c)
+		return (&my_str[i]);
 	return (0);
 }

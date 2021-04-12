@@ -1,37 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchrset.c                                     :+:      :+:    :+:   */
+/*   ft_pos_after_word_in_string.c                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/27 11:50:53 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/04/12 17:42:27 by ysoroko          ###   ########.fr       */
+/*   Created: 2021/04/12 17:18:20 by ysoroko           #+#    #+#             */
+/*   Updated: 2021/04/12 17:40:11 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/libft.h"
 
 /*
-** Same as ft_strchr, but instead of looking for only one character,
-** is looking for one of the characters of the charset
-** Returns the address of the first occurence of one of the charset characters
-** or a NULL pointer if none were found
+** FT_POS_AFTER_THE_WORD_IN_STRING
+** Returns the adress in *str following the word or 0 if the word doesn't occur
+** in str
 */
 
-char	*ft_strchrset(char *str, char *charset)
+char	*ft_pos_after_the_word_in_string(char *str, char *word)
 {
 	int		i;
-	char	*found;
+	char	*temp;
 
-	if (!str || !charset)
+	if (!str || !word)
 		return (0);
-	i = -1;
-	while (str[++i])
-	{
-		found = ft_strchr(charset, str[i]);
-		if (found)
-			return (found);
-	}
-	return (0);
+	i = 0;
+	temp = ft_strnstr(str, word, ft_strlen(str));
+	if (!temp)
+		return (0);
+	while (temp[i] == word[i] && temp[i] && word[i])
+		i++;
+	return (&temp[i]);
 }

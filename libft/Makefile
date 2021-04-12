@@ -6,7 +6,7 @@
 #    By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/11/17 16:06:56 by ysoroko           #+#    #+#              #
-#    Updated: 2021/04/12 15:03:33 by ysoroko          ###   ########.fr        #
+#    Updated: 2021/04/12 17:43:35 by ysoroko          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -118,7 +118,11 @@ SRC				=	ft_atoi.c \
 					ft_char_between_the_quotes.c \
 					ft_extract_first_word_qx.c \
 					ft_extract_second_word_qx.c \
-					ft_strxtrim_char.c
+					ft_strxtrim_char.c \
+					ft_strchr_not_quoted.c \
+					ft_pos_after_word_in_string.c \
+					ft_cut_string_at_last_charset.c \
+					ft_strchrset_not_quoted.c
 					
 					
 

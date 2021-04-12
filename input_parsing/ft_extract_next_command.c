@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/30 15:52:06 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/04/12 15:09:03 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/04/12 17:45:35 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,20 +26,20 @@ static void	ft_check_for_redirections(char *str, t_command *current_command,
 	char	*redir_in_input;
 	int		offset;
 
-	redirection_found = ft_strchrset(str, REDIRECTIONS);
+	redirection_found = ft_strchrset_not_quoted(str, REDIRECTIONS);
 	if (!redirection_found)
 		return ;
 	if (redirection_found[0] == '<')
 		current_command->redirection = ft_strdup_exit("<");
 	else if (redirection_found[0] == '>')
 	{
-		redir_in_input = ft_strchr(input, '>');
+		redir_in_input = ft_strchr_not_quoted(input, '>');
 		if (redir_in_input[1] == '>')
 			current_command->redirection = ft_strdup_exit(">>");
 		else
 			current_command->redirection = ft_strdup_exit(">");
 	}
-	current_command->redir_arg = ft_extract_first_word
+	current_command->redir_arg = ft_extract_first_word_qx
 		(&(redir_in_input[ft_strlen(current_command->redirection)]),
 			SPACES_AND_PIPES);
 }
@@ -52,12 +52,11 @@ static void	ft_check_for_redirections(char *str, t_command *current_command,
 ** will start extracting after the command name
 */
 
-static void	ft_extract_command_name(char *input, t_command *command, int *indx)
+static void	ft_extract_command_name(char *input, t_command *command)
 {
 	if (!command->name)
 	{
 		command->name = ft_extract_first_word_qx(input, SPACES_REDIRS_PIPES);
-		*indx = ft_strlen(command->name) + 1;
 		//printf("index after name: [%d]\n", *indx);
 	}
 }
@@ -72,16 +71,14 @@ static void	ft_extract_command_name(char *input, t_command *command, int *indx)
 ** and consider it being a part of the argument
 */
 
-static void	ft_check_for_flags(char *str, t_command *command, int *index)
+static void	ft_check_for_flags(char *str, t_command *command)
 {
 	if (!command->flags && command->name && !command->argument
 		&& !ft_strcmp(command->name, "echo"))
 	{
 		command->flags = ft_extract_second_word_qx(str, SPACES);
-		printf("flags: [%s]\n",command->flags);
-		if (!ft_strcmp(command->flags, "-n"))
-			*index = ft_strchrn(str, 'n') + 1;
-		else
+		//printf("flags: [%s]\n",command->flags);
+		if (ft_strcmp(command->flags, "-n"))
 			ft_free_str(&command->flags);
 		//printf("index after flags: [%d]\n", *index);
 	}
@@ -97,14 +94,23 @@ static void	ft_check_for_flags(char *str, t_command *command, int *index)
 ** the end of the resulting string
 */
 
-static void	ft_extract_the_argument(char *str, int index, t_command *command)
+static void	ft_extract_the_argument(char *str, t_command *command)
 {
+	char	*index;
 	char	*temp;
-	if (!str[index] || ft_strchr(PIPES, str[index]))
+	
+	if (command->flags)
+		index = ft_pos_after_the_word_in_string(str, command->flags);
+	else
+		index = ft_pos_after_the_word_in_string(str, command->name);
+	if (index[0] == '\'' || index[0] == '\"')
+		index++;
+	if (!index || !index[0] || ft_strchr(PIPES, index[0]))
 		return ;
 	//printf("arg: [%s]\n", command->argument);
 	//printf("&str[index]: [%s]\n", &str[index]);
-	temp = ft_strdup_until_c_from_charset(&(str[index]), REDIRS_AND_PIPES);
+	temp = ft_strdup_until_c_from_charset_not_quoted(index,
+		REDIRS_AND_PIPES);
 	command->argument = ft_strtrim_exit(temp, SPACES_REDIRS_PIPES);
 	//printf("arg: [%s]\n", command->argument);
 	ft_free_str(&temp);
@@ -133,10 +139,10 @@ t_command	*ft_extract_next_command(char *input_checkpt, int *i)
 	if (!next_command_as_str)
 		return (command);
 	j = ft_strlen(next_command_as_str);
-	ft_extract_command_name(input_checkpt, command, &index);
-	ft_check_for_flags(input_checkpt, command, &index);
+	ft_extract_command_name(input_checkpt, command);
+	ft_check_for_flags(input_checkpt, command);
 	ft_check_for_redirections(next_command_as_str, command, &j, input_checkpt);
-	ft_extract_the_argument(next_command_as_str, index, command);
+	ft_extract_the_argument(next_command_as_str, command);
 	ft_check_for_pipe(next_command_as_str, command);
 	ft_free_str(&next_command_as_str);
 	if (!j)

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchrset.c                                     :+:      :+:    :+:   */
+/*   ft_strchrset_not_quoted.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/27 11:50:53 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/04/12 17:42:27 by ysoroko          ###   ########.fr       */
+/*   Created: 2021/04/12 17:42:05 by ysoroko           #+#    #+#             */
+/*   Updated: 2021/04/12 17:43:13 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,14 @@
 
 /*
 ** Same as ft_strchr, but instead of looking for only one character,
-** is looking for one of the characters of the charset
+** is looking for one of the characters of the charset.
+** Also it only considers a character to be found if it's not between two
+** quotes (single or double)
 ** Returns the address of the first occurence of one of the charset characters
 ** or a NULL pointer if none were found
 */
 
-char	*ft_strchrset(char *str, char *charset)
+char	*ft_strchrset_not_quoted(char *str, char *charset)
 {
 	int		i;
 	char	*found;
@@ -29,7 +31,7 @@ char	*ft_strchrset(char *str, char *charset)
 	i = -1;
 	while (str[++i])
 	{
-		found = ft_strchr(charset, str[i]);
+		found = ft_strchr_not_quoted(charset, str[i]);
 		if (found)
 			return (found);
 	}
