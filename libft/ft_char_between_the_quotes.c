@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/10 15:46:30 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/04/10 17:55:07 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/04/13 12:13:29 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,5 @@
 
 char	ft_char_between_the_quotes(int char_position, char *str_containing_c)
 {
-	char	*temp;
-	char	quote;
-
-	temp = ft_strldup_exit(str_containing_c, char_position + 1);
-	quote = ft_str_has_unclosed_quotes(temp);
-	ft_free_str(&temp);
-	return (quote);
+	return (ft_str_has_unclosed_quotes(&str_containing_c[char_position]));
 }
