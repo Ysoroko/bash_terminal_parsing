@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 13:52:17 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/04/10 16:54:31 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/04/13 17:31:31 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,3 +125,5 @@ int	main(void)
 	}
 	return (1);
 }
+
+//Segfault found: minishell: "echo" '-n' '> < |;' ">>" 'test.txt' "|"
