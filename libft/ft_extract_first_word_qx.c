@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/12 14:33:46 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/04/12 15:07:47 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/04/14 15:36:13 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@
 char	*ft_extract_first_word_qx(char *from, char *separators)
 {
 	int		i;
-	int		len;
 	char	*temp_copy;
 	char	*ret;
 	char	quote;
@@ -46,10 +45,7 @@ char	*ft_extract_first_word_qx(char *from, char *separators)
 			break ;
 		}
 	}
-	len = ft_strlen(temp_copy);
-	if (temp_copy[len - 1] == '\"' || temp_copy[len - 1] == '\'')
-		quote = temp_copy[len - 1];
-	ret = ft_strxtrim_char(temp_copy, quote);
+	ret = ft_strdup_exit(temp_copy);
 	ft_free_str(&temp_copy);
 	return (ret);
 }

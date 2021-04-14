@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 13:52:17 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/04/13 17:31:31 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/04/14 15:31:15 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,7 @@ void	ft_check_for_unclosed_quotes(char **input)
 ** When we press CTRL+C, instead of quitting it will call the function
 ** ft_signal handler
 */
+
 static void	ft_setup_signals(void)
 {
 	signal(SIGINT, ft_signal_handler);

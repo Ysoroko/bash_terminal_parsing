@@ -6,17 +6,11 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/12 14:52:05 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/04/12 15:54:40 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/04/14 15:37:11 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/libft.h"
-
-static	void	ft_skip_one_quote(char *str, int *i)
-{
-	if (str[*i] == '\'' || str[*i] == '\"')
-		*i += 1;
-}
 
 /*
 ** FT_EXTRACT_SECOND_WORD_QX
@@ -41,13 +35,11 @@ char	*ft_extract_second_word_qx(char *from, char *separators)
 	first_word = ft_extract_first_word_qx(from, separators);
 	while (from[i] && ft_strchr(separators, from[i]))
 		i++;
-	ft_skip_one_quote(from, &i);
 	while (from[i] == first_word[j] && from[i] && first_word[j])
 	{
 		i++;
 		j++;
 	}
-	ft_skip_one_quote(from, &i);
 	ret = ft_extract_first_word_qx(&(from[i]), separators);
 	ft_free_str(&first_word);
 	return (ret);
