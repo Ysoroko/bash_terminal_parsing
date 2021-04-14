@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/30 15:52:06 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/04/12 17:45:35 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/04/14 17:34:53 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,10 +54,15 @@ static void	ft_check_for_redirections(char *str, t_command *current_command,
 
 static void	ft_extract_command_name(char *input, t_command *command)
 {
+	char	*temp;
+
 	if (!command->name)
 	{
-		command->name = ft_extract_first_word_qx(input, SPACES_REDIRS_PIPES);
-		//printf("index after name: [%d]\n", *indx);
+		temp = ft_extract_first_word_qx(input, SPACES_REDIRS_PIPES);
+		printf("temp: [%s]\n", temp); 
+		command->name = ft_apply_quotes(temp);
+		ft_free_str(&temp);
+		printf("command->name: [%s]\n", command->name); 
 	}
 }
 

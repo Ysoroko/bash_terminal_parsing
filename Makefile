@@ -6,7 +6,7 @@
 #    By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/25 11:12:03 by ysoroko           #+#    #+#              #
-#    Updated: 2021/04/10 14:45:38 by ysoroko          ###   ########.fr        #
+#    Updated: 2021/04/14 16:48:23 by ysoroko          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,6 +15,7 @@ SRC					=	main.c \
 						input_parsing/ft_input_parsing.c \
 						input_parsing/ft_parsing_utils.c \
 						input_parsing/ft_extract_next_command.c \
+						input_parsing/ft_apply_quotes.c \
 						\
 						execute/ft_execute.c \
 						\
