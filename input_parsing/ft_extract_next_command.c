@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/30 15:52:06 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/04/14 17:34:53 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/04/15 15:08:53 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,11 @@ static void	ft_check_for_redirections(char *str, t_command *current_command,
 	char	*redir_in_input;
 	int		offset;
 
+	//printf("str_before redirection_found: [%s]\n", str);
 	redirection_found = ft_strchrset_not_quoted(str, REDIRECTIONS);
 	if (!redirection_found)
 		return ;
+	//printf("redirection_found: [%s]\n", redirection_found);
 	if (redirection_found[0] == '<')
 		current_command->redirection = ft_strdup_exit("<");
 	else if (redirection_found[0] == '>')
@@ -59,10 +61,10 @@ static void	ft_extract_command_name(char *input, t_command *command)
 	if (!command->name)
 	{
 		temp = ft_extract_first_word_qx(input, SPACES_REDIRS_PIPES);
-		printf("temp: [%s]\n", temp); 
+		//printf("temp: [%s]\n", temp); 
 		command->name = ft_apply_quotes(temp);
 		ft_free_str(&temp);
-		printf("command->name: [%s]\n", command->name); 
+		//printf("command->name: [%s]\n", command->name); 
 	}
 }
 
