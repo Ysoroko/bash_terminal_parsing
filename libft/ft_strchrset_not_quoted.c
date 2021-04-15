@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/12 17:42:05 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/04/15 14:59:10 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/04/15 15:16:06 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,7 @@ char	*ft_strchrset_not_quoted(char *str, char *charset)
 	while (str[++i])
 	{
 		if (ft_strchr(charset, str[i]) && !ft_char_between_the_quotes(i, str))
-		{
-			printf(" str[i]: [%c]\n ft_strchr(charset, str[i]): [%s]\n ft_char_between_the_quotes(i, str): [%c]\n)", str[i], ft_strchr(charset, str[i]), ft_char_between_the_quotes(i, str));
 			return (&str[i]);
-		}
 	}
 	return (0);
 }

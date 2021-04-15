@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/14 16:43:56 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/04/15 14:52:12 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/04/15 15:27:13 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static	void	ft_quoted_copy(char *str, char *ret, int *i, int *j)
 	l = 0;
 	temp_str = &(str[*i]);
 	temp_ret = &(ret[*j]);
-	//printf("quote in quoted copy: [%c]\n i: [%d]\n j: [%d]\n", quote, *i, *j);
+	printf("quote in quoted copy: [%c]\n i: [%d]\n j: [%d]\n", quote, *i, *j);
 	if (*i && str[*i - 1] == quote && ret[*j - 1] == quote)
 		l = -1;
 	if (quote == '\'' || quote == '\"')
@@ -63,12 +63,13 @@ char	*ft_apply_quotes(char *str)
 		return (0);
 	i = 0;
 	j = 0;
-	ret = ft_calloc_exit(ft_strlen(str), sizeof(char));
+	ret = ft_calloc_exit(ft_strlen(str) + 1, sizeof(char));
 	while (str[i])
 	{
 		if (ft_char_is_a_start_quote(str, i))
 			ft_quoted_copy(str, ret, &i, &j);
 		else
+
 			ret[j] = str[i];
 		i++;
 		j++;

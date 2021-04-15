@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/30 15:52:06 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/04/15 15:08:53 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/04/15 15:20:31 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ static void	ft_check_for_redirections(char *str, t_command *current_command,
 {
 	char	*redirection_found;
 	char	*redir_in_input;
-	int		offset;
 
 	//printf("str_before redirection_found: [%s]\n", str);
 	redirection_found = ft_strchrset_not_quoted(str, REDIRECTIONS);
@@ -80,11 +79,16 @@ static void	ft_extract_command_name(char *input, t_command *command)
 
 static void	ft_check_for_flags(char *str, t_command *command)
 {
+	char	*temp;
+
 	if (!command->flags && command->name && !command->argument
 		&& !ft_strcmp(command->name, "echo"))
 	{
-		command->flags = ft_extract_second_word_qx(str, SPACES);
-		//printf("flags: [%s]\n",command->flags);
+		temp = ft_extract_second_word_qx(str, SPACES);
+		printf("temp: [%s]\n", temp);
+		command->flags = ft_apply_quotes(temp);
+		ft_free_str(&temp);
+		printf("flags: [%s]\n",command->flags);
 		if (ft_strcmp(command->flags, "-n"))
 			ft_free_str(&command->flags);
 		//printf("index after flags: [%d]\n", *index);
