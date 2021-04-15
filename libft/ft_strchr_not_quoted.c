@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/12 16:00:16 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/04/13 12:12:46 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/04/15 11:25:38 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ char	*ft_strchr_not_quoted(const char *str, int c)
 	i = 0;
 	while (my_str[i] != '\0')
 	{
-		if (my_str[i] == c && !ft_str_has_unclosed_quotes(&my_str[i]))
+		if (my_str[i] == c && !ft_char_between_the_quotes(i, my_str))
 			return (&my_str[i]);
 		i++;
 	}
