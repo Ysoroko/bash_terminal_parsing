@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/14 16:43:56 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/04/14 18:09:51 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/04/15 10:57:49 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static	void	ft_quoted_copy(char *str, char *ret, int *i, int *j)
 		l = -1;
 	if (quote == '\'' || quote == '\"')
 	{
-		while (temp_str[k] && temp_str[k] != quote)
+		while (temp_str[k] && temp_str[k] != quote) 
 		{
 			temp_ret[l] = temp_str[k];
 			l++;
@@ -58,7 +58,6 @@ char	*ft_apply_quotes(char *str)
 	int		i;
 	int		j;
 	char	*ret;
-	char	quote;
 
 	if (!str)
 		return (0);
@@ -67,14 +66,8 @@ char	*ft_apply_quotes(char *str)
 	ret = ft_calloc_exit(ft_strlen(str), sizeof(char));
 	while (str[i])
 	{
-		if (((str[i] == '\'' || str[i] == '\"') && i && str[i - 1] != '\\')
-			|| ((str[i] == '\'' || str[i] == '\"') && !i))
-			quote = str[i];
-		if (quote)
-		{
+		if (ft_char_is_a_start_quote(str, i))
 			ft_quoted_copy(str, ret, &i, &j);
-			quote = 0;
-		}
 		else
 			ret[j] = str[i];
 		i++;
