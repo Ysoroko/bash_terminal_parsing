@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/12 14:33:46 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/04/16 16:11:53 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/04/16 16:40:43 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,10 @@ static void	ft_quoted_first_word(char **str, int *i)
 	while ((*str)[*i] && ft_char_is_a_start_quote(*str, *i) != quote)
 		(*i)++;
 	if (ft_char_is_a_start_quote(*str, *i))
+	{
+		(*i)++;
 		(*str)[*i] = 0;
+	}
 }
 
 /*
