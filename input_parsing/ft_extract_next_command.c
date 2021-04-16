@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/30 15:52:06 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/04/16 10:49:30 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/04/16 12:02:05 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ static void	ft_check_for_redirections(char *str, t_command *current_command,
 	char	*redir_in_input;
 
 	//printf("str_before redirection_found: [%s]\n", str);
+	if (!current_command->name)
+		return ;
 	redirection_found = ft_strchrset_not_quoted(str, REDIRECTIONS);
 	if (!redirection_found)
 		return ;
@@ -62,6 +64,9 @@ static void	ft_extract_command_name(char *input, t_command *command)
 		temp = ft_extract_first_word_qx(input, SPACES_REDIRS_PIPES);
 		//printf("temp: [%s]\n", temp); 
 		command->name = ft_apply_quotes(temp);
+		if (!command->name ||
+				ft_str_only_has_chars_from_charset(command->name, SPACES))
+			ft_free_str(&command->name);
 		ft_free_str(&temp);
 		//printf("command->name: [%s]\n", command->name); 
 	}
@@ -111,17 +116,19 @@ static void	ft_extract_the_argument(char *str, t_command *command)
 	char	*temp;
 	char	*temp2;
 	
+	if (!command->name)
+		return ;
 	if (command->flags)
 		index = ft_pos_after_the_word_in_string(str, command->flags);
 	else
 		index = ft_pos_after_the_word_in_string(str, command->name);
-	if (index[0] == '\'' || index[0] == '\"')
-		index++;
+	//if (index[0] == '\'' || index[0] == '\"')
+		//index++;
 	if (!index || !index[0] || ft_strchr(PIPES, index[0]))
 		return ;
 	temp = ft_strdup_until_c_from_charset_not_quoted(index,
 		REDIRS_AND_PIPES);
-	//printf("temp: [%s]\n", temp);
+	//printf("temp: [%s]\n", temp2);
 	temp2 = ft_strtrim_exit(temp, SPACES_REDIRS_PIPES);
 	//printf("temp2: [%s]\n", temp2);
 	command->argument = ft_apply_quotes(temp2);
@@ -150,8 +157,6 @@ t_command	*ft_extract_next_command(char *input_checkpt, int *i)
 	command = ft_calloc_exit(1, sizeof(t_command));
 	next_command_as_str = ft_extract_next_command_string(input_checkpt);
 	//printf("next_command_as_str: [%s]\n", next_command_as_str);
-	if (!next_command_as_str)
-		return (command);
 	j = ft_strlen(next_command_as_str);
 	ft_extract_command_name(input_checkpt, command);
 	ft_check_for_flags(input_checkpt, command);
@@ -159,6 +164,7 @@ t_command	*ft_extract_next_command(char *input_checkpt, int *i)
 	ft_extract_the_argument(next_command_as_str, command);
 	ft_check_for_pipe(next_command_as_str, command);
 	ft_free_str(&next_command_as_str);
+	//printf("j: [%i]\n", j);
 	if (!j)
 		*i += 1;
 	*i += j - 1;

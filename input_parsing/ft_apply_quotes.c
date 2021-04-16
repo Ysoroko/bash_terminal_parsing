@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/14 16:43:56 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/04/16 11:07:44 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/04/16 12:03:46 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,16 @@ static	void	ft_quoted_copy(char *str, char *ret, int *i, int *j)
 			k++;
 		}
 	}
-	//if (temp_str[k] == quote)
-		//k++;
-	*i += k;
-	*j += l - 1;
+	if (temp_str[k] == quote)
+		k++;
+	if (!k)
+		*i += 1;
+	else
+		*i += k - 1;
+	if (!l)
+		*j += 1;
+	else
+		*j += l - 1;
 	//printf("at the end:\n i: [%d]\n, j: [%d]\n", *i, *j);
 }
 
@@ -64,11 +70,12 @@ char	*ft_apply_quotes(char *str)
 	i = 0;
 	j = 0;
 	ret = ft_calloc_exit(ft_strlen(str) + 1, sizeof(char));
+	//printf("str before all: [%s]\n", str);
 	while (str[i])
 	{
 		if (ft_char_is_a_start_quote(str, i))
 		{
-			//printf("ooh, a start quote! where &str[i] is: [%s]\n", &str[i]);
+			//printf("ooh, a start quote! where &str[i] is: [%s]\n i: [%d]\n", &str[i], i);
 			ft_quoted_copy(str, ret, &i, &j);
 			//printf("ret after quoted copying: [%s]\n", ret);
 			//printf("str after quoted copying: [%s]\n", &str[i]);
