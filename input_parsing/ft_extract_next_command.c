@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/30 15:52:06 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/04/15 15:20:31 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/04/16 10:49:30 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,10 +85,10 @@ static void	ft_check_for_flags(char *str, t_command *command)
 		&& !ft_strcmp(command->name, "echo"))
 	{
 		temp = ft_extract_second_word_qx(str, SPACES);
-		printf("temp: [%s]\n", temp);
+		//printf("temp: [%s]\n", temp);
 		command->flags = ft_apply_quotes(temp);
 		ft_free_str(&temp);
-		printf("flags: [%s]\n",command->flags);
+		//printf("flags: [%s]\n",command->flags);
 		if (ft_strcmp(command->flags, "-n"))
 			ft_free_str(&command->flags);
 		//printf("index after flags: [%d]\n", *index);
@@ -109,6 +109,7 @@ static void	ft_extract_the_argument(char *str, t_command *command)
 {
 	char	*index;
 	char	*temp;
+	char	*temp2;
 	
 	if (command->flags)
 		index = ft_pos_after_the_word_in_string(str, command->flags);
@@ -118,13 +119,15 @@ static void	ft_extract_the_argument(char *str, t_command *command)
 		index++;
 	if (!index || !index[0] || ft_strchr(PIPES, index[0]))
 		return ;
-	//printf("arg: [%s]\n", command->argument);
-	//printf("&str[index]: [%s]\n", &str[index]);
 	temp = ft_strdup_until_c_from_charset_not_quoted(index,
 		REDIRS_AND_PIPES);
-	command->argument = ft_strtrim_exit(temp, SPACES_REDIRS_PIPES);
+	//printf("temp: [%s]\n", temp);
+	temp2 = ft_strtrim_exit(temp, SPACES_REDIRS_PIPES);
+	//printf("temp2: [%s]\n", temp2);
+	command->argument = ft_apply_quotes(temp2);
 	//printf("arg: [%s]\n", command->argument);
 	ft_free_str(&temp);
+	ft_free_str(&temp2);
 	if (command->argument && !command->argument[0])
 		ft_free_str(&command->argument);
 }
