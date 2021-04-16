@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 13:52:17 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/04/14 15:31:15 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/04/16 16:51:32 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ static void	ft_extract_user_input_to_string(char **str)
 
 /*
 ** FT_CLEANUP_AND_FREE
-** This functions is responsible for freeing everything that was malloc'd
+** This function is responsible for freeing everything that was malloc'd
 ** during a single user's input
 ** It frees the input saved as a string, and also the entire t_list and
 ** all of its content
@@ -91,7 +91,7 @@ void	ft_check_for_unclosed_quotes(char **input)
 ** FT_SETUP_SIGNALS
 ** This function modifies the behaviour when specific actions are done
 ** When we press CTRL+C, instead of quitting it will call the function
-** ft_signal handler
+** ft_signal handlerz
 */
 
 static void	ft_setup_signals(void)
