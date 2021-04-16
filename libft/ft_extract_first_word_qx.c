@@ -6,11 +6,23 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/12 14:33:46 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/04/14 15:36:13 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/04/16 16:11:53 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/libft.h"
+
+static void	ft_quoted_first_word(char **str, int *i)
+{
+	char	quote;
+
+	quote = ft_char_is_a_start_quote(*str, *i);
+	(*i)++;
+	while ((*str)[*i] && ft_char_is_a_start_quote(*str, *i) != quote)
+		(*i)++;
+	if (ft_char_is_a_start_quote(*str, *i))
+		(*str)[*i] = 0;
+}
 
 /*
 ** FT_EXTRACT_FIRST_WORD_QX
@@ -27,19 +39,19 @@ char	*ft_extract_first_word_qx(char *from, char *separators)
 	int		i;
 	char	*temp_copy;
 	char	*ret;
-	char	quote;
 
 	i = -1;
 	temp_copy = ft_strtrim_exit(from, separators);
 	if (!temp_copy || !temp_copy[0])
-	{
-		ft_free_str(&temp_copy);
-		return (0);
-	}
+		return (ft_free_str(&temp_copy));
 	while (temp_copy[++i])
 	{
-		quote = ft_str_has_unclosed_quotes(&(temp_copy[i]));
-		if (ft_strchr(separators, temp_copy[i]) && !quote)
+		if (ft_char_is_a_start_quote(temp_copy, i))
+		{
+			ft_quoted_first_word(&temp_copy, &i);
+			break ;
+		}
+		else if (ft_strchr_not_quoted(separators, temp_copy[i]))
 		{
 			temp_copy[i] = 0;
 			break ;

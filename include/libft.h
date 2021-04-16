@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/17 15:32:25 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/04/15 14:45:36 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/04/16 16:06:32 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,7 @@ char				*ft_strstr(char *haystack, char *needle);
 t_list				*ft_lstnew_exit(void *content);
 void				*ft_calloc_exit(size_t count, size_t size);
 char				*ft_strtrim_exit(char *str, char *except);
-void				ft_free_str(char **str);
+char				*ft_free_str(char **str);
 char				*ft_strdup_exit(const char *src);
 char				*ft_extract_first_word(char *from, char *separators);
 char				*ft_extract_second_word(char *from, char *separators);

@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/30 16:31:16 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/04/04 16:42:05 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/04/16 16:06:57 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,15 @@
 ** FT_FREE_STR
 ** This function frees its argument and sets its pointer to NULL to avoid
 ** double free in the future
+** Returns a null string
 */
 
-void	ft_free_str(char **str)
+char	*ft_free_str(char **str)
 {
 	if (str && *str)
 	{
 		free(*str);
 		*str = 0;
 	}
+	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/30 15:52:06 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/04/16 12:02:05 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/04/16 15:43:46 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,13 +122,11 @@ static void	ft_extract_the_argument(char *str, t_command *command)
 		index = ft_pos_after_the_word_in_string(str, command->flags);
 	else
 		index = ft_pos_after_the_word_in_string(str, command->name);
-	//if (index[0] == '\'' || index[0] == '\"')
-		//index++;
 	if (!index || !index[0] || ft_strchr(PIPES, index[0]))
 		return ;
 	temp = ft_strdup_until_c_from_charset_not_quoted(index,
 		REDIRS_AND_PIPES);
-	//printf("temp: [%s]\n", temp2);
+	printf("temp: [%s]\n", temp);
 	temp2 = ft_strtrim_exit(temp, SPACES_REDIRS_PIPES);
 	//printf("temp2: [%s]\n", temp2);
 	command->argument = ft_apply_quotes(temp2);
