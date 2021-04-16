@@ -6,11 +6,19 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/12 14:33:46 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/04/16 16:40:43 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/04/16 16:49:19 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/libft.h"
+
+/*
+** FT_QUOTED_FIRST_WORD
+** This function is called when we see that the word we're trying to extrtact
+** starts with a quote (simple or double). We will then ignore the separators
+** and extract the word until the ending corresponding quote (or the end of
+** the string)
+*/
 
 static void	ft_quoted_first_word(char **str, int *i)
 {
@@ -29,12 +37,12 @@ static void	ft_quoted_first_word(char **str, int *i)
 
 /*
 ** FT_EXTRACT_FIRST_WORD_QX
-** Same as ft_extract_first_word, but only stop copying when there are no
-** unclosed quotes
+** Same as ft_extract_first_word, will extract either first word based on seps
+** or based on quotes (and the separators will then be ignored while in quotes)
 ** Q stands for "quotes"
 ** X stands for "exit"
-** Example: ft_extract_first_work_qx("\"          ok              \" 1 2 3")
-** will extract \"          ok              \", not simply "ok"
+** Example: ft_extract_first_work_qx("\"_abc_\"", "_=.")
+** will extract \"_abc_\"
 */
 
 char	*ft_extract_first_word_qx(char *from, char *separators)
