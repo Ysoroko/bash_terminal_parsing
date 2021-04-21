@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/14 16:43:56 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/04/21 11:47:41 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/04/21 17:28:48 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,11 @@
 static void	ft_single_quotes_copy(char **t_str, char **t_ret, int *k, int *l)
 {
 	while ((*t_str)[*k] && (*t_str)[*k] != '\'') 
-		{
-			(*t_ret)[*l] = (*t_str)[*k];
-			(*l)++;
-			(*k)++;
-		}
+	{
+		(*t_ret)[*l] = (*t_str)[*k];
+		(*l)++;
+		(*k)++;
+	}
 }
 
 /*
@@ -38,12 +38,55 @@ static void	ft_single_quotes_copy(char **t_str, char **t_ret, int *k, int *l)
 
 static void	ft_double_quotes_copy(char **t_str, char **t_ret, int *k, int *l)
 {
-	while ((*t_str)[*k] && (*t_str)[*k] != '\"') 
-		{
-			(*t_ret)[*l] = (*t_str)[*k];
-			(*l)++;
-			(*k)++;
-		}
+	while ((*t_str)[*k] && (*t_str)[*k] != '\"'
+		&& *k && (*t_str)[*k - 1] != '\\') 
+	{
+		(*t_ret)[*l] = (*t_str)[*k];
+		(*l)++;
+		(*k)++;
+	}
+}
+
+/*
+** ft_extract_env_variable
+** When we see a "$" (not after a '\'), we are replacing all that follows
+** by the value of the related environmental variable
+*/
+
+static int	ft_extract_env_variable(char *str, char **ret, int *i, int *j)
+{
+	char	*temp_str;
+	char	*temp_ret;
+	int		k;
+	char	*env_name;
+	char	*env_value;
+
+	temp_str = &(str[*i]);
+	env_name = ft_extract_first_word_alpha_underscore(&(str[*i]), SPACES);
+	//printf("env_name: [%s]\n", env_name);
+	env_value = getenv(env_name);
+	if (!env_value)
+	{
+		ft_free_str(&env_name);
+		ft_putendl_fd(strerror(errno), STDOUT);
+		return (-1);
+	}
+	*ret = ft_strjoin_free_pref_exit(ret, env_value);
+	//printf("ret after extracting env variable: [%s]\n", *ret);
+	while (str[*i] && ((!ft_isalpha(str[*i]) && str[*i] != '_')
+		|| ft_strchr(SPACES, str[*i])))
+		*i += 1;
+	while (str[*i] && (ft_isalpha(str[*i]) || str[*i] == '_')
+		&& !ft_strchr(SPACES, str[*i]))
+		*i += 1;
+	while (str[*i] && ((!ft_isalpha(str[*i]) && str[*i] != '_')
+		&& !ft_strchr(SPACES, str[*i])))
+		*i += 1;
+	if (*i)
+		*i -= 1;
+	*j = ft_strlen(*ret) - 1;
+	ft_free_str(&env_name);
+	return (0);
 }
 
 static	void	ft_quoted_copy(char *str, char *ret, int *i, int *j)
@@ -92,6 +135,7 @@ char	*ft_apply_quotes_and_env_vars(char *str)
 {
 	int		i;
 	int		j;
+	int		error;
 	char	*ret;
 
 	if (!str)
@@ -103,18 +147,19 @@ char	*ft_apply_quotes_and_env_vars(char *str)
 	while (str[i])
 	{
 		if (ft_char_is_a_start_quote(str, i))
-		{
-			//printf("ooh, a start quote! where &str[i] is: [%s]\n i: [%d]\n", &str[i], i);
 			ft_quoted_copy(str, ret, &i, &j);
-			//printf("ret after quoted copying: [%s]\n", ret);
-			//printf("str after quoted copying: [%s]\n", &str[i]);
+		else if (ft_char_is_a_dollar_sign(str, i))
+		{
+			error = ft_extract_env_variable(str, &ret, &i, &j);
+			if (error)
+				return (ft_free_str(&ret));
 		}
 		else
 		{
+			printf("here!\n");
 			ret[j] = str[i];
-			//printf("just copying ret: [%s]\n ret[j]: [%c]\n", ret, ret[j]);
 		}
-		//printf("ret loop inc: [%s]\n str[i]: [%c]\n", ret, str[i]);
+		printf("ret loop inc: [%s]\n str[i]: [%c]\n, i: [%d]\n, ret[j]: [%c]\n, j: [%d]\n", ret, str[i], i,str[j], j);
 		i++;
 		j++;
 	}

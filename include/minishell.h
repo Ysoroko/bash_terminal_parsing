@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 11:07:01 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/04/21 11:14:06 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/04/21 16:34:00 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@
 # include <termcap.h>
 # include <termios.h>
 # include "libft.h"
+# include <string.h>
+# include <sys/errno.h>
 
 /*
 ** CONSTANT PARAMETERS

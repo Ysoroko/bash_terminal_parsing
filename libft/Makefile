@@ -6,7 +6,7 @@
 #    By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/11/17 16:06:56 by ysoroko           #+#    #+#              #
-#    Updated: 2021/04/15 10:55:54 by ysoroko          ###   ########.fr        #
+#    Updated: 2021/04/21 15:48:26 by ysoroko          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -123,7 +123,9 @@ SRC				=	ft_atoi.c \
 					ft_pos_after_word_in_string.c \
 					ft_cut_string_at_last_charset.c \
 					ft_strchrset_not_quoted.c \
-					ft_char_is_a_start_quote.c
+					ft_char_is_a_start_quote.c \
+					ft_extract_first_word_alpha_underscore.c \
+					ft_chars_is_a_dollar_sign.c
 					
 					
 
