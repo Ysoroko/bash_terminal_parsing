@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/10 15:36:06 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/04/10 17:50:22 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/04/21 11:01:50 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,9 @@ char	*ft_strcpy_until_c_from_charset_not_quoted(char *d, char *s, char *set)
 		if (ft_strchr(set, s[i]) && !ft_char_between_the_quotes(i, s))
 		{
 			i++;
-			break;
+			break ;
 		}
-		i++;	
+		i++;
 	}
 	d[i] = '\0';
 	return (d);

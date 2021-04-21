@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/17 15:32:25 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/04/16 16:06:32 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/04/21 11:02:35 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,7 +131,7 @@ void				ft_dl_lst_insert_element(t_dl_lst *to_insert,
 						t_dl_lst *after_this);
 void				ft_dl_lst_add_back(t_dl_lst *add_after,
 						t_dl_lst *new_member);
-void 				ft_dl_lstdelone(t_dl_lst *to_delete, void (*del)(void*));
+void				ft_dl_lstdelone(t_dl_lst *to_delete, void (*del)(void*));
 void				ft_dl_lstdelone_relink(t_dl_lst *to_delete,
 						void (*del)(void*));
 void				ft_dl_lstclear(t_dl_lst *lst, void (*del)(void*));

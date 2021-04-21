@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/12 14:52:05 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/04/16 16:49:53 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/04/21 10:59:25 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,7 @@ char	*ft_extract_second_word_qx(char *from, char *separators)
 	char	*first_word;
 
 	first_word = ft_extract_first_word_qx(from, separators);
-	//printf("first_word: [%s]\n", first_word);
 	temp = ft_pos_after_the_word_in_string(from, first_word);
-	//printf("temp in ft_extract_sec_word: [%s]\n", &(temp[i]));
 	ret = ft_extract_first_word_qx(temp, separators);
 	ft_free_str(&first_word);
 	return (ret);
