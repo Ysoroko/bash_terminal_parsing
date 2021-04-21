@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/14 16:43:56 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/04/21 17:31:09 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/04/21 17:38:11 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,8 +67,8 @@ static int	ft_extract_env_variable(char *str, char **ret, int *i, int *j)
 	env_value = getenv(env_name);
 	if (!env_value)
 	{
+		ft_putendl_fd(strerror(errno), STDERR);
 		ft_free_str(&env_name);
-		ft_putendl_fd(strerror(errno), STDOUT);
 		return (-1);
 	}
 	*ret = ft_strjoin_free_pref_exit(ret, env_value);
@@ -159,11 +159,8 @@ char	*ft_apply_quotes_and_env_vars(char *str)
 				return (ft_free_str(&ret));
 		}
 		else
-		{
-			printf("here!\n");
 			ret[j] = str[i];
-		}
-		printf("ret loop inc: [%s]\n str[i]: [%c]\n, i: [%d]\n, ret[j]: [%c]\n, j: [%d]\n", ret, str[i], i,str[j], j);
+		//printf("ret loop inc: [%s]\n str[i]: [%c]\n, i: [%d]\n, ret[j]: [%c]\n, j: [%d]\n", ret, str[i], i,str[j], j);
 		i++;
 		j++;
 	}
