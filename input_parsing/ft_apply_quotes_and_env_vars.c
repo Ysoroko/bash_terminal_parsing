@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/14 16:43:56 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/04/21 17:28:48 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/04/21 17:31:09 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,10 @@ static int	ft_extract_env_variable(char *str, char **ret, int *i, int *j)
 	ft_free_str(&env_name);
 	return (0);
 }
+
+/*
+** ft_quoted_copy
+*/
 
 static	void	ft_quoted_copy(char *str, char *ret, int *i, int *j)
 {
