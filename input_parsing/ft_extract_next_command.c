@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/30 15:52:06 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/04/21 17:32:54 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/04/22 14:08:05 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,10 +93,9 @@ static void	ft_check_for_flags(char *str, t_command *command)
 		//printf("temp: [%s]\n", temp);
 		command->flags = ft_apply_quotes_and_env_vars(temp);
 		ft_free_str(&temp);
-		//printf("flags: [%s]\n",command->flags);
+		//printf("flags: [%s]\n", command->flags);
 		if (ft_strcmp(command->flags, "-n"))
 			ft_free_str(&command->flags);
-		//printf("index after flags: [%d]\n", *index);
 	}
 }
 
@@ -128,9 +127,9 @@ static void	ft_extract_the_argument(char *str, t_command *command)
 		return ;
 	temp = ft_strdup_until_c_from_charset_not_quoted(index,
 		REDIRS_AND_PIPES);
-	//printf("temp: [%s]\n", temp);
+	printf("temp in extract the arg: [%s]\n", temp);
 	temp2 = ft_strtrim_exit(temp, SPACES_REDIRS_PIPES);
-	//printf("temp2: [%s]\n", temp2);
+	printf("temp2 in extract the arg: [%s]\n", temp2);
 	command->argument = ft_apply_quotes_and_env_vars(temp2);
 	//printf("arg: [%s]\n", command->argument);
 	ft_free_str(&temp);
