@@ -6,46 +6,11 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/14 16:43:56 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/04/21 17:38:11 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/04/22 11:15:00 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
-
-/*
-** ft_single_quotes_copy
-** This function is responsible for applying single quotes to a string
-** Everything between two single quotes is copied as it is
-** Escape characters and environment variables are ignored
-*/
-
-static void	ft_single_quotes_copy(char **t_str, char **t_ret, int *k, int *l)
-{
-	while ((*t_str)[*k] && (*t_str)[*k] != '\'') 
-	{
-		(*t_ret)[*l] = (*t_str)[*k];
-		(*l)++;
-		(*k)++;
-	}
-}
-
-/*
-** ft_double_quotes_copy
-** This function is responsible for applying double quotes to a string
-** Everything between two single quotes is copied as it is
-** Escape characters and environment variables are ignored
-*/
-
-static void	ft_double_quotes_copy(char **t_str, char **t_ret, int *k, int *l)
-{
-	while ((*t_str)[*k] && (*t_str)[*k] != '\"'
-		&& *k && (*t_str)[*k - 1] != '\\') 
-	{
-		(*t_ret)[*l] = (*t_str)[*k];
-		(*l)++;
-		(*k)++;
-	}
-}
 
 /*
 ** ft_extract_env_variable
@@ -90,10 +55,61 @@ static int	ft_extract_env_variable(char *str, char **ret, int *i, int *j)
 }
 
 /*
+** ft_double_quotes_copy
+** This function is responsible for applying double quotes to a string
+** Everything between two single quotes is copied as it is
+** Escape characters and environment variables are ignored
+** Returns 0 if everything went right and -1 if an error was encountered
+*/
+
+static int	ft_double_quotes_copy(char **t_str, char **t_ret, int *k, int *l)
+{
+	int	error;
+
+	while ((*t_str)[*k] && (*t_str)[*k] != '\"'
+		&& *k && (*t_str)[*k - 1] != '\\') 
+	{
+		if ((*t_str)[*k] == '\\'
+			&& ft_strchr(BACKSLASH_IN_DOUBLE_QUOTES_CHARS, (*t_str)[*k + 1]))
+		{
+			(*k) += 1;
+			(*t_ret)[*l] = (*t_str)[*k];
+		}
+		else if (ft_char_is_a_dollar_sign(*t_str, *k))
+		{
+			if (ft_extract_env_variable(*t_str, t_ret, k, l) == -1)
+				return (-1);
+		}
+		else
+			(*t_ret)[*l] = (*t_str)[*k];
+		(*l) += 1;
+		(*k) += 1;
+	}
+	return (0);
+}
+
+/*
+** ft_single_quotes_copy
+** This function is responsible for applying single quotes to a string
+** Everything between two single quotes is copied as it is
+** Escape characters and environment variables are ignored
+*/
+
+static void	ft_single_quotes_copy(char **t_str, char **t_ret, int *k, int *l)
+{
+	while ((*t_str)[*k] && (*t_str)[*k] != '\'') 
+	{
+		(*t_ret)[*l] = (*t_str)[*k];
+		(*l)++;
+		(*k)++;
+	}
+}
+
+/*
 ** ft_quoted_copy
 */
 
-static	void	ft_quoted_copy(char *str, char *ret, int *i, int *j)
+static	int	ft_quoted_copy(char *str, char *ret, int *i, int *j)
 {
 	char	*temp_str;
 	char	*temp_ret;
@@ -112,7 +128,10 @@ static	void	ft_quoted_copy(char *str, char *ret, int *i, int *j)
 	if (quote == '\'')
 		ft_single_quotes_copy(&temp_str, &temp_ret, &k, &l);
 	else if (quote == '\"')
-		ft_double_quotes_copy(&temp_str, &temp_ret, &k, &l);
+	{
+		if (ft_double_quotes_copy(&temp_str, &temp_ret, &k, &l) == -1)
+			return (-1);
+	}
 	if (temp_str[k] == quote)
 		k++;
 	if (!k)
@@ -123,6 +142,7 @@ static	void	ft_quoted_copy(char *str, char *ret, int *i, int *j)
 		*j += 1;
 	else
 		*j += l - 1;
+	return (0);
 	//printf("at the end:\n i: [%d]\n, j: [%d]\n", *i, *j);
 }
 
@@ -139,7 +159,6 @@ char	*ft_apply_quotes_and_env_vars(char *str)
 {
 	int		i;
 	int		j;
-	int		error;
 	char	*ret;
 
 	if (!str)
@@ -150,18 +169,26 @@ char	*ft_apply_quotes_and_env_vars(char *str)
 	//printf("str before all: [%s]\n", str);
 	while (str[i])
 	{
-		if (ft_char_is_a_start_quote(str, i))
-			ft_quoted_copy(str, ret, &i, &j);
+		if (str[i] == '\\')
+		{
+			i++;
+			ret[j] = str[i];
+		}
+		else if (ft_char_is_a_start_quote(str, i))
+		{
+			if (ft_quoted_copy(str, ret, &i, &j) == -1)
+				return (ft_free_str(&ret));
+		}
 		else if (ft_char_is_a_dollar_sign(str, i))
 		{
-			error = ft_extract_env_variable(str, &ret, &i, &j);
-			if (error)
+			if (ft_extract_env_variable(str, &ret, &i, &j) == -1)
 				return (ft_free_str(&ret));
 		}
 		else
 			ret[j] = str[i];
 		//printf("ret loop inc: [%s]\n str[i]: [%c]\n, i: [%d]\n, ret[j]: [%c]\n, j: [%d]\n", ret, str[i], i,str[j], j);
-		i++;
+		if (str[i])
+			i++;
 		j++;
 	}
 	return (ret);
