@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/14 16:43:56 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/04/22 14:53:18 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/04/22 17:34:51 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ static int	ft_double_quotes_copy(char **t_str, char **t_ret, int *k, int *l)
 		{
 			if (ft_extract_env_variable(*t_str, t_ret, k, l) == -1)
 				return (-1);
-			printf("t_ret after extracting env variable: [%s]\n", *t_ret);
+			printf("t_ret after extracting env variable DQ: [%s]\n", *t_ret);
 		}
 		else
 			(*t_ret)[*l] = (*t_str)[*k];
@@ -106,7 +106,7 @@ static void	ft_single_quotes_copy(char **t_str, char **t_ret, int *k, int *l)
 ** ft_quoted_copy
 */
 
-static	int	ft_quoted_copy(char *str, char *ret, int *i, int *j)
+static	int	ft_quoted_copy(char **str, char **ret, int *i, int *j)
 {
 	char	*temp_str;
 	char	*temp_ret;
@@ -114,13 +114,13 @@ static	int	ft_quoted_copy(char *str, char *ret, int *i, int *j)
 	int		k;
 	int		l;
 
-	quote = str[*i];
+	quote = (*str)[*i];
 	k = 1;
 	l = 0;
-	temp_str = &(str[*i]);
-	temp_ret = &(ret[*j]);
+	temp_str = &((*str)[*i]);
+	temp_ret = &((*ret)[*j]);
 	//printf("quote in quoted copy: [%c]\n i: [%d]\n j: [%d]\n", quote, *i, *j);
-	if (*i && str[*i - 1] == quote && ret[*j - 1] == quote)
+	if (*i && (*str)[*i - 1] == quote && (*ret)[*j - 1] == quote)
 		l = -1;
 	if (quote == '\'')
 		ft_single_quotes_copy(&temp_str, &temp_ret, &k, &l);
@@ -140,6 +140,8 @@ static	int	ft_quoted_copy(char *str, char *ret, int *i, int *j)
 		*j += 1;
 	else
 		*j += l - 1;
+	printf("return of ft_quoted_copy: [%s]\n", *ret);
+	printf("temp_return of ft_quoted_copy: [%s]\n", temp_ret);
 	return (0);
 	//printf("at the end:\n i: [%d]\n, j: [%d]\n", *i, *j);
 }
@@ -153,7 +155,7 @@ static	int	ft_quoted_copy(char *str, char *ret, int *i, int *j)
 **			ft_apply_quotes('${PWD}') will return "${PWD}"
 */
 
-char	*ft_apply_quotes_and_env_vars(char *str)
+char	*ft_apply_quotes_and_env_vars(char **str)
 {
 	int		i;
 	int		j;
@@ -163,29 +165,29 @@ char	*ft_apply_quotes_and_env_vars(char *str)
 		return (0);
 	i = 0;
 	j = 0;
-	ret = ft_calloc_exit(ft_strlen(str) + 1, sizeof(char));
+	ret = ft_calloc_exit(ft_strlen(*str) + 1, sizeof(char));
 	//printf("str before all: [%s]\n", str);
-	while (str[i])
+	while ((*str)[i])
 	{
-		if (str[i] == '\\')
+		if ((*str)[i] == '\\')
 		{
 			i++;
-			ret[j] = str[i];
+			ret[j] = (*str)[i];
 		}
-		else if (ft_char_is_a_start_quote(str, i))
+		else if (ft_char_is_a_start_quote(*str, i))
 		{
-			if (ft_quoted_copy(str, ret, &i, &j) == -1)
+			if (ft_quoted_copy(str, &ret, &i, &j) == -1)
 				return (ft_free_str(&ret));
 		}
-		else if (ft_char_is_a_dollar_sign(str, i))
+		else if (ft_char_is_a_dollar_sign(*str, i))
 		{
-			if (ft_extract_env_variable(str, &ret, &i, &j) == -1)
+			if (ft_extract_env_variable(*str, &ret, &i, &j) == -1)
 				return (ft_free_str(&ret));
 		}
 		else
-			ret[j] = str[i];
+			ret[j] = (*str)[i];
 		//printf("ret loop inc: [%s]\n str[i]: [%c]\n, i: [%d]\n, ret[j]: [%c]\n, j: [%d]\n", ret, str[i], i,str[j], j);
-		if (str[i])
+		if ((*str)[i])
 		{
 			i++;
 			j++;

@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/30 15:52:06 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/04/22 14:08:05 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/04/22 17:27:19 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ static void	ft_extract_command_name(char *input, t_command *command)
 	{
 		temp = ft_extract_first_word_qx(input, SPACES_REDIRS_PIPES);
 		//printf("temp: [%s]\n", temp); 
-		command->name = ft_apply_quotes_and_env_vars(temp);
+		command->name = ft_apply_quotes_and_env_vars(&temp);
 		if (!command->name ||
 				ft_str_only_has_chars_from_charset(command->name, SPACES))
 			ft_free_str(&command->name);
@@ -91,7 +91,7 @@ static void	ft_check_for_flags(char *str, t_command *command)
 	{
 		temp = ft_extract_second_word_qx(str, SPACES);
 		//printf("temp: [%s]\n", temp);
-		command->flags = ft_apply_quotes_and_env_vars(temp);
+		command->flags = ft_apply_quotes_and_env_vars(&temp);
 		ft_free_str(&temp);
 		//printf("flags: [%s]\n", command->flags);
 		if (ft_strcmp(command->flags, "-n"))
@@ -130,7 +130,7 @@ static void	ft_extract_the_argument(char *str, t_command *command)
 	printf("temp in extract the arg: [%s]\n", temp);
 	temp2 = ft_strtrim_exit(temp, SPACES_REDIRS_PIPES);
 	printf("temp2 in extract the arg: [%s]\n", temp2);
-	command->argument = ft_apply_quotes_and_env_vars(temp2);
+	command->argument = ft_apply_quotes_and_env_vars(&temp2);
 	//printf("arg: [%s]\n", command->argument);
 	ft_free_str(&temp);
 	ft_free_str(&temp2);
