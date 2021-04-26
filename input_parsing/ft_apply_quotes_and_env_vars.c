@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/14 16:43:56 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/04/26 12:26:01 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/04/26 14:13:37 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,7 +118,7 @@ static	int	ft_quoted_copy(char **str, char **ret, int *i, int *j)
 	k = 1;
 	l = 0;
 	temp_str = &((*str)[*i]);
-	temp_ret = &((*ret)[*j]);
+	temp_ret = ft_strdup_exit(&((*ret)[*j]));
 	//printf("quote in quoted copy: [%c]\n i: [%d]\n j: [%d]\n", quote, *i, *j);
 	if (*i && (*str)[*i - 1] == quote && (*ret)[*j - 1] == quote)
 		l = -1;
@@ -128,7 +128,7 @@ static	int	ft_quoted_copy(char **str, char **ret, int *i, int *j)
 	{
 		if (ft_double_quotes_copy(&temp_str, &temp_ret, &k, &l) == -1)
 			return (-1);
-		printf("temp_ret after double_quotes_copy: [%s]\n", temp_ret);
+		//printf("temp_ret after double_quotes_copy: [%s]\n", temp_ret);
 	}
 	if (temp_str[k] == quote)
 		k++;
@@ -140,10 +140,12 @@ static	int	ft_quoted_copy(char **str, char **ret, int *i, int *j)
 		*j += 1;
 	else
 		*j += l - 1;
-	printf("return of ft_quoted_copy: [%s]\n", *ret);
-	printf("temp_return of ft_quoted_copy: [%s]\n", temp_ret);
-	return (0);
+	//printf("return of ft_quoted_copy: [%s]\n", *ret);
+	//printf("temp_return of ft_quoted_copy: [%s]\n", temp_ret);
+	*ret = ft_strjoin_free_pref_exit(ret, temp_ret);
+	ft_free_str(&temp_ret);
 	//printf("at the end:\n i: [%d]\n, j: [%d]\n", *i, *j);
+	return (0);
 }
 
 /*
@@ -193,6 +195,6 @@ char	*ft_apply_quotes_and_env_vars(char **str)
 			j++;
 		}
 	}
-	printf("ret after ft_apply_quotes: [%s]\n", ret);
+	//printf("ret after ft_apply_quotes: [%s]\n", ret);
 	return (ret);
 }
