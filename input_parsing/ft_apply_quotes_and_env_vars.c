@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/14 16:43:56 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/04/22 17:34:51 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/04/26 12:26:01 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -161,7 +161,7 @@ char	*ft_apply_quotes_and_env_vars(char **str)
 	int		j;
 	char	*ret;
 
-	if (!str)
+	if (!str || !*str)
 		return (0);
 	i = 0;
 	j = 0;

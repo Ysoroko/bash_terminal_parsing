@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/30 15:52:06 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/04/22 17:27:19 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/04/26 12:26:25 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,6 @@ static void	ft_check_for_flags(char *str, t_command *command)
 		&& !ft_strcmp(command->name, "echo"))
 	{
 		temp = ft_extract_second_word_qx(str, SPACES);
-		//printf("temp: [%s]\n", temp);
 		command->flags = ft_apply_quotes_and_env_vars(&temp);
 		ft_free_str(&temp);
 		//printf("flags: [%s]\n", command->flags);
