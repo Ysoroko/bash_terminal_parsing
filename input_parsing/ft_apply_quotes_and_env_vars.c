@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/14 16:43:56 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/04/26 14:13:37 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/04/26 15:22:44 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,9 @@ static int	ft_extract_env_variable(char *str, char **ret, int *i, int *j)
 	char	*temp_ret;
 	char	*env_name;
 	char	*env_value;
+	int		t;
 
+	t = 0;
 	env_name = ft_extract_first_word_alpha_underscore(&(str[*i]), SPACES);
 	printf("env_name: [%s]\n", env_name);
 	env_value = getenv(env_name);
@@ -46,9 +48,12 @@ static int	ft_extract_env_variable(char *str, char **ret, int *i, int *j)
 		*i += 1;
 	if (*i)
 		*i -= 1;
+	else
+		*i = 1;
 	*j = ft_strlen(*ret) - 1;
 	ft_free_str(&env_name);
 	printf("str after extracting env variable: [%s]\n", str);
+	printf("str[i]: [%c]\n", str[*i]);
 	printf("ret after extracting env variable: [%s]\n", *ret);
 	return (0);
 }
@@ -162,6 +167,7 @@ char	*ft_apply_quotes_and_env_vars(char **str)
 	int		i;
 	int		j;
 	char	*ret;
+	char	*ret2;
 
 	if (!str || !*str)
 		return (0);
@@ -180,21 +186,31 @@ char	*ft_apply_quotes_and_env_vars(char **str)
 		{
 			if (ft_quoted_copy(str, &ret, &i, &j) == -1)
 				return (ft_free_str(&ret));
+			printf("Results of ft_quoted_copy:\n &str[i]: [%s]\n ret: [%s]\n &ret[j]: [%s]\n", &((*str)[i]), ret, &((ret)[j]));
 		}
 		else if (ft_char_is_a_dollar_sign(*str, i))
 		{
 			if (ft_extract_env_variable(*str, &ret, &i, &j) == -1)
 				return (ft_free_str(&ret));
+			printf("Results of ft_extract_env_variable:\n &str[i]: [%s]\n ret: [%s]\n &ret[j]: [%s]\n", &((*str)[i]), ret, &((ret)[j]));
 		}
 		else
-			ret[j] = (*str)[i];
-		//printf("ret loop inc: [%s]\n str[i]: [%c]\n, i: [%d]\n, ret[j]: [%c]\n, j: [%d]\n", ret, str[i], i,str[j], j);
+		{
+			printf("ret[j]: [%c]\n", ret[j]);
+			printf("str[i]: [%c]\n", (*str)[i]);
+			ret[j] = ((*str)[i]);
+			printf("Results of copying:\n &str[i]: [%s]\n ret: [%s]\n &ret[j]: [%s]\n", &((*str)[i]), ret, &((ret)[j]));
+		}
+		//printf("ret loop inc: [%s]\n str: [%s]\n &str[i]: [%s]\n i: [%d]\n ret[j]: [%c]\n j: [%d]\n", ret, *str, &((*str)[i]), i, ret[j], j);
 		if ((*str)[i])
 		{
 			i++;
 			j++;
 		}
 	}
-	//printf("ret after ft_apply_quotes: [%s]\n", ret);
-	return (ret);
+	ret[j] = 0;
+	ret2 = ft_strdup_exit(ret);
+	ft_free_str(&ret);
+	printf("ret after ft_apply_quotes: [%s]\n", ret2);
+	return (ret2);
 }

@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/30 15:52:06 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/04/26 12:26:25 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/04/26 15:14:42 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,11 +130,13 @@ static void	ft_extract_the_argument(char *str, t_command *command)
 	temp2 = ft_strtrim_exit(temp, SPACES_REDIRS_PIPES);
 	printf("temp2 in extract the arg: [%s]\n", temp2);
 	command->argument = ft_apply_quotes_and_env_vars(&temp2);
-	//printf("arg: [%s]\n", command->argument);
+	printf("arg: [%s]\n", command->argument);
 	ft_free_str(&temp);
+	printf("arg2: [%s]\n", command->argument);
 	ft_free_str(&temp2);
+	printf("arg3: [%s]\n", command->argument);
 	if (command->argument && !command->argument[0])
-		ft_free_str(&command->argument);
+		ft_free_str(&(command->argument));
 }
 
 /*
@@ -166,5 +168,6 @@ t_command	*ft_extract_next_command(char *input_checkpt, int *i)
 	if (!j)
 		*i += 1;
 	*i += j - 1;
+	printf("ARGUMENT AT THE END OF FT_EXTRACT_NEXT_COMMAND: [%s]\n", command->argument);
 	return (command);
 }
