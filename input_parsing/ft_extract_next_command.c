@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/30 15:52:06 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/04/27 10:29:17 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/04/27 12:08:02 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,9 @@ static void	ft_check_for_redirections(char *str, t_command *current_command,
 	if (!current_command->name)
 		return ;
 	redirection_found = ft_strchrset_not_quoted(str, REDIRECTIONS);
+	//printf("redirection_found: [%s]\n", redirection_found);
 	if (!redirection_found)
 		return ;
-	//printf("redirection_found: [%s]\n", redirection_found);
 	if (redirection_found[0] == '<')
 		current_command->redirection = ft_strdup_exit("<");
 	else if (redirection_found[0] == '>')
@@ -68,7 +68,7 @@ static void	ft_extract_command_name(char *input, t_command *command)
 				ft_str_only_has_chars_from_charset(command->name, SPACES))
 			ft_free_str(&command->name);
 		ft_free_str(&temp);
-		//printf("command->name: [%s]\n", command->name); 
+		printf("command->name: [%s]\n", command->name); 
 	}
 }
 
@@ -90,11 +90,15 @@ static void	ft_check_for_flags(char *str, t_command *command)
 		&& !ft_strcmp(command->name, "echo"))
 	{
 		temp = ft_extract_second_word_qx(str, SPACES);
-		command->flags = ft_apply_quotes_and_env_vars(&temp);
-		ft_free_str(&temp);
-		//printf("flags: [%s]\n", command->flags);
-		if (ft_strcmp(command->flags, "-n"))
-			ft_free_str(&command->flags);
+		printf("temp in ft_check_for_flags: [%s]\n", temp);
+		if (temp)
+		{
+			command->flags = ft_apply_quotes_and_env_vars(&temp);
+			ft_free_str(&temp);
+			printf("flags: [%s]\n", command->flags);
+			if (ft_strcmp(command->flags, "-n"))
+				ft_free_str(&command->flags);
+		}
 	}
 }
 
@@ -117,9 +121,9 @@ static void	ft_extract_the_argument(char *str, t_command *command)
 	if (!command->name)
 		return ;
 	if (command->flags)
-		index = ft_pos_after_the_word_in_string(str, command->flags);
+		index = ft_pos_after_n_one_or_two_words(str, 2, SPACES);
 	else
-		index = ft_pos_after_the_word_in_string(str, command->name);
+		index = ft_pos_after_n_one_or_two_words(str, 1, SPACES);
 	if (index[0] == '\'' || index[0] == '\"')
 		index++;
 	if (!index || !index[0] || ft_strchr(PIPES, index[0]))

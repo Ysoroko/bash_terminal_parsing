@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/14 16:43:56 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/04/27 11:13:19 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/04/27 11:30:30 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,10 +146,11 @@ static	int	ft_quoted_copy(char **str, char **ret, int *i, int *j)
 		*j += 1;
 	else
 		*j += l - 1;
+	*ret = ft_strjoin_free_pref_exit(ret, temp_ret);
 	//printf("return of ft_quoted_copy: [%s]\n", *ret);
 	//printf("temp_return of ft_quoted_copy: [%s]\n", temp_ret);
-	*ret = ft_strjoin_free_pref_exit(ret, temp_ret);
 	ft_free_str(&temp_ret);
+
 	//printf("at the end:\n i: [%d]\n, j: [%d]\n", *i, *j);
 	return (0);
 }
@@ -178,6 +179,7 @@ char	*ft_apply_quotes_and_env_vars(char **str)
 	//printf("str before all: [%s]\n", str);
 	while ((*str)[i])
 	{
+		printf("str: [%s]\ni: [%d]\n*str[i]: [%c]\n",*str, i, (*str)[i]);
 		if ((*str)[i] == '\\')
 		{
 			i++;
@@ -204,7 +206,7 @@ char	*ft_apply_quotes_and_env_vars(char **str)
 			ret[j] = ((*str)[i]);
 			//printf("Results of copying:\n &str[i]: [%s]\n ret: [%s]\n &ret[j]: [%s]\n", &((*str)[i]), ret, &((ret)[j]));
 		}
-		//printf("ret loop inc: [%s]\n str: [%s]\n &str[i]: [%s]\n i: [%d]\n ret[j]: [%c]\n j: [%d]\n", ret, *str, &((*str)[i]), i, ret[j], j);
+		printf("ret loop inc: [%s]\n str: [%s]\n &str[i]: [%s]\n i: [%d]\n ret[j]: [%c]\n j: [%d]\n", ret, *str, &((*str)[i]), i, ret[j], j);
 		if ((*str)[i])
 		{
 			i++;
@@ -214,6 +216,6 @@ char	*ft_apply_quotes_and_env_vars(char **str)
 	ret[j] = 0;
 	ret2 = ft_strdup_exit(ret);
 	ft_free_str(&ret);
-	//printf("ret after ft_apply_quotes: [%s]\n", ret2);
+	printf("ret after ft_apply_quotes: [%s]\n", ret2);
 	return (ret2);
 }
