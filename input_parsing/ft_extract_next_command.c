@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/30 15:52:06 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/04/27 10:10:24 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/04/27 10:29:17 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,15 +126,15 @@ static void	ft_extract_the_argument(char *str, t_command *command)
 		return ;
 	temp = ft_strdup_until_c_from_charset_not_quoted(index,
 		REDIRS_AND_PIPES);
-	printf("temp in extract the arg: [%s]\n", temp);
+	//printf("temp in extract the arg: [%s]\n", temp);
 	temp2 = ft_strtrim_exit(temp, SPACES_REDIRS_PIPES);
-	printf("temp2 in extract the arg: [%s]\n", temp2);
+	//printf("temp2 in extract the arg: [%s]\n", temp2);
 	command->argument = ft_apply_quotes_and_env_vars(&temp2);
-	printf("arg: [%s]\n", command->argument);
+	//printf("arg: [%s]\n", command->argument);
 	ft_free_str(&temp);
-	printf("arg2: [%s]\n", command->argument);
+	//printf("arg2: [%s]\n", command->argument);
 	ft_free_str(&temp2);
-	printf("arg3: [%s]\n", command->argument);
+	//printf("arg3: [%s]\n", command->argument);
 	if (command->argument && !command->argument[0])
 		ft_free_str(&(command->argument));
 }

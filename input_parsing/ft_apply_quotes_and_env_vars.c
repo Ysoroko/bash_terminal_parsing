@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/14 16:43:56 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/04/27 10:10:13 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/04/27 11:13:19 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,7 @@ static int	ft_extract_env_variable(char *str, char **ret, int *i, int *j)
 	char	*temp_ret;
 	char	*env_name;
 	char	*env_value;
-	int		t;
 
-	t = 0;
 	env_name = ft_extract_first_word_alpha_underscore(&(str[*i]), SPACES);
 	//printf("env_name: [%s]\n", env_name);
 	env_value = getenv(env_name);
@@ -44,7 +42,7 @@ static int	ft_extract_env_variable(char *str, char **ret, int *i, int *j)
 		&& !ft_strchr(SPACES, str[*i]))
 		*i += 1;
 	while (str[*i] && ((!ft_isalpha(str[*i]) && str[*i] != '_')
-		&& !ft_strchr(SPACES, str[*i])))
+		&& !ft_strchr(SPACES, str[*i])) && !ft_char_is_a_start_quote(str, *i))
 		*i += 1;
 	if (*i)
 		*i -= 1;
@@ -54,7 +52,7 @@ static int	ft_extract_env_variable(char *str, char **ret, int *i, int *j)
 	ft_free_str(&env_name);
 	//printf("str after extracting env variable: [%s]\n", str);
 	//printf("str[i]: [%c]\n", str[*i]);
-	//printf("ret after extracting env variable: [%s]\n", *ret);
+	printf("ret after extracting env variable: [%s]\n", *ret);
 	return (0);
 }
 
@@ -119,7 +117,7 @@ static	int	ft_quoted_copy(char **str, char **ret, int *i, int *j)
 	int		k;
 	int		l;
 
-	quote = (*str)[*i];
+	quote = ft_char_is_a_start_quote(*str, *i);
 	k = 1;
 	l = 0;
 	temp_str = &((*str)[*i]);
@@ -128,7 +126,10 @@ static	int	ft_quoted_copy(char **str, char **ret, int *i, int *j)
 	if (*i && (*str)[*i - 1] == quote && (*ret)[*j - 1] == quote)
 		l = -1;
 	if (quote == '\'')
+	{
 		ft_single_quotes_copy(&temp_str, &temp_ret, &k, &l);
+		printf("temp_ret after single_quotes_copy: [%s]\n", temp_ret);
+	}
 	else if (quote == '\"')
 	{
 		if (ft_double_quotes_copy(&temp_str, &temp_ret, &k, &l) == -1)
