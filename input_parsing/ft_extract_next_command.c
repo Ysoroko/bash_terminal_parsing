@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/30 15:52:06 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/04/27 12:08:02 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/04/27 12:31:15 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,12 +62,15 @@ static void	ft_extract_command_name(char *input, t_command *command)
 	if (!command->name)
 	{
 		temp = ft_extract_first_word_qx(input, SPACES_REDIRS_PIPES);
-		//printf("temp: [%s]\n", temp); 
+		printf("temp: [%s]\n", temp); 
 		command->name = ft_apply_quotes_and_env_vars(&temp);
 		if (!command->name ||
 				ft_str_only_has_chars_from_charset(command->name, SPACES))
 			ft_free_str(&command->name);
 		ft_free_str(&temp);
+		temp = ft_strdup_exit(command->name);
+		ft_free_str(&command->name);
+		command->name = temp;
 		printf("command->name: [%s]\n", command->name); 
 	}
 }
@@ -90,12 +93,12 @@ static void	ft_check_for_flags(char *str, t_command *command)
 		&& !ft_strcmp(command->name, "echo"))
 	{
 		temp = ft_extract_second_word_qx(str, SPACES);
-		printf("temp in ft_check_for_flags: [%s]\n", temp);
+		//printf("temp in ft_check_for_flags: [%s]\n", temp);
 		if (temp)
 		{
 			command->flags = ft_apply_quotes_and_env_vars(&temp);
 			ft_free_str(&temp);
-			printf("flags: [%s]\n", command->flags);
+			//printf("flags: [%s]\n", command->flags);
 			if (ft_strcmp(command->flags, "-n"))
 				ft_free_str(&command->flags);
 		}
@@ -163,6 +166,7 @@ t_command	*ft_extract_next_command(char *input_checkpt, int *i)
 	//printf("next_command_as_str: [%s]\n", next_command_as_str);
 	j = ft_strlen(next_command_as_str);
 	ft_extract_command_name(input_checkpt, command);
+	printf("Command->name: [%s]\n", command->name);
 	ft_check_for_flags(input_checkpt, command);
 	ft_check_for_redirections(next_command_as_str, command, &j, input_checkpt);
 	ft_extract_the_argument(next_command_as_str, command);
@@ -173,5 +177,6 @@ t_command	*ft_extract_next_command(char *input_checkpt, int *i)
 		*i += 1;
 	*i += j - 1;
 	//printf("ARGUMENT AT THE END OF FT_EXTRACT_NEXT_COMMAND: [%s]\n", command->argument);
+	printf("Command->name: [%s]\n", command->name);
 	return (command);
 }

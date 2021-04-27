@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_pos_after_n_word.c                              :+:      :+:    :+:   */
+/*   ft_pos_after_n_one_or_two_words.c                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/27 11:56:11 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/04/27 12:09:51 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/04/27 15:21:04 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ char	*ft_pos_after_n_one_or_two_words(char *str, int n_words, char *seps)
 {
 	char	*last_word;
 	char	*ret;
-	
+
 	if (!str)
 		return (0);
 	if (n_words == 1)

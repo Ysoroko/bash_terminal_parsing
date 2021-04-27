@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/21 15:31:04 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/04/21 16:12:50 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/04/27 15:22:21 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ char	*ft_extract_first_word_alpha_underscore(char *str, char *separators)
 	i = 0;
 	temp = ft_calloc_exit(ft_strlen(str) + 1, sizeof(char));
 	while (str[i] && ((!ft_isalpha(str[i]) && str[i] != '_')
-		|| ft_strchr(separators, str[i])))
+			|| ft_strchr(separators, str[i])))
 		i++;
 	j = 0;
 	while (str[i] && (ft_isalpha(str[i]) || str[i] == '_')

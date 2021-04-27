@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/14 16:43:56 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/04/27 11:30:30 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/04/27 16:50:17 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ static int	ft_extract_env_variable(char *str, char **ret, int *i, int *j)
 	ft_free_str(&env_name);
 	//printf("str after extracting env variable: [%s]\n", str);
 	//printf("str[i]: [%c]\n", str[*i]);
-	printf("ret after extracting env variable: [%s]\n", *ret);
+	//printf("ret after extracting env variable: [%s]\n", *ret);
 	return (0);
 }
 
@@ -78,7 +78,7 @@ static int	ft_double_quotes_copy(char **t_str, char **t_ret, int *k, int *l)
 		{
 			if (ft_extract_env_variable(*t_str, t_ret, k, l) == -1)
 				return (-1);
-			printf("t_ret after extracting env variable double quotes: [%s]\n", *t_ret);
+			//printf("t_ret after extracting env variable double quotes: [%s]\n", *t_ret);
 		}
 		else
 			(*t_ret)[*l] = (*t_str)[*k];
@@ -128,7 +128,7 @@ static	int	ft_quoted_copy(char **str, char **ret, int *i, int *j)
 	if (quote == '\'')
 	{
 		ft_single_quotes_copy(&temp_str, &temp_ret, &k, &l);
-		printf("temp_ret after single_quotes_copy: [%s]\n", temp_ret);
+		//printf("temp_ret after single_quotes_copy: [%s]\n", temp_ret);
 	}
 	else if (quote == '\"')
 	{
@@ -179,7 +179,7 @@ char	*ft_apply_quotes_and_env_vars(char **str)
 	//printf("str before all: [%s]\n", str);
 	while ((*str)[i])
 	{
-		printf("str: [%s]\ni: [%d]\n*str[i]: [%c]\n",*str, i, (*str)[i]);
+		//printf("str: [%s]\ni: [%d]\n*str[i]: [%c]\n",*str, i, (*str)[i]);
 		if ((*str)[i] == '\\')
 		{
 			i++;
@@ -206,7 +206,7 @@ char	*ft_apply_quotes_and_env_vars(char **str)
 			ret[j] = ((*str)[i]);
 			//printf("Results of copying:\n &str[i]: [%s]\n ret: [%s]\n &ret[j]: [%s]\n", &((*str)[i]), ret, &((ret)[j]));
 		}
-		printf("ret loop inc: [%s]\n str: [%s]\n &str[i]: [%s]\n i: [%d]\n ret[j]: [%c]\n j: [%d]\n", ret, *str, &((*str)[i]), i, ret[j], j);
+		//printf("ret loop inc: [%s]\n str: [%s]\n &str[i]: [%s]\n i: [%d]\n ret[j]: [%c]\n j: [%d]\n", ret, *str, &((*str)[i]), i, ret[j], j);
 		if ((*str)[i])
 		{
 			i++;
@@ -216,6 +216,6 @@ char	*ft_apply_quotes_and_env_vars(char **str)
 	ret[j] = 0;
 	ret2 = ft_strdup_exit(ret);
 	ft_free_str(&ret);
-	printf("ret after ft_apply_quotes: [%s]\n", ret2);
+	//printf("ret after ft_apply_quotes: [%s]\n", ret2);
 	return (ret2);
 }
