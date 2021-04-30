@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/26 09:36:36 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/04/21 11:15:14 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/04/30 16:28:20 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,4 +73,20 @@ void	ft_check_for_pipe(char *str_command, t_command *command)
 	len = ft_strlen(str_command);
 	if (str_command[len - 1] == '|' || str_command[len - 1] == ';')
 		command->pipe = str_command[len - 1];
+}
+
+/*
+** ft_append_env_var_value
+** Appends the value of env_name at the start of *str at the end of *dest
+*/
+
+int	ft_append_env_var_value(char *str, char **dest, int *i, int *j)
+{
+	char	*temp;
+	char	*env_name;
+	char	*env_value;
+	int		k;
+	int		l;
+
+	env_name = ft_extract_env_variable_name(str);
 }

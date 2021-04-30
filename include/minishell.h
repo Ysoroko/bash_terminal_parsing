@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 11:07:01 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/04/22 17:26:52 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/04/30 16:02:48 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@
 # define SPACES_AND_PIPES " \t\n\r\v\f;|"
 # define SPACES_AND_REDIRECTIONS " \t\n\r\v\f><"
 # define BACKSLASH_IN_DOUBLE_QUOTES_CHARS "$`\"\\"
+# define MAX_ENV_VALUE_COMBINED 32767
 
 /*
 ** STRUCTURES
@@ -62,7 +63,7 @@ typedef struct s_command
 
 t_dl_lst	*ft_input_parsing(char *input);
 void		ft_free_t_command(void *command_pointer);
-void		ft_update_str_read_so_far(char *input_checkpnt, int i, char **prev);
+void		ft_update_str_read_so_far(char *input_checkpt, int i, char **prev);
 t_command	*ft_extract_next_command(char *input_checkpnt, int *i);
 void		ft_execute(t_dl_lst *command_list);
 void		ft_signal_handler(int no_matter);
@@ -71,6 +72,7 @@ char		*ft_extract_next_command_string(char *input_checkpoint);
 void		ft_check_for_unclosed_quotes(char **input);
 void		ft_check_for_pipe(char *str_command, t_command *command);
 char		*ft_apply_quotes_and_env_vars(char **str);
+int			ft_append_env_var_value(char *str, char **dest, int *i, int *j);
 
 /*
 ** COLORS
