@@ -6,7 +6,7 @@
 #    By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/11/17 16:06:56 by ysoroko           #+#    #+#              #
-#    Updated: 2021/05/03 13:48:48 by ysoroko          ###   ########.fr        #
+#    Updated: 2021/05/03 15:07:18 by ysoroko          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -128,7 +128,8 @@ SRC				=	ft_atoi.c \
 					ft_chars_is_a_dollar_sign.c \
 					ft_pos_after_n_one_or_two_words.c \
 					ft_extract_env_variable_name.c \
-					ft_strdup_exit_and_free_src.c
+					ft_strdup_exit_and_free_src.c \
+					ft_env_var_delimiter.c
 					
 					
 

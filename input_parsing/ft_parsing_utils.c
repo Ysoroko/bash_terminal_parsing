@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/26 09:36:36 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/05/03 14:49:18 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/05/03 15:29:00 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,15 +126,27 @@ int	ft_calculate_total_length_needed(char *str)
 
 int	ft_append_env_var_value(char *str, char **dest, int *i, int *j)
 {
-	char	*temp;
+	char	delimiter;
 	char	*env_name;
 	char	*env_value;
 	int		k;
-	int		l;
 
+	delimiter = ft_env_var_delimiter(str);
 	env_name = ft_extract_env_variable_name(str, ENV_VAR_SEPARATORS);
 	env_value = getenv(env_name);
 	k = 0;
-	l = 0;
-
+	if (delimiter)
+	{
+		while (str[k] && str[k] != delimiter)
+			k++;
+	}
+	else
+	{
+		while (str[k] && !ft_strchr(ENV_VAR_SEPARATORS, str[k]))
+			k++;
+	}
+	*i += k;
+	ft_strcat(*dest, env_value);
+	*j += ft_strlen(env_name);
+	return (0);
 }
