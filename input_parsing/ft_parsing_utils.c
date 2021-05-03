@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/26 09:36:36 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/05/03 12:16:19 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/05/03 14:49:18 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,9 +98,9 @@ int	ft_calculate_total_length_needed(char *str)
 	i = -1;
 	while (str[++i])
 	{
-		if (str[i] == '$')
+		if (str[i] == '$' && ft_char_between_the_quotes(i, str) != '\'')
 		{
-			name = ft_extract_env_variable_name(&str[i], SPACES);
+			name = ft_extract_env_variable_name(&str[i], ENV_VAR_SEPARATORS);
 			value = getenv(name);
 			if (!value)
 			{
@@ -119,6 +119,9 @@ int	ft_calculate_total_length_needed(char *str)
 /*
 ** ft_append_env_var_value
 ** Appends the value of env_name at the start of *str at the end of *dest
+** str argument start with a '$' character when sent here
+** At this point we already checked that str only contains valid env
+** names so no need to double check here
 */
 
 int	ft_append_env_var_value(char *str, char **dest, int *i, int *j)
@@ -129,5 +132,9 @@ int	ft_append_env_var_value(char *str, char **dest, int *i, int *j)
 	int		k;
 	int		l;
 
-	env_name = ft_extract_env_variable_name(str);
+	env_name = ft_extract_env_variable_name(str, ENV_VAR_SEPARATORS);
+	env_value = getenv(env_name);
+	k = 0;
+	l = 0;
+
 }

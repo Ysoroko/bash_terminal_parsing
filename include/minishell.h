@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 11:07:01 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/05/03 12:15:56 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/05/03 13:55:57 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@
 # define SPACES_AND_PIPES " \t\n\r\v\f;|"
 # define SPACES_AND_REDIRECTIONS " \t\n\r\v\f><"
 # define BACKSLASH_IN_DOUBLE_QUOTES_CHARS "$`\"\\"
+# define ENV_VAR_SEPARATORS " \t\n\r\v\f><;|\"\'\\"
 # define MAX_ENV_VALUE_COMBINED 32767
 
 /*

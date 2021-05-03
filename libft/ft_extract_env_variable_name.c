@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/27 12:40:51 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/04/30 16:27:44 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/05/03 13:57:00 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,6 @@ char	*ft_extract_env_variable_name(char *str, char *separators)
 	int		i;
 	int		j;
 	char	end;
-	char	*ret;
 	char	*temp;
 
 	i = ft_determine_delimiters(str, &end);
@@ -86,7 +85,7 @@ char	*ft_extract_env_variable_name(char *str, char *separators)
 	temp = ft_calloc_exit(ft_strlen(str), sizeof(char));
 	if (end)
 	{
-		while (str[i] && str[i] != end && !ft_strchr(separators, str[i]))
+		while (str[i] && str[i] != end)
 			temp[j++] = str[i++];
 		if (str[i] != end)
 			return (ft_free_str(&temp));
@@ -96,7 +95,5 @@ char	*ft_extract_env_variable_name(char *str, char *separators)
 		while (str[i] && !ft_strchr(separators, str[i]))
 			temp[j++] = str[i++];
 	}
-	ret = ft_strdup_exit(temp);
-	ft_free_str(&temp);
-	return (ret);
+	return (ft_strdup_exit_and_free_src(&temp));
 }
