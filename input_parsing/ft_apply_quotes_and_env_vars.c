@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/14 16:43:56 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/04/30 16:03:26 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/05/03 11:02:06 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ char	*ft_apply_quotes_and_env_vars(char **str)
 	my_str = *str;
 	i = -1;
 	j = 0;
-	temp = ft_calloc_exit(ft_strlen(my_str) + MAX_ENV_VALUE_COMBINED, 1);
+	temp = ft_calloc_exit(ft_calculate_total_length_needed(*str));
 	while (my_str[++i])
 	{
 		if (my_str[i] == '\\')
