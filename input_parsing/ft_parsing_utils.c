@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/26 09:36:36 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/05/03 15:29:00 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/05/03 16:23:26 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,6 @@ void	ft_check_for_pipe(char *str_command, t_command *command)
 ** so it returns a value bigger than necessary, which is later corrected
 ** in a different function
 ** Returns the number of bytes necessary for such malloc call
-** Returns -1 if an invalid environmental name is used
 */
 
 int	ft_calculate_total_length_needed(char *str)
@@ -102,12 +101,8 @@ int	ft_calculate_total_length_needed(char *str)
 		{
 			name = ft_extract_env_variable_name(&str[i], ENV_VAR_SEPARATORS);
 			value = getenv(name);
-			if (!value)
-			{
-				ft_free_str(&name);
-				return (-1);
-			}
-			ret += ft_strlen(value);
+			if (value)
+				ret += ft_strlen(value);
 			ft_free_str(&name);
 		}
 		else
@@ -124,7 +119,7 @@ int	ft_calculate_total_length_needed(char *str)
 ** names so no need to double check here
 */
 
-int	ft_append_env_var_value(char *str, char **dest, int *i, int *j)
+void	ft_append_env_var_value(char *str, char **dest, int *i, int *j)
 {
 	char	delimiter;
 	char	*env_name;
@@ -148,5 +143,4 @@ int	ft_append_env_var_value(char *str, char **dest, int *i, int *j)
 	*i += k;
 	ft_strcat(*dest, env_value);
 	*j += ft_strlen(env_name);
-	return (0);
 }

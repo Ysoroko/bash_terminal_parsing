@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/03 15:20:56 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/05/03 15:26:23 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/05/03 16:17:13 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ char	*ft_strcat(char *pref, char *suff)
 	int	i;
 	int	j;
 
+	if (!pref || !suff)
+		return (pref);
 	i = ft_strlen(pref);
 	j = -1;
 	while (suff[++j])

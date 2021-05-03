@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 11:07:01 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/05/03 13:55:57 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/05/03 16:10:55 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@
 # define STDOUT 1
 # define STDERR 2
 # define INPUT_SIZE 1000
+# define MAX_INPUT_SIZE 262144
 # define SPACES " \t\n\r\v\f"
 # define REDIRECTIONS "><"
 # define PIPES ";|"
@@ -41,7 +42,6 @@
 # define SPACES_AND_REDIRECTIONS " \t\n\r\v\f><"
 # define BACKSLASH_IN_DOUBLE_QUOTES_CHARS "$`\"\\"
 # define ENV_VAR_SEPARATORS " \t\n\r\v\f><;|\"\'\\"
-# define MAX_ENV_VALUE_COMBINED 32767
 
 /*
 ** STRUCTURES
@@ -73,7 +73,7 @@ char		*ft_extract_next_command_string(char *input_checkpoint);
 void		ft_check_for_unclosed_quotes(char **input);
 void		ft_check_for_pipe(char *str_command, t_command *command);
 char		*ft_apply_quotes_and_env_vars(char **str);
-int			ft_append_env_var_value(char *str, char **dest, int *i, int *j);
+void		ft_append_env_var_value(char *str, char **dest, int *i, int *j);
 int			ft_calculate_total_length_needed(char *str);
 
 /*
