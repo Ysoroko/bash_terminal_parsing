@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/26 09:36:36 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/04/30 16:28:20 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/05/03 12:16:19 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,47 @@ void	ft_check_for_pipe(char *str_command, t_command *command)
 	len = ft_strlen(str_command);
 	if (str_command[len - 1] == '|' || str_command[len - 1] == ';')
 		command->pipe = str_command[len - 1];
+}
+
+/*
+** ft_calculate_total_length_needed
+** This funtion is used to calculate how many memory we need to allocate
+** with malloc to create a duplicated copy of str argument
+** while taking into account the environmental variables.
+** It doesn't take quotes and escape characters into account
+** so it returns a value bigger than necessary, which is later corrected
+** in a different function
+** Returns the number of bytes necessary for such malloc call
+** Returns -1 if an invalid environmental name is used
+*/
+
+int	ft_calculate_total_length_needed(char *str)
+{
+	int		ret;
+	int		i;
+	char	*name;
+	char	*value;
+
+	ret = 0;
+	i = -1;
+	while (str[++i])
+	{
+		if (str[i] == '$')
+		{
+			name = ft_extract_env_variable_name(&str[i], SPACES);
+			value = getenv(name);
+			if (!value)
+			{
+				ft_free_str(&name);
+				return (-1);
+			}
+			ret += ft_strlen(value);
+			ft_free_str(&name);
+		}
+		else
+			ret++;
+	}
+	return (ret);
 }
 
 /*

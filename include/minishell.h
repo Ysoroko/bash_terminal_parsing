@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 11:07:01 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/04/30 16:02:48 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/05/03 12:15:56 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ void		ft_check_for_unclosed_quotes(char **input);
 void		ft_check_for_pipe(char *str_command, t_command *command);
 char		*ft_apply_quotes_and_env_vars(char **str);
 int			ft_append_env_var_value(char *str, char **dest, int *i, int *j);
+int			ft_calculate_total_length_needed(char *str);
 
 /*
 ** COLORS
