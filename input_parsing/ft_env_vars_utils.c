@@ -6,31 +6,33 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/04 12:33:47 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/05/04 12:36:52 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/05/04 14:56:21 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
 /*
-** ft_env_var_delimiter
-** This function checks if the first char following the '$' sign in the env var
-** name in its argument starts with '{' or '('
-** It will return the character which is expected to end the env var name
-** Returns '}', ')' or '\0' if neither is true
+** FT_EXTRACT_ENV_VARIABLE_NAME
+** This function is called in minishell project when we see a '$' sign
+** str[0] must be a '$', otherwise an error will occur
+** Returns a malloc'd name of the string or NULL if an error was detected
 */
 
-char	ft_env_var_delimiter(char *str_start_with_dollar_sign)
+char	*ft_extract_env_variable_name(char *str, char *separators)
 {
-	char	ret;
+	int		i;
+	int		j;
+	char	*temp;
 
-	if (!str_start_with_dollar_sign || str_start_with_dollar_sign[0] != '$')
+	i = 1;
+	if (!str || str[0] != '$')
 		return (0);
-	if (str_start_with_dollar_sign[1] == '(')
-		return (')');
-	else if (str_start_with_dollar_sign[1] == '{')
-		return ('}');
-	return (0);
+	j = 0;
+	temp = ft_calloc_exit(ft_strlen(str), sizeof(char));
+	while (str[i] && ft_is_env_name_char(str[i]))
+		temp[j++] = str[i++];
+	return (ft_strdup_exit_and_free_src(&temp));
 }
 
 /*
@@ -79,25 +81,15 @@ int	ft_calculate_total_length_needed(char *str)
 
 void	ft_append_env_var_value(char *str, char **dest, int *i, int *j)
 {
-	char	delimiter;
 	char	*env_name;
 	char	*env_value;
 	int		k;
 
-	delimiter = ft_env_var_delimiter(str);
 	env_name = ft_extract_env_variable_name(str, ENV_VAR_SEPARATORS);
 	env_value = getenv(env_name);
-	k = 0;
-	if (delimiter)
-	{
-		while (str[k] && str[k] != delimiter)
+	k = 1;
+	while (str[k] && ft_is_env_name_char(str[k]))
 			k++;
-	}
-	else
-	{
-		while (str[k] && !ft_strchr(ENV_VAR_SEPARATORS, str[k]))
-			k++;
-	}
 	*i += k;
 	ft_strcat(*dest, env_value);
 	*j += ft_strlen(env_name);
