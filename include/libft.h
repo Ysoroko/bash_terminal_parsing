@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/17 15:32:25 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/05/04 15:15:44 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/05/04 16:18:04 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -171,5 +171,6 @@ char		*ft_pos_after_n_one_or_two_words(char *str,
 char		*ft_strdup_exit_and_free_src(char **src);
 int			ft_is_env_start_brace(char c);
 int			ft_is_env_name_char(char c);
+void		ft_display_first_n_chars(char *str, int n, int fd);
 
 #endif

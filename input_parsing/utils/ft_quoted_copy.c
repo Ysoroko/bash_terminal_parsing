@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/04 12:03:28 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/05/04 15:45:02 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/05/04 16:26:12 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,10 @@ static void	ft_double_quotes_copy(char *str, char **dest, int *i, int *j)
 		else if (str[k] == '$')
 			ft_append_env_var_value(&(str[k]), dest, i, j);
 		else
+		{
+			printf("copying in ft_dq_copy [%c] to dest at j:[%d]\n", str[k], *j);
 			(*dest)[*j] = str[k];
+		}
 		(*j)++;
 		k++;
 	}
@@ -98,9 +101,9 @@ void	ft_quoted_copy(char *str, char **dest, int *i, int *j)
 	}
 	else if (quote == '\"')
 	{
-		//printf("beore ft_double_quotes_copy: [%s]\n", *dest);
+		printf("beore ft_double_quotes_copy: [%s]\n", *dest);
 		ft_double_quotes_copy(str, dest, i, j);
-		//printf("after ft_double_quotes_copy: [%s]\n", *dest);
+		printf("after ft_double_quotes_copy: [%s]\n", *dest);
 	}
 	else
 		return ;
