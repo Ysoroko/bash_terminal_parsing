@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/17 15:32:25 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/05/03 15:26:10 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/05/04 12:35:52 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -170,6 +170,5 @@ char		*ft_pos_after_n_one_or_two_words(char *str,
 				int n_words, char *seps);
 char		*ft_extract_env_variable_name(char *str, char *separators);
 char		*ft_strdup_exit_and_free_src(char **src);
-char		ft_env_var_delimiter(char *str_start_with_dollar_sign);
 
 #endif

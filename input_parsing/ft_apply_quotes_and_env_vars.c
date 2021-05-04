@@ -6,44 +6,11 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/14 16:43:56 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/05/03 16:22:07 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/05/04 12:10:20 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
-
-/*
-** ft_single_quotes_copy()
-*/
-
-static void	ft_single_quotes_copy(char *str, char **dest, int *i, int *j)
-{
-	int	k;
-
-	k = 1;
-	while (str[k] && str[k] != '\'')
-	{
-		*(dest[*j]) = str[k];
-		k++;
-		*j++;
-	}
-	*i += k;
-}
-
-static void	ft_quoted_copy(char *str, char **dest, int *i, int *j)
-{
-	int		k;
-	int		l;
-	char	quote;
-	
-	quote = str[0];
-	k = 1;
-	l = 0;
-	if (quote == '\'')
-	{
-
-	}
-}
 
 /*
 ** FT_APPLY_QUOTES_AND_ENV_VARS
@@ -73,7 +40,7 @@ char	*ft_apply_quotes_and_env_vars(char **str)
 			ret[j] = my_str[++i];
 		else if (my_str[i] == '$')
 			ft_append_env_var_value(&(my_str[i]), &ret, &i, &j);
-		else if (ft_char_is_a_start_quote)
+		else if (ft_char_is_a_start_quote(&(my_str[i]), i))
 			ft_quoted_copy(&(my_str[i]), &ret, &i, &j);
 	}
 

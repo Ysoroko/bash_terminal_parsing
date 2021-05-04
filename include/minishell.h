@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 11:07:01 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/05/03 16:10:55 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/05/04 12:35:08 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@
 # define REDIRS_AND_PIPES "><;|"
 # define SPACES_AND_PIPES " \t\n\r\v\f;|"
 # define SPACES_AND_REDIRECTIONS " \t\n\r\v\f><"
-# define BACKSLASH_IN_DOUBLE_QUOTES_CHARS "$`\"\\"
+# define BACKSLASH_IN_DQ_CHARS "$`\"\\\n"
 # define ENV_VAR_SEPARATORS " \t\n\r\v\f><;|\"\'\\"
 
 /*
@@ -75,6 +75,8 @@ void		ft_check_for_pipe(char *str_command, t_command *command);
 char		*ft_apply_quotes_and_env_vars(char **str);
 void		ft_append_env_var_value(char *str, char **dest, int *i, int *j);
 int			ft_calculate_total_length_needed(char *str);
+void		ft_quoted_copy(char *str, char **dest, int *i, int *j);
+char		ft_env_var_delimiter(char *str_start_with_dollar_sign);
 
 /*
 ** COLORS
@@ -82,12 +84,12 @@ int			ft_calculate_total_length_needed(char *str);
 
 # define COLOR_RESET   "\x1b[0m"
 
-# define BOLDRED     "\033[1m\033[31m"      /* Bold Red */
-# define BOLDGREEN   "\033[1m\033[32m"      /* Bold Green */
-# define BOLDYELLOW  "\033[1m\033[33m"      /* Bold Yellow */
-# define BOLDBLUE    "\033[1m\033[34m"      /* Bold Blue */
-# define BOLDMAGENTA "\033[1m\033[35m"      /* Bold Magenta */
-# define BOLDCYAN    "\033[1m\033[36m"      /* Bold Cyan */
-# define BOLDWHITE   "\033[1m\033[37m"      /* Bold White */
+# define BOLDRED "\033[1m\033[31m"
+# define BOLDGREEN "\033[1m\033[32m"
+# define BOLDYELLOW "\033[1m\033[33m"
+# define BOLDBLUE "\033[1m\033[34m"
+# define BOLDMAGENTA "\033[1m\033[35m"
+# define BOLDCYAN "\033[1m\033[36m"
+# define BOLDWHITE "\033[1m\033[37m"
 
 #endif
