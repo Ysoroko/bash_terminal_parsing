@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/04 12:33:47 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/05/04 15:46:40 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/05/04 15:54:59 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,11 @@ char	*ft_extract_env_variable_name(char *str, char *separators)
 	j = 0;
 	temp = ft_calloc_exit(ft_strlen(str), sizeof(char));
 	while (str[i] && ft_is_env_name_char(str[i]))
-		temp[j++] = str[i++];
+	{
+		temp[j] = str[i];
+		i++;
+		j++;
+	}
 	return (ft_strdup_exit_and_free_src(&temp));
 }
 

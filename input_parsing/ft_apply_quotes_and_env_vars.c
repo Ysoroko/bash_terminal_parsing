@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/14 16:43:56 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/05/04 15:24:32 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/05/04 15:59:02 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,12 +38,18 @@ char	*ft_apply_quotes_and_env_vars(char **str)
 	{
 		if (my_str[i] == '\\')
 			ret[j] = my_str[++i];
-		else if (my_str[i] == '$' && !ft_strchr(ENV_VAR_SEPARATORS, my_str[i]))
+		else if (my_str[i] == '$' && !ft_strchr(ENV_VAR_SEPS, my_str[i + 1]))
+		{
+			printf("appending env_var value at [%s]\n", &(my_str[i]));
 			ft_append_env_var_value(&(my_str[i]), &ret, &i, &j);
+		}
 		else if (ft_char_is_a_start_quote(&(my_str[i]), i))
 			ft_quoted_copy(&(my_str[i]), &ret, &i, &j);
 		else
+		{
+			printf("copying my_str[i]: [%c] to ret[j]\n", my_str[i]);
 			ret[j] = my_str[i];
+		}
 		j++;
 		if (!my_str[i])
 			break;
