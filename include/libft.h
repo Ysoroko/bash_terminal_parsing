@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/17 15:32:25 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/05/04 14:35:04 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/05/04 15:15:44 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -168,7 +168,6 @@ char		*ft_extract_first_word_alpha_underscore(char *str,
 int			ft_char_is_a_dollar_sign(char *str, int i);
 char		*ft_pos_after_n_one_or_two_words(char *str,
 				int n_words, char *seps);
-char		*ft_extract_env_variable_name(char *str, char *separators);
 char		*ft_strdup_exit_and_free_src(char **src);
 int			ft_is_env_start_brace(char c);
 int			ft_is_env_name_char(char c);

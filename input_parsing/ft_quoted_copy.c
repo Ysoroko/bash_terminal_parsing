@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/04 12:03:28 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/05/04 14:56:33 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/05/04 15:13:43 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,14 +47,14 @@ static void	ft_double_quotes_copy(char *str, char **dest, int *i, int *j)
 }
 
 /*
-** ft_double_quotes_copy
+** ft_single_quotes_copy
 ** This function is responsible for single quotes copy
 ** Single quotes take the litteral value of everthing encountered between the
 ** quotes
 ** Example: '$TERM\"' --> $TERM\"
 */
 
-static void	ft_double_quotes_copy(char *str, char **dest, int *i, int *j)
+static void	ft_single_quotes_copy(char *str, char **dest, int *i, int *j)
 {
 	int	k;
 
@@ -63,7 +63,7 @@ static void	ft_double_quotes_copy(char *str, char **dest, int *i, int *j)
 	{
 		*(dest[*j]) = str[k];
 		k++;
-		*j++;
+		(*j)++;
 	}
 	if (str[k] == '\'')
 		k++;

@@ -6,7 +6,7 @@
 #    By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/25 11:12:03 by ysoroko           #+#    #+#              #
-#    Updated: 2021/05/04 12:10:06 by ysoroko          ###   ########.fr        #
+#    Updated: 2021/05/04 15:14:39 by ysoroko          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,6 +15,7 @@ INPUT_PARSING		=	input_parsing/ft_input_parsing.c \
 						input_parsing/ft_extract_next_command.c \
 						input_parsing/ft_apply_quotes_and_env_vars.c \
 						input_parsing/ft_quoted_copy.c \
+						input_parsing/ft_env_vars_utils.c
 
 EXECUTE				=	execute/ft_execute.c
 

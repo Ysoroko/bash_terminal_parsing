@@ -6,7 +6,7 @@
 #    By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/11/17 16:06:56 by ysoroko           #+#    #+#              #
-#    Updated: 2021/05/04 14:34:53 by ysoroko          ###   ########.fr        #
+#    Updated: 2021/05/04 15:16:41 by ysoroko          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,6 +43,7 @@ SRC				=	ft_atoi.c \
 					ft_putnbr_fd.c \
 					ft_putstr_fd.c \
 					ft_split.c \
+					ft_strcat.c \
 					ft_strchr.c \
 					ft_strdup.c \
 					ft_strjoin.c \
@@ -127,7 +128,6 @@ SRC				=	ft_atoi.c \
 					ft_extract_first_word_alpha_underscore.c \
 					ft_chars_is_a_dollar_sign.c \
 					ft_pos_after_n_one_or_two_words.c \
-					ft_extract_env_variable_name.c \
 					ft_strdup_exit_and_free_src.c \
 					ft_is_env_start_brace.c \
 					ft_is_env_char.c
