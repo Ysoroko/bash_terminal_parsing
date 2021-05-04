@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/04 12:03:28 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/05/04 15:39:06 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/05/04 15:45:02 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,15 +92,15 @@ void	ft_quoted_copy(char *str, char **dest, int *i, int *j)
 	quote = str[0];
 	if (quote == '\'')
 	{
-		printf("before ft_single_quotes_copy: [%s]\n", *dest);
+		//printf("before ft_single_quotes_copy: [%s]\n", *dest);
 		ft_single_quotes_copy(str, dest, i, j);
-		printf("after ft_single_quotes_copy: [%s]\n", *dest);
+		//printf("after ft_single_quotes_copy: [%s]\n", *dest);
 	}
 	else if (quote == '\"')
 	{
-		printf("beore ft_double_quotes_copy: [%s]\n", *dest);
+		//printf("beore ft_double_quotes_copy: [%s]\n", *dest);
 		ft_double_quotes_copy(str, dest, i, j);
-		printf("after ft_double_quotes_copy: [%s]\n", *dest);
+		//printf("after ft_double_quotes_copy: [%s]\n", *dest);
 	}
 	else
 		return ;

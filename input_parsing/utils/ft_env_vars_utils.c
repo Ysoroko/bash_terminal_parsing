@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/04 12:33:47 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/05/04 14:56:21 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/05/04 15:46:40 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,11 +86,14 @@ void	ft_append_env_var_value(char *str, char **dest, int *i, int *j)
 	int		k;
 
 	env_name = ft_extract_env_variable_name(str, ENV_VAR_SEPARATORS);
+	//printf("env_name in ft_append_env_var_value: [%s]\n", env_name);
 	env_value = getenv(env_name);
+	//printf("env_value in ft_append_env_var_value: [%s]\n", env_value);
 	k = 1;
 	while (str[k] && ft_is_env_name_char(str[k]))
 			k++;
 	*i += k;
 	ft_strcat(*dest, env_value);
-	*j += ft_strlen(env_name);
+	//printf("dest at the end of ft_append_env_var_value: [%s]\n", *dest);
+	*j += ft_strlen(env_value);
 }
