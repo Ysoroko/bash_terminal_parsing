@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/04 12:03:28 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/05/04 15:13:43 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/05/04 15:39:06 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ static void	ft_double_quotes_copy(char *str, char **dest, int *i, int *j)
 	}
 	if (ft_char_is_a_start_quote(str, k) == '\"')
 		k++;
+	(*j)++;
 	*i += k;
 }
 
@@ -61,12 +62,13 @@ static void	ft_single_quotes_copy(char *str, char **dest, int *i, int *j)
 	k = 1;
 	while (str[k] && str[k] != '\'')
 	{
-		*(dest[*j]) = str[k];
+		(*dest)[*j] = str[k];
 		k++;
 		(*j)++;
 	}
 	if (str[k] == '\'')
 		k++;
+	(*j)++;
 	*i += k;
 }
 
@@ -89,9 +91,17 @@ void	ft_quoted_copy(char *str, char **dest, int *i, int *j)
 		return ;
 	quote = str[0];
 	if (quote == '\'')
+	{
+		printf("before ft_single_quotes_copy: [%s]\n", *dest);
 		ft_single_quotes_copy(str, dest, i, j);
+		printf("after ft_single_quotes_copy: [%s]\n", *dest);
+	}
 	else if (quote == '\"')
+	{
+		printf("beore ft_double_quotes_copy: [%s]\n", *dest);
 		ft_double_quotes_copy(str, dest, i, j);
+		printf("after ft_double_quotes_copy: [%s]\n", *dest);
+	}
 	else
 		return ;
 }

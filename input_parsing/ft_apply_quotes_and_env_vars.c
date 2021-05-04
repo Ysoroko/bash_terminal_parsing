@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/14 16:43:56 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/05/04 15:07:48 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/05/04 15:24:32 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,10 @@ char	*ft_apply_quotes_and_env_vars(char **str)
 			ft_quoted_copy(&(my_str[i]), &ret, &i, &j);
 		else
 			ret[j] = my_str[i];
+		j++;
 		if (!my_str[i])
 			break;
-		j++;
 	}
+	ret[j] = 0;
 	return (ft_strdup_exit_and_free_src(&ret));
 }
