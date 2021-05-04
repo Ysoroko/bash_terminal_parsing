@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/14 16:43:56 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/05/04 14:51:13 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/05/04 15:07:48 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,15 @@ char	*ft_apply_quotes_and_env_vars(char **str)
 	{
 		if (my_str[i] == '\\')
 			ret[j] = my_str[++i];
-		else if (my_str[i] == '$')
+		else if (my_str[i] == '$' && !ft_strchr(ENV_VAR_SEPARATORS, my_str[i]))
 			ft_append_env_var_value(&(my_str[i]), &ret, &i, &j);
 		else if (ft_char_is_a_start_quote(&(my_str[i]), i))
 			ft_quoted_copy(&(my_str[i]), &ret, &i, &j);
+		else
+			ret[j] = my_str[i];
+		if (!my_str[i])
+			break;
+		j++;
 	}
-
+	return (ft_strdup_exit_and_free_src(&ret));
 }
