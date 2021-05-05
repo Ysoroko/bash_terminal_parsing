@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/17 15:32:25 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/05/05 09:16:30 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/05/05 10:21:26 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -172,6 +172,8 @@ char		*ft_strdup_exit_and_free_src(char **src);
 int			ft_is_env_start_brace(char c);
 int			ft_is_env_name_char(char c);
 void		ft_display_first_n_chars(char *str, int n, int fd);
+void		ft_display_first_n_chars_with_i(char *str,
+				int n, int fd, int j);
 int			ft_is_a_valid_double_quote(char *str, int i);
 
 #endif

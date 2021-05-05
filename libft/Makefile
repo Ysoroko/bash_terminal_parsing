@@ -6,7 +6,7 @@
 #    By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/11/17 16:06:56 by ysoroko           #+#    #+#              #
-#    Updated: 2021/05/05 09:15:14 by ysoroko          ###   ########.fr        #
+#    Updated: 2021/05/05 10:21:37 by ysoroko          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -132,6 +132,7 @@ SRC				=	ft_atoi.c \
 					ft_is_env_start_brace.c \
 					ft_is_env_char.c \
 					ft_display_first_n_chars.c \
+					ft_display_first_n_chars_with_i.c \
 					ft_is_a_valid_double_quote.c
 					
 					
