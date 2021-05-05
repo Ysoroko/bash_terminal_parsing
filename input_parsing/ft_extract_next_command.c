@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/30 15:52:06 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/05/04 15:29:31 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/05/05 10:36:53 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ static void	ft_extract_command_name(char *input, t_command *command)
 	if (!command->name)
 	{
 		temp = ft_extract_first_word_qx(input, SPACES_REDIRS_PIPES);
-		printf("temp: [%s]\n", temp); 
+		//printf("temp: [%s]\n", temp); 
 		command->name = ft_apply_quotes_and_env_vars(&temp);
 		if (!command->name ||
 				ft_str_only_has_chars_from_charset(command->name, SPACES))
@@ -71,7 +71,7 @@ static void	ft_extract_command_name(char *input, t_command *command)
 		temp = ft_strdup_exit(command->name);
 		ft_free_str(&command->name);
 		command->name = temp;
-		printf("command->name: [%s]\n", command->name); 
+		//printf("command->name: [%s]\n", command->name); 
 	}
 }
 
@@ -123,27 +123,27 @@ static void	ft_extract_the_argument(char *str, t_command *command)
 	
 	if (!command->name)
 		return ;
-	printf("before pos after n words\n");
+	//printf("before pos after n words\n");
 	if (command->flags)
 		index = ft_pos_after_n_one_or_two_words(str, 2, SPACES);
 	else
 		index = ft_pos_after_n_one_or_two_words(str, 1, SPACES);
-	printf("after pos after n words\n");
+	//printf("after pos after n words\n");
 	if (index[0] == '\'' || index[0] == '\"')
 		index++;
 	if (!index || !index[0] || ft_strchr(PIPES, index[0]))
 		return ;
 	temp = ft_strdup_until_c_from_charset_not_quoted(index,
 		REDIRS_AND_PIPES);
-	printf("temp in extract the arg: [%s]\n", temp);
+	//printf("temp in extract the arg: [%s]\n", temp);
 	temp2 = ft_strtrim_exit(temp, SPACES_REDIRS_PIPES);
-	printf("temp2 in extract the arg: [%s]\n", temp2);
+	//printf("temp2 in extract the arg: [%s]\n", temp2);
 	command->argument = ft_apply_quotes_and_env_vars(&temp2);
-	printf("arg: [%s]\n", command->argument);
+	//printf("arg: [%s]\n", command->argument);
 	ft_free_str(&temp);
-	printf("arg2: [%s]\n", command->argument);
+	//printf("arg2: [%s]\n", command->argument);
 	ft_free_str(&temp2);
-	printf("arg3: [%s]\n", command->argument);
+	//printf("arg3: [%s]\n", command->argument);
 	if (command->argument && !command->argument[0])
 		ft_free_str(&(command->argument));
 }
@@ -179,6 +179,6 @@ t_command	*ft_extract_next_command(char *input_checkpt, int *i)
 		*i += 1;
 	*i += j - 1;
 	//printf("ARGUMENT AT THE END OF FT_EXTRACT_NEXT_COMMAND: [%s]\n", command->argument);
-	printf("Command->name: [%s]\n", command->name);
+	//printf("Command->name: [%s]\n", command->name);
 	return (command);
 }
