@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/17 15:32:25 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/05/05 10:21:26 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/05/05 13:52:24 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -175,5 +175,6 @@ void		ft_display_first_n_chars(char *str, int n, int fd);
 void		ft_display_first_n_chars_with_i(char *str,
 				int n, int fd, int j);
 int			ft_is_a_valid_double_quote(char *str, int i);
+int			ft_isspace(int c);
 
 #endif

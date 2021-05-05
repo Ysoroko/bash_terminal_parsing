@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/14 16:43:56 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/05/05 11:02:24 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/05/05 13:53:40 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,9 @@ char	*ft_apply_quotes_and_env_vars(char **str)
 		printf(BOLDGREEN);
 		//printf("\n&(my_str[i]) = [%s]\n\n", &(my_str[i]));
 		printf(COLOR_RESET);
-		if (my_str[i] == '\\')
+		if (ft_isspace(my_str[i]))
+			ft_copy_spaces(&(my_str[i]), &ret, &i, &j);
+		else if (my_str[i] == '\\')
 			ret[j] = my_str[++i];
 		else if (my_str[i] == '$' && ft_is_env_name_char(my_str[i + 1]))
 		{

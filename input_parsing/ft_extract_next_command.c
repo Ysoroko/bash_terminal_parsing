@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/30 15:52:06 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/05/05 10:36:53 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/05/05 12:17:56 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ static void	ft_check_for_redirections(char *str, t_command *current_command,
 	current_command->redir_arg = ft_extract_first_word_qx
 		(&(redir_in_input[ft_strlen(current_command->redirection)]),
 			SPACES_AND_PIPES);
+	ft_add_words_after_redir_to_argument(current_command, redirection_found);
 }
 
 /*
@@ -170,8 +171,8 @@ t_command	*ft_extract_next_command(char *input_checkpt, int *i)
 	ft_extract_command_name(input_checkpt, command);
 	//printf("Command->name: [%s]\n", command->name);
 	ft_check_for_flags(input_checkpt, command);
-	ft_check_for_redirections(next_command_as_str, command, &j, input_checkpt);
 	ft_extract_the_argument(next_command_as_str, command);
+	ft_check_for_redirections(next_command_as_str, command, &j, input_checkpt);
 	ft_check_for_pipe(next_command_as_str, command);
 	ft_free_str(&next_command_as_str);
 	//printf("j: [%i]\n", j);

@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 11:07:01 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/05/04 15:58:50 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/05/05 13:50:43 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,8 @@ void		ft_append_env_var_value(char *str, char **dest, int *i, int *j);
 int			ft_calculate_total_length_needed(char *str);
 void		ft_quoted_copy(char *str, char **dest, int *i, int *j);
 char		ft_env_var_delimiter(char *str_start_with_dollar_sign);
+void		ft_add_words_after_redir_to_argument(t_command *command, char *red_pos);
+void		ft_copy_spaces(char *src, char **dest, int *i, int *j);
 
 /*
 ** COLORS
