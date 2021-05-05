@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/04 12:03:28 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/05/05 10:24:46 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/05/05 10:30:34 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,9 +73,6 @@ static void	ft_single_quotes_copy(char *str, char **dest, int *i, int *j)
 		k++;
 		(*j)++;
 	}
-	if (str[k] == '\'')
-		k++;
-	(*j)++;
 	*i += k;
 }
 
