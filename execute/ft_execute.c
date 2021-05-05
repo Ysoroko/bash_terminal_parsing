@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 17:46:26 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/05/05 15:20:26 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/05/05 15:54:13 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,8 +66,6 @@ static void	ft_print_command_list(void *current_command)
 **}
 */
 
-
-
 /*
 ** FT_EXECUTE
 ** This function is the main bridge between parsing and executing commands
@@ -81,5 +79,5 @@ void	ft_execute(t_dl_lst *command_list)
 	if (!command_list)
 		return ;
 	ft_dl_lstiter(command_list, ft_print_command_list);
-	ft_dl_lstiter(command_list, ft_check_command_for_errors);
+	//ft_dl_lstiter(command_list, ft_check_command_for_errors);
 }
