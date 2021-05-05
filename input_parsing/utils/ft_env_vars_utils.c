@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/04 12:33:47 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/05/04 16:07:49 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/05/05 10:04:41 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,17 +91,17 @@ void	ft_append_env_var_value(char *str, char **dest, int *i, int *j)
 
 	if (ft_char_is_a_start_quote(str, *i + 1))
 	{
-		printf("hey, char after $ is a stat quote!\n");
+		//printf("hey, char after $ is a stat quote!\n");
 		return ;
 	}
 	env_name = ft_extract_env_variable_name(str, ENV_VAR_SEPS);
-	printf("env_name in ft_append_env_var_value: [%s]\n", env_name);
+	//printf("env_name in ft_append_env_var_value: [%s]\n", env_name);
 	env_value = getenv(env_name);
-	printf("env_value in ft_append_env_var_value: [%s]\n", env_value);
+	//printf("env_value in ft_append_env_var_value: [%s]\n", env_value);
 	k = 1;
 	while (str[k] && ft_is_env_name_char(str[k]))
 			k++;
-	*i += k;
+	*i += k - 1;
 	printf("dest before strcat of ft_append_env_var_value: [%s]\n", *dest);
 	ft_strcat(*dest, env_value);
 	printf("dest at the end of ft_append_env_var_value: [%s]\n", *dest);

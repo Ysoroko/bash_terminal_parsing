@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/14 16:43:56 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/05/04 16:27:22 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/05/05 10:00:00 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,26 +31,38 @@ char	*ft_apply_quotes_and_env_vars(char **str)
 	if (!str || !(*str))
 		return (0);
 	my_str = *str;
+	printf(BOLDRED);
+	printf("\nmy_str = [%s]\n\n", my_str);
+	printf(COLOR_RESET);
 	i = -1;
 	j = 0;
 	ret = ft_calloc_exit(ft_calculate_total_length_needed(*str), 1);
 	while (my_str[++i])
 	{
+		printf(BOLDGREEN);
+		printf("\n&(my_str[i]) = [%s]\n\n", &(my_str[i]));
+		printf(COLOR_RESET);
 		if (my_str[i] == '\\')
 			ret[j] = my_str[++i];
 		else if (my_str[i] == '$' && !ft_strchr(ENV_VAR_SEPS, my_str[i + 1]))
 		{
+			printf(BOLDMAGENTA);
 			printf("appending env_var value at &str[i]: [%s]\n", &(my_str[i]));
+			printf(COLOR_RESET);
 			ft_append_env_var_value(&(my_str[i]), &ret, &i, &j);
 		}
 		else if (ft_char_is_a_start_quote(my_str, i))
 		{
+			printf(BOLDYELLOW);
 			printf("going to quoted_copy at &str[i]: [%s]\n", &(my_str[i]));
+			printf(COLOR_RESET);
 			ft_quoted_copy(&(my_str[i]), &ret, &i, &j);
 		}
 		else
 		{
+			printf(BOLDBLUE);
 			printf("copying my_str[i]: [%c] to ret[j]\n", my_str[i]);
+			printf(COLOR_RESET);
 			ret[j] = my_str[i];
 		}
 		if (ret[j])

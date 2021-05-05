@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/04 12:03:28 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/05/04 16:26:12 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/05/05 09:59:03 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,17 @@ static void	ft_double_quotes_copy(char *str, char **dest, int *i, int *j)
 	int	l;
 
 	k = 1;
-	while (str[k] && ft_char_is_a_start_quote(str, k) != '\"')
+	while (str[k] && !ft_is_a_valid_double_quote(str, k))
 	{
+		printf("str[k] at the start of ft_dq_cpy: [%c]\n", str[k]);
 		if (str[k] == '\\' && ft_strchr(BACKSLASH_IN_DQ_CHARS, str[k + 1]))
 			(*dest)[*j] = str[++k];
 		else if (str[k] == '$')
-			ft_append_env_var_value(&(str[k]), dest, i, j);
+		{
+			printf("appending in ft_dq_copy at\n \t&str[k]: [%s]\n \tk: [%d]\n, \t*dest: [%s]\n", &(str[k]), k, *dest);
+			ft_append_env_var_value(&(str[k]), dest, &k, j);
+			printf("after appending in ft_dq_copy at\n \t&str[k]: [%s]\n \tk: [%d]\n, \t*dest: [%s]\n", &(str[k]), k, *dest);
+		}
 		else
 		{
 			printf("copying in ft_dq_copy [%c] to dest at j:[%d]\n", str[k], *j);
@@ -44,10 +49,9 @@ static void	ft_double_quotes_copy(char *str, char **dest, int *i, int *j)
 		(*j)++;
 		k++;
 	}
-	if (ft_char_is_a_start_quote(str, k) == '\"')
-		k++;
 	(*j)++;
 	*i += k;
+	printf("str[i] at the end of ft_dq_cpy: [%c]\n", str[*i]);
 }
 
 /*
@@ -95,16 +99,19 @@ void	ft_quoted_copy(char *str, char **dest, int *i, int *j)
 	quote = str[0];
 	if (quote == '\'')
 	{
-		//printf("before ft_single_quotes_copy: [%s]\n", *dest);
+		printf("before ft_single_quotes_copy: [%s]\n", *dest);
 		ft_single_quotes_copy(str, dest, i, j);
-		//printf("after ft_single_quotes_copy: [%s]\n", *dest);
+		printf("after ft_single_quotes_copy: [%s]\n", *dest);
+		ft_display_first_n_chars(*dest, 30, STDOUT);
+		
 	}
 	else if (quote == '\"')
 	{
-		printf("beore ft_double_quotes_copy: [%s]\n", *dest);
+		printf("before ft_double_quotes_copy: [%s]\n", *dest);
 		ft_double_quotes_copy(str, dest, i, j);
 		printf("after ft_double_quotes_copy: [%s]\n", *dest);
+		printf("*i: [%i]\n *j: [%i]\n", *i, *j);
+		printf("str[*i]: [%c]\n ret[*c]: [%i]\n", str[*i], (*dest)[*j]);
 	}
-	else
-		return ;
+	
 }
