@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/14 16:43:56 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/05/05 13:53:40 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/05/05 14:56:49 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,8 @@ char	*ft_apply_quotes_and_env_vars(char **str)
 			printf(COLOR_RESET);
 			ft_append_env_var_value(&(my_str[i]), &ret, &i, &j);
 		}
+		else if (my_str[i] == '$' && (my_str[i + 1] == '\'' || my_str[i + 1] == '\"'))
+			;
 		else if (ft_char_is_a_start_quote(my_str, i))
 		{
 			printf(BOLDYELLOW);
