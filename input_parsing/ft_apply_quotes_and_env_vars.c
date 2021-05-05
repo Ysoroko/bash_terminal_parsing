@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/14 16:43:56 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/05/05 10:36:13 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/05/05 11:02:24 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ char	*ft_apply_quotes_and_env_vars(char **str)
 		printf(COLOR_RESET);
 		if (my_str[i] == '\\')
 			ret[j] = my_str[++i];
-		else if (my_str[i] == '$' && !ft_strchr(ENV_VAR_SEPS, my_str[i + 1]))
+		else if (my_str[i] == '$' && ft_is_env_name_char(my_str[i + 1]))
 		{
 			printf(BOLDMAGENTA);
 			//printf("appending env_var value at &str[i]: [%s]\n", &(my_str[i]));
