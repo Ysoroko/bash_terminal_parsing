@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/26 09:36:36 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/05/05 14:05:48 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/05/05 14:42:21 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,6 +113,8 @@ void	ft_add_words_after_redir_to_argument(t_command *command, char *red_pos)
 	while (red_pos[i] && ft_strchr(REDIRECTIONS, red_pos[i]))
 		i++;
 	temp = ft_pos_after_n_one_or_two_words(&(red_pos[i]), 1, SPACES);
+	if (!temp)
+		return ;
 	temp2 = ft_strdup_until_c_from_charset_not_quoted(temp, PIPES);
 	temp2 = ft_strtrim_exit_replace_src(&temp2, SPACES_AND_PIPES);
 	command->argument = ft_strjoin_free_pref_exit(&(command->argument), temp2);

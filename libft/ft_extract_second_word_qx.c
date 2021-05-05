@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/12 14:52:05 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/04/27 11:34:32 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/05/05 14:41:09 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,9 @@ char	*ft_extract_second_word_qx(char *from, char *separators)
 	char	*first_word;
 
 	first_word = ft_extract_first_word_qx(from, separators);
+	if (!first_word || ft_str_only_has_chars_from_charset(first_word,
+			separators))
+		return (0);
 	temp = ft_pos_after_the_word_in_string(from, first_word);
 	if (!temp || !temp[0])
 		return (ft_free_str(&first_word));
