@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/30 15:52:06 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/05/05 14:38:09 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/05/05 14:48:09 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ static void	ft_check_for_redirections(char *str, t_command *current_command,
 										int *j, char *input)
 {
 	char	*redirection_found;
-	char	*redir_in_input;
 
 	//printf("str_before redirection_found: [%s]\n", str);
 	if (!current_command->name)
@@ -36,14 +35,13 @@ static void	ft_check_for_redirections(char *str, t_command *current_command,
 		current_command->redirection = ft_strdup_exit("<");
 	else if (redirection_found[0] == '>')
 	{
-		redir_in_input = ft_strchr_not_quoted(input, '>');
-		if (redir_in_input[1] == '>')
+		if (redirection_found[1] == '>')
 			current_command->redirection = ft_strdup_exit(">>");
 		else
 			current_command->redirection = ft_strdup_exit(">");
 	}
 	current_command->redir_arg = ft_extract_first_word_qx
-		(&(redir_in_input[ft_strlen(current_command->redirection)]),
+		(&(redirection_found[ft_strlen(current_command->redirection)]),
 			SPACES_AND_PIPES);
 	ft_add_words_after_redir_to_argument(current_command, redirection_found);
 }
