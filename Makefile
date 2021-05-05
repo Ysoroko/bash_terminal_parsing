@@ -6,7 +6,7 @@
 #    By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/25 11:12:03 by ysoroko           #+#    #+#              #
-#    Updated: 2021/05/04 15:21:07 by ysoroko          ###   ########.fr        #
+#    Updated: 2021/05/05 15:20:40 by ysoroko          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,8 @@ INPUT_PARSING		=	input_parsing/ft_input_parsing.c \
 						input_parsing/utils/ft_quoted_copy.c \
 						input_parsing/utils/ft_env_vars_utils.c
 
-EXECUTE				=	execute/ft_execute.c
+EXECUTE				=	execute/ft_execute.c \
+						execute/ft_check_command_for_errors.c
 
 UTILS				=	utils/signal/ft_signal_handler.c
 
