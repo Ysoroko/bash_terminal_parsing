@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/04 12:03:28 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/05/05 10:37:03 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/05/05 10:41:52 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ void	ft_quoted_copy(char *str, char **dest, int *i, int *j)
 		//printf("before ft_single_quotes_copy: [%s]\n", *dest);
 		ft_single_quotes_copy(str, dest, i, j);
 		//printf("after ft_single_quotes_copy: [%s]\n", *dest);
-		ft_display_first_n_chars_with_i(*dest, 30, STDOUT, *j);
+		//ft_display_first_n_chars_with_i(*dest, 30, STDOUT, *j);
 		
 	}
 	else if (quote == '\"')
@@ -109,7 +109,7 @@ void	ft_quoted_copy(char *str, char **dest, int *i, int *j)
 		ft_double_quotes_copy(str, dest, i, j);
 		//printf("after ft_double_quotes_copy: [%s]\n", *dest);
 		//printf("str[*i]: [%c]\n ret[*c]: [%i]\n", str[*i], (*dest)[*j]);
-		ft_display_first_n_chars_with_i(*dest, 30, STDOUT, *j);
+		//ft_display_first_n_chars_with_i(*dest, 30, STDOUT, *j);
 	}
 	
 }
