@@ -6,11 +6,11 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/04 12:03:28 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/05/05 10:41:52 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/05/06 11:21:55 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/minishell.h"
+#include "../../include/minishell.h"
 
 /*
 ** ft_double_quotes_copy
