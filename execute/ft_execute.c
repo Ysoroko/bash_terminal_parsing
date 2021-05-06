@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 17:46:26 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/05/06 11:22:12 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/05/06 12:20:19 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,43 @@ static void	ft_print_command_list(void *current_command)
 */
 
 /*
+** ft_determine_output_fd
+** This function will check the redirection character and
+** and redir arg
+*/
+
+static int	ft_determine_output_fd(t_command *command)
+{
+	char	*red;
+	int		fd;
+	
+	if (!command->redir_arg)
+		return (STDOUT);
+	if (!ft_strlcmp(">", command->redirection))
+		fd = open(command->redir_arg, O_RDWR | O_CREAT | O_TRUNC, 777);
+	else if (!ft_strlcmp(">>", command->redirection))
+		fd = open(command->redir_arg, O_RDWR | O_CREAT, 777);
+	else
+		fd = STDOUT;
+	if (fd < 0)
+		exit(EXIT_FAILURE);
+	return (fd);
+}
+
+//HOW to stop ft_dl_lstiter in the middle if an error is encountered?
+void	ft_process_every_command(void *current_command)
+{
+	t_command	*command;
+	int			fd;
+
+	command = (t_command *)current_command;
+	if (ft_check_command_for_errors(command))
+		return ;
+	fd = ft_determine_output_fd(command);
+	
+}
+
+/*
 ** FT_EXECUTE
 ** This function is the main bridge between parsing and executing commands
 ** It takes the parsing as a t_list* structure, passes it to a different
@@ -79,5 +116,7 @@ void	ft_execute(t_dl_lst *command_list)
 	if (!command_list)
 		return ;
 	ft_dl_lstiter(command_list, ft_print_command_list);
+	//ft_dl_lstiter(command_list, ft_process_every_command);
 	//ft_dl_lstiter(command_list, ft_check_command_for_errors);
 }
+

@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 11:07:01 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/05/05 15:48:03 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/05/06 11:38:29 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ void		ft_free_t_command(void *command_pointer);
 void		ft_update_str_read_so_far(char *input_checkpt, int i, char **prev);
 t_command	*ft_extract_next_command(char *input_checkpnt, int *i);
 void		ft_execute(t_dl_lst *command_list);
-int			ft_check_command_for_errors(void *current_command);
+int			ft_check_command_for_errors(t_command *command);
 void		ft_signal_handler(int no_matter);
 void		ft_initialize_termcaps(char **term_type, int *ret);
 char		*ft_extract_next_command_string(char *input_checkpoint);
@@ -82,6 +82,12 @@ char		ft_env_var_delimiter(char *str_start_with_dollar_sign);
 void		ft_add_words_after_redir_to_argument(t_command *command,
 				char *red_pos);
 void		ft_copy_spaces(char *src, char **dest, int *i, int *j);
+
+/*
+** FUNCTIONS
+*/
+
+void		ft_echo(t_dl_lst *dl_lst, int fd);
 
 /*
 ** COLORS

@@ -6,7 +6,7 @@
 #    By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/25 11:12:03 by ysoroko           #+#    #+#              #
-#    Updated: 2021/05/05 15:20:40 by ysoroko          ###   ########.fr        #
+#    Updated: 2021/05/06 11:28:11 by ysoroko          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,6 +21,8 @@ EXECUTE				=	execute/ft_execute.c \
 						execute/ft_check_command_for_errors.c
 
 UTILS				=	utils/signal/ft_signal_handler.c
+
+FUNCTIONS			=	functions/ft_echo.c
 
 SRC					=	main.c $(INPUT_PARSING) $(EXECUTE) $(UTILS)
 

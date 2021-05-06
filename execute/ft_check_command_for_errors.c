@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/05 15:19:16 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/05/05 15:48:39 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/05/06 12:20:00 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,16 +48,39 @@ static int	ft_check_name_for_errors(char *command_name)
 }
 
 /*
+** ft_check_redirection_for_errors
+** This function will check the redirection and its argument for errors
+** Possible errors are: redirection present but no argument
+*/
+
+static int	ft_check_redirection_for_errors(t_command *command)
+{
+	if (command->redirection && !command->redir_arg)
+	{
+		//print bash: syntax error near unexpected token `x'
+		ft_putstr_fd("minishell: syntax error near unexpected token ", STDERR);
+		if (!command->pipe)
+			ft_putendl_fd("\'newline\'", STDERR);
+		else
+		{
+			ft_putstr_fd('\'', STDERR);
+			ft_putstr_fd(command->pipe, STDERR);
+			ft_putendl_fd("\'", STDERR);
+		}
+		return (1);
+	}
+
+	return (0);
+}
+
+/*
 ** ft_check_command_for_errors
 ** This function will go through our t_dl_lst and will check each of its
 ** elements to see if there's an error/invalid combination present
 */
 
-int	ft_check_command_for_errors(void *current_command)
+int	ft_check_command_for_errors(t_command *command)
 {
-	t_command	*command;
-
-	command = (t_command *)current_command;
 	if (ft_check_name_for_errors(command->name))
 		return (1);
 	return (0);
