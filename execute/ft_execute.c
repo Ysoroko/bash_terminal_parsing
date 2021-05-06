@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 17:46:26 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/05/06 12:42:03 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/05/06 12:44:36 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,7 +138,10 @@ void	ft_process_every_command(void *current_command)
 	if (ft_check_command_for_errors(command))
 		return ;
 	fd = ft_determine_output_fd(command);
-	
+
+
+	if (close(fd))
+		exit(EXIT_FAILURE);
 }
 
 /*
