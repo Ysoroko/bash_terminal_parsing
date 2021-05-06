@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 17:46:26 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/05/06 12:20:19 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/05/06 12:42:03 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,9 @@ static void	ft_print_command_list(void *current_command)
 /*
 ** ft_determine_output_fd
 ** This function will check the redirection character and
-** and redir arg
+** and redir arg and return the output fd based on their values
+** If there are no redirections present, we will use STDOUT as output fd
+** If an error is encountered when using "open" command, it will exit
 */
 
 static int	ft_determine_output_fd(t_command *command)
@@ -77,7 +79,7 @@ static int	ft_determine_output_fd(t_command *command)
 	char	*red;
 	int		fd;
 	
-	if (!command->redir_arg)
+	if (!command->redirection || !command->redir_arg)
 		return (STDOUT);
 	if (!ft_strlcmp(">", command->redirection))
 		fd = open(command->redir_arg, O_RDWR | O_CREAT | O_TRUNC, 777);
@@ -90,7 +92,43 @@ static int	ft_determine_output_fd(t_command *command)
 	return (fd);
 }
 
+/*
+** static void ft_apply_input_redirection(t_command *command)
+** This function will check if there is a '<' redirection present
+** and will add the redir_arg's contents to the command->argument
+** For example:
+** echo 'goot tay!' > output.txt
+** tr < output.txt t d
+** Will display "good day" in our terminal
+*/
+
+static void ft_apply_input_redirection(t_command *command)
+{
+	int		input_fd;
+	char	*temp;
+
+	if (ft_strlcmp(command->redirection, "<"))
+		return ;
+	else
+	{
+		input_fd = open(command->redir_arg, O_RDONLY);
+		if (input_fd < 0)
+			exit(EXIT_FAILURE);
+		//extract the contents of input_fd and save them in *temp
+		// might need get_next_line here
+	}
+	command->argument = ft_strjoin_free_pref_exit(&command->argument, temp);
+	ft_free_str(&temp);
+}
+
 //HOW to stop ft_dl_lstiter in the middle if an error is encountered?
+/*
+** void	ft_process_every_command(void *current_command)
+** This function is the central hub of executing the related commands
+** It will first check for errors, then determine the output fd
+** and finally execute the corresponding command
+*/
+
 void	ft_process_every_command(void *current_command)
 {
 	t_command	*command;
