@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/30 15:52:06 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/05/05 14:48:09 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/07/14 13:04:19 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ static void	ft_check_for_redirections(char *str, t_command *current_command,
 	char	*redirection_found;
 
 	//printf("str_before redirection_found: [%s]\n", str);
-	if (!current_command->name)
-		return ;
+	//if (!current_command->name)
+	//	return ;
 	redirection_found = ft_strchrset_not_quoted(str, REDIRECTIONS);
 	//printf("redirection_found: [%s]\n", redirection_found);
 	if (!redirection_found)
@@ -57,20 +57,21 @@ static void	ft_check_for_redirections(char *str, t_command *current_command,
 static void	ft_extract_command_name(char *input, t_command *command)
 {
 	char	*temp;
+	char	*temp2;
 
 	if (!command->name)
 	{
-		temp = ft_extract_first_word_qx(input, SPACES_REDIRS_PIPES);
-		//printf("temp: [%s]\n", temp); 
+		temp2 = ft_strdup_until_c_from_charset(input, REDIRS_PIPES_QUOTES);
+		temp = ft_extract_first_word_qx(temp2, SPACES);
+		free(temp2);
 		command->name = ft_apply_quotes_and_env_vars(&temp);
 		if (!command->name ||
-				ft_str_only_has_chars_from_charset(command->name, SPACES))
+				ft_str_only_has_chars_from_charset(command->name, SPACES_REDIRS_PIPES))
 			ft_free_str(&command->name);
 		ft_free_str(&temp);
 		temp = ft_strdup_exit(command->name);
 		ft_free_str(&command->name);
 		command->name = temp;
-		//printf("command->name: [%s]\n", command->name); 
 	}
 }
 
@@ -171,6 +172,7 @@ t_command	*ft_extract_next_command(char *input_checkpt, int *i)
 	ft_check_for_flags(input_checkpt, command);
 	ft_extract_the_argument(next_command_as_str, command);
 	ft_check_for_redirections(next_command_as_str, command, &j, input_checkpt);
+	//printf("Command->redirection: [%s]\n", command->redirection);
 	ft_check_for_pipe(next_command_as_str, command);
 	ft_free_str(&next_command_as_str);
 	//printf("j: [%i]\n", j);

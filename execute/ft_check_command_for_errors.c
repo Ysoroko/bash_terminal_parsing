@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/05 15:19:16 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/05/06 12:20:00 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/07/14 12:39:01 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,9 +63,9 @@ static int	ft_check_redirection_for_errors(t_command *command)
 			ft_putendl_fd("\'newline\'", STDERR);
 		else
 		{
-			ft_putstr_fd('\'', STDERR);
-			ft_putstr_fd(command->pipe, STDERR);
-			ft_putendl_fd("\'", STDERR);
+			ft_putchar_fd('\'', STDERR);
+			ft_putchar_fd(command->pipe, STDERR);
+			ft_putchar_fd('\'', STDERR);
 		}
 		return (1);
 	}

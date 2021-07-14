@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 11:07:01 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/05/06 11:38:29 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/07/14 13:01:40 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@
 # define SPACES_REDIRS_PIPES " \t\n\r\v\f><;|"
 # define REDIRS_AND_PIPES "><;|"
 # define SPACES_AND_PIPES " \t\n\r\v\f;|"
+# define REDIRS_PIPES_QUOTES "><|;\'\""
 # define SPACES_AND_REDIRECTIONS " \t\n\r\v\f><"
 # define BACKSLASH_IN_DQ_CHARS "$`\"\\\n"
 # define ENV_VAR_SEPS " \t\n\r\v\f><;|\\"
