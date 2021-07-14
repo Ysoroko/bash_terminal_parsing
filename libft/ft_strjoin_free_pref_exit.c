@@ -6,7 +6,7 @@
 /*   By: ysoroko <ysoroko@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/09 12:35:05 by ysoroko           #+#    #+#             */
-/*   Updated: 2021/04/10 12:30:43 by ysoroko          ###   ########.fr       */
+/*   Updated: 2021/07/14 13:12:15 by ysoroko          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,10 @@ char	*ft_strjoin_free_pref_exit(char **pref, char *suff)
 {
 	char	*ret;
 
-	if (!pref || !*pref)
+	if (!pref)
 		return (0);
+	if (!*pref)
+		return (ft_strdup_exit(suff));
 	if (!suff)
 		return (*pref);
 	ret = ft_strjoin_exit(*pref, suff);
